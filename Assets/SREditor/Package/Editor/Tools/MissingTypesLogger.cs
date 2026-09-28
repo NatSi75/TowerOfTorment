@@ -60,7 +60,7 @@ namespace SerializeReferenceEditor.Editor.Tools
                                             stringBuilder.AppendFormat("Object \"{0}\" (Type: {1}, Instance: {2})",
                                                     component.name,
                                                     component.GetType().FullName,
-                                                    component.GetInstanceID())
+                                                    component.GetEntityId())
                                                 .AppendLine();
 
                                             foreach (var missingType in missingTypes)
@@ -99,7 +99,7 @@ namespace SerializeReferenceEditor.Editor.Tools
 										stringBuilder.AppendFormat("Object \"{0}\" (Type: {1}, Instance: {2})",
                                                 scriptable.name,
                                                 scriptable.GetType().FullName,
-                                                scriptable.GetInstanceID())
+                                                scriptable.GetEntityId())
                                             .AppendLine();
 
                                         foreach (var missingType in missingTypes)

@@ -29,5 +29,5 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Treasure.unity
     guid: 94e7d367ad0ce8a44b860bc847ef4c70
-  m_configObjects: {}
-  m_UseUCBPForAssetBundles: 0
+  m_configObjects:
+    com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}

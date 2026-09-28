@@ -1,0 +1,145 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0d0b10;
+  color: #e9dfc8;
+  font-family: Georgia, "Times New Roman", serif;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+/* Fills the whole browser window on every device; 100dvh follows the mobile address bar. */
+#game-root {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0d0b10;
+}
+
+#unity-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  touch-action: none;
+  background: #0d0b10;
+}
+
+/* The game is landscape: on portrait / near-square windows keep a centered 16:9 view
+   instead of stretching it vertically. */
+@media (max-aspect-ratio: 4/3) {
+  #unity-canvas {
+    height: calc(100vw * 9 / 16);
+  }
+}
+
+#loading-screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+  background: radial-gradient(ellipse at center, #241a2c 0%, #0d0b10 70%);
+  transition: opacity 0.4s ease;
+}
+
+#loading-screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-title {
+  font-size: clamp(22px, 5vw, 48px);
+  letter-spacing: 0.08em;
+  text-align: center;
+  color: #f0d9a0;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+.loading-bar {
+  width: min(420px, 70vw);
+  height: 10px;
+  border: 1px solid #6b5536;
+  border-radius: 6px;
+  background: #1b1520;
+  overflow: hidden;
+}
+
+#loading-bar-fill {
+  width: 0;
+  height: 100%;
+  background: linear-gradient(90deg, #8c5a1c, #e0b35a);
+  transition: width 0.2s ease;
+}
+
+#loading-text {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+#rotate-overlay {
+  position: absolute;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 24px;
+  text-align: center;
+  font-size: 18px;
+  background: #0d0b10;
+  z-index: 10;
+}
+
+#rotate-overlay svg {
+  width: 72px;
+  height: 72px;
+  fill: none;
+  stroke: #f0d9a0;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: rotate-hint 2s ease-in-out infinite;
+}
+
+@keyframes rotate-hint {
+  0%, 30% { transform: rotate(0deg); }
+  60%, 100% { transform: rotate(-90deg); }
+}
+
+/* The game is landscape-only: ask phone/tablet players to rotate. */
+@media (orientation: portrait) {
+  .is-mobile #rotate-overlay { display: flex; }
+}
+
+#error-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+
+#error-banner > div {
+  padding: 10px 16px;
+  color: #000;
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+}
+
+.banner-error { background: #e05555; }
+.banner-warning { background: #f0d060; }

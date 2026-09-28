@@ -16,7 +16,7 @@ namespace Map
 
 namespace Map
 {
-    public class MapNode : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler
+    public class MapNode : MonoBehaviour, IPointerEnterHandler, IPointerDownHandler, IPointerUpHandler, IPointerExitHandler, ITooltipContent
     {
         public SpriteRenderer sr;
         public Image image;
@@ -32,6 +32,37 @@ namespace Map
         private float mouseDownTime;
 
         private const float MaxClickDuration = 0.5f;
+
+        public string TooltipTitle => Node == null ? null : Node.nodeType switch
+        {
+            NodeType.MinorEnemy => "Enemy",
+            NodeType.EliteEnemy => "Elite",
+            NodeType.RestSite => "Rest Site",
+            NodeType.Treasure => "Treasure",
+            NodeType.Store => "Merchant",
+            NodeType.Boss => "Boss",
+            NodeType.Mystery => "Unknown",
+            NodeType.PillarOfDespair => "Pillar of Despair",
+            _ => Node.nodeType.ToString(),
+        };
+
+        public string TooltipDescription => Node == null ? null : Node.nodeType switch
+        {
+            NodeType.MinorEnemy => "Fight a group of monsters.",
+            NodeType.EliteEnemy => "Fight a powerful enemy for better rewards.",
+            NodeType.RestSite => "Rest to recover HP, or upgrade or remove a card.",
+            NodeType.Treasure => "Open a chest and choose a relic.",
+            NodeType.Store => "Spend your Gold on cards and items.",
+            NodeType.Boss => "The guardian of this floor. Defeat it to climb higher.",
+            NodeType.Mystery => "Something unknown awaits.",
+            NodeType.PillarOfDespair => "Trade your humanity for power: upgrade or remove a card.",
+            _ => null,
+        };
+
+        private void Awake()
+        {
+            if (GetComponent<TooltipTrigger>() == null) gameObject.AddComponent<TooltipTrigger>();
+        }
 
         public void SetUp(Node node, NodeBlueprint blueprint)
         {

@@ -12,6 +12,8 @@ namespace UnityEngine.UI.Extensions
 
     public class UIPrimitiveBase : MaskableGraphic, ILayoutElement, ICanvasRaycastFilter
     {
+        public virtual float maxWidth => -1f;
+        public virtual float maxHeight => -1f;
         static protected Material s_ETC1DefaultUI = null;
         List<Vector2> outputList = new List<Vector2>();
 
