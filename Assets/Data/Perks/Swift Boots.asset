@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 840e4821a5708a54ba96d8e4877b9575, type: 3}
+  m_Name: Swift Boots
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Swift Boots
+  <Description>k__BackingField: At the start of each combat, gain 1 dexterity
+  <Image>k__BackingField: {fileID: 21300000, guid: e502502ce1cdf7b4e923dc7a4f991240, type: 3}

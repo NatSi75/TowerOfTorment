@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acda2892d44e9df43ab6ea8636c44019, type: 3}
+  m_Name: Ice Shards +
+  m_EditorClassIdentifier: 
+  <Description>k__BackingField: Deal 6 damage to All enemies twice.
+  <Mana>k__BackingField: 1
+  <Image>k__BackingField: {fileID: 21300000, guid: be9d789924ad23d4a9d44d46ee5b513e, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: be9d789924ad23d4a9d44d46ee5b513e, type: 3}
+  <RarityVisual>k__BackingField: 0
+  exhaust: 0
+  <ManualTargetEffect>k__BackingField: []
+  <OtherEffects>k__BackingField:
+  - <TargetMode>k__BackingField:
+      rid: 1786786108711895058
+    <Effect>k__BackingField:
+      rid: 1786786108711895059
+  - <TargetMode>k__BackingField:
+      rid: 1786786108711895060
+    <Effect>k__BackingField:
+      rid: 1786786108711895061
+  upgradedCardData: {fileID: 0}
+  isUpgradedVersion: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 1786786108711895058
+      type: {class: AllEnemiesTM, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 1786786108711895059
+      type: {class: DealDamageEffect, ns: , asm: Assembly-CSharp}
+      data:
+        damageAmount: 6
+    - rid: 1786786108711895060
+      type: {class: AllEnemiesTM, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 1786786108711895061
+      type: {class: DealDamageEffect, ns: , asm: Assembly-CSharp}
+      data:
+        damageAmount: 6

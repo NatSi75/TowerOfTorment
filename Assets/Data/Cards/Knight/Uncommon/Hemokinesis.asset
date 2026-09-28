@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acda2892d44e9df43ab6ea8636c44019, type: 3}
+  m_Name: Hemokinesis
+  m_EditorClassIdentifier: 
+  <Description>k__BackingField: Lose 2 HP. Deal 15 damage to one enemy.
+  <Mana>k__BackingField: 1
+  <Image>k__BackingField: {fileID: 21300000, guid: e5e845c9eba0b8c459e1b002ce91d99a, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: e5e845c9eba0b8c459e1b002ce91d99a, type: 3}
+  <RarityVisual>k__BackingField: 1
+  exhaust: 0
+  <ManualTargetEffect>k__BackingField:
+  - rid: 7359767314047696924
+  <OtherEffects>k__BackingField:
+  - <TargetMode>k__BackingField:
+      rid: 7359767314047696922
+    <Effect>k__BackingField:
+      rid: 7359767314047696923
+  upgradedCardData: {fileID: 11400000, guid: 55f02960b256d2347bc6f2288af00f69, type: 2}
+  isUpgradedVersion: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 7359767314047696922
+      type: {class: HeroTM, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 7359767314047696923
+      type: {class: HealEffect, ns: , asm: Assembly-CSharp}
+      data:
+        healAmount: -2
+    - rid: 7359767314047696924
+      type: {class: DealDamageEffect, ns: , asm: Assembly-CSharp}
+      data:
+        damageAmount: 15

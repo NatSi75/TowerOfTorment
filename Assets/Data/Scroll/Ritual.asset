@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3454e138cd7814587343ef2d438369, type: 3}
+  m_Name: Ritual
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Ritual Scroll
+  <Description>k__BackingField: Gain 1 Ritual
+  <Image>k__BackingField: {fileID: -1497479284421134366, guid: f68e843c9e680864b92d81008327b91e, type: 3}
+  <ManualTargetEffect>k__BackingField: []
+  <OtherEffects>k__BackingField:
+  - <TargetMode>k__BackingField:
+      rid: 1786786086447480873
+    <Effect>k__BackingField:
+      rid: 1786786086447480874
+  references:
+    version: 2
+    RefIds:
+    - rid: 1786786086447480873
+      type: {class: HeroTM, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 1786786086447480874
+      type: {class: AddStatusEffectEffect, ns: , asm: Assembly-CSharp}
+      data:
+        <statusEffectType>k__BackingField: 12
+        stackCount: 1

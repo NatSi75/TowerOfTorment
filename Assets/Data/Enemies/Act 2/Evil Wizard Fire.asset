@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c56e9f6794da2a4f813e9ad32fe3c60, type: 3}
+  m_Name: Evil Wizard Fire
+  m_EditorClassIdentifier: 
+  <Image>k__BackingField: {fileID: 4723107735738678597, guid: 259971b78a4deeb479a894e73beec5b5, type: 3}
+  flipSprite: 1
+  scaleX: 10
+  scaleY: 10
+  intentionYPosition: 3.5
+  <AnimatorController>k__BackingField: {fileID: 9100000, guid: 32aa36459f7e41443b63f1a4cbfc5757, type: 2}
+  <Health>k__BackingField: 35
+  followAbilityPattern: 1
+  enemyAbilityList:
+  - name: Burn
+    intention: {fileID: 11400000, guid: ea73d686bd5502949a978e534a5dfa7e, type: 2}
+    hideActionValue: 1
+    actionList:
+    - actionType: 7
+      actionValue: 3
+  - name: Attack
+    intention: {fileID: 11400000, guid: 5482379954dbac947b4a3536965b4dc2, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 0
+      actionValue: 18
+  - name: Attack
+    intention: {fileID: 11400000, guid: 5482379954dbac947b4a3536965b4dc2, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 0
+      actionValue: 18
+  - name: Block
+    intention: {fileID: 11400000, guid: a45aaaf448aaf784f9a51d9127d292e3, type: 2}
+    hideActionValue: 1
+    actionList:
+    - actionType: 5
+      actionValue: 18
+  - name: Attack Strong
+    intention: {fileID: 11400000, guid: 5482379954dbac947b4a3536965b4dc2, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 0
+      actionValue: 18
+  - name: Attack
+    intention: {fileID: 11400000, guid: 5482379954dbac947b4a3536965b4dc2, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 0
+      actionValue: 15

@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c56e9f6794da2a4f813e9ad32fe3c60, type: 3}
+  m_Name: Flying Eye
+  m_EditorClassIdentifier: 
+  <Image>k__BackingField: {fileID: -4795363162621231457, guid: 4f022189ecc4d8d41b5c0c5158b24154, type: 3}
+  flipSprite: 1
+  scaleX: 6
+  scaleY: 6
+  intentionYPosition: 0
+  <AnimatorController>k__BackingField: {fileID: 9100000, guid: 0df1b9d8d3753a4428110d651a37896f, type: 2}
+  <Health>k__BackingField: 18
+  followAbilityPattern: 1
+  enemyAbilityList:
+  - name: Attack
+    intention: {fileID: 11400000, guid: 5482379954dbac947b4a3536965b4dc2, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 0
+      actionValue: 6
+  - name: Vulnerable
+    intention: {fileID: 11400000, guid: ea73d686bd5502949a978e534a5dfa7e, type: 2}
+    hideActionValue: 1
+    actionList:
+    - actionType: 4
+      actionValue: 1
+  - name: Attack
+    intention: {fileID: 11400000, guid: 5482379954dbac947b4a3536965b4dc2, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 0
+      actionValue: 6

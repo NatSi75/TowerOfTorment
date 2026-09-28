@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3454e138cd7814587343ef2d438369, type: 3}
+  m_Name: Regen
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Regen Scroll
+  <Description>k__BackingField: Gain 5 Regen
+  <Image>k__BackingField: {fileID: -9195723388180128671, guid: e3caa3a1c4520714c90032c28ef1f8cd, type: 3}
+  <ManualTargetEffect>k__BackingField: []
+  <OtherEffects>k__BackingField:
+  - <TargetMode>k__BackingField:
+      rid: 1786786086447480875
+    <Effect>k__BackingField:
+      rid: 1786786086447480876
+  references:
+    version: 2
+    RefIds:
+    - rid: 1786786086447480875
+      type: {class: HeroTM, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 1786786086447480876
+      type: {class: AddStatusEffectEffect, ns: , asm: Assembly-CSharp}
+      data:
+        <statusEffectType>k__BackingField: 11
+        stackCount: 5

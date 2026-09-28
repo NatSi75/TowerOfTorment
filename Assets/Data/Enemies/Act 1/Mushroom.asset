@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c56e9f6794da2a4f813e9ad32fe3c60, type: 3}
+  m_Name: Mushroom
+  m_EditorClassIdentifier: 
+  <Image>k__BackingField: {fileID: 4723107735738678597, guid: aa0379e07f493bf44b285d2aa90a301f, type: 3}
+  flipSprite: 1
+  scaleX: 9
+  scaleY: 9
+  intentionYPosition: 1
+  <AnimatorController>k__BackingField: {fileID: 9100000, guid: 12cbec469abd8b942ada0503d09dd4fb, type: 2}
+  <Health>k__BackingField: 22
+  followAbilityPattern: 1
+  enemyAbilityList:
+  - name: Attack
+    intention: {fileID: 11400000, guid: 5482379954dbac947b4a3536965b4dc2, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 0
+      actionValue: 6
+  - name: Attack
+    intention: {fileID: 11400000, guid: 5482379954dbac947b4a3536965b4dc2, type: 2}
+    hideActionValue: 0
+    actionList:
+    - actionType: 0
+      actionValue: 6
+  - name: Heal
+    intention: {fileID: 11400000, guid: 83b742d368dc4b84b91b873d4c17b726, type: 2}
+    hideActionValue: 1
+    actionList:
+    - actionType: 1
+      actionValue: 11

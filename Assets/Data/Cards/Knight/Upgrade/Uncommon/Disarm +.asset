@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acda2892d44e9df43ab6ea8636c44019, type: 3}
+  m_Name: Disarm +
+  m_EditorClassIdentifier: 
+  <Description>k__BackingField: Lose 3 Strength to one enemy and exhaust the card.
+  <Mana>k__BackingField: 1
+  <Image>k__BackingField: {fileID: 21300000, guid: 7822eb488a660b34494f5d66dca1daba, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: 7822eb488a660b34494f5d66dca1daba, type: 3}
+  <RarityVisual>k__BackingField: 1
+  <Type>k__BackingField: 1
+  exhaust: 1
+  <ManualTargetEffect>k__BackingField:
+  - rid: 7359767314047696919
+  <OtherEffects>k__BackingField: []
+  upgradedCardData: {fileID: 0}
+  isUpgradedVersion: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 7359767314047696919
+      type: {class: AddStatusEffectEffect, ns: , asm: Assembly-CSharp}
+      data:
+        <statusEffectType>k__BackingField: 2
+        stackCount: -3

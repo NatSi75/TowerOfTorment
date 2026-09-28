@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3454e138cd7814587343ef2d438369, type: 3}
+  m_Name: Block
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Block Scroll
+  <Description>k__BackingField: Gain 12 Armor
+  <Image>k__BackingField: {fileID: -6674826455981463842, guid: 83a49864308f865428e5cbd58a5cfa3d, type: 3}
+  <ManualTargetEffect>k__BackingField: []
+  <OtherEffects>k__BackingField:
+  - <TargetMode>k__BackingField:
+      rid: 1786786086447480850
+    <Effect>k__BackingField:
+      rid: 1786786086447480851
+  references:
+    version: 2
+    RefIds:
+    - rid: 1786786086447480850
+      type: {class: HeroTM, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 1786786086447480851
+      type: {class: AddStatusEffectEffect, ns: , asm: Assembly-CSharp}
+      data:
+        <statusEffectType>k__BackingField: 0
+        stackCount: 12

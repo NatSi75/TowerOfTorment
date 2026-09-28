@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d809cf165e37a4d868b1a2c4f59565, type: 3}
+  m_Name: Knight
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Knight
+  <Description>k__BackingField: 'A relentless warrior wielding a serrated, blood-stained
+    blade. Excels in close combat, rending flesh to inflict devastating Bleed effects
+    on his foes over time. '
+  <Image>k__BackingField: {fileID: 412434694075372973, guid: e97346f9b5b271f4e93cf39e567616cb, type: 3}
+  flipSprite: 0
+  <Animator>k__BackingField: {fileID: 9100000, guid: 2a3d4fcc3059ae8429a1ab49c3e45a8e, type: 2}
+  <Health>k__BackingField: 75
+  <Torment>k__BackingField: 0
+  <MaxTorment>k__BackingField: 50
+  scaleX: 7
+  scaleY: 7
+  <Deck>k__BackingField:
+  - {fileID: 11400000, guid: 11b515fbd5eb28641b5e3d4c33b966d2, type: 2}
+  - {fileID: 11400000, guid: 11b515fbd5eb28641b5e3d4c33b966d2, type: 2}
+  - {fileID: 11400000, guid: 11b515fbd5eb28641b5e3d4c33b966d2, type: 2}
+  - {fileID: 11400000, guid: 11b515fbd5eb28641b5e3d4c33b966d2, type: 2}
+  - {fileID: 11400000, guid: 11b515fbd5eb28641b5e3d4c33b966d2, type: 2}
+  - {fileID: 11400000, guid: 0b4b96f94fe050e43afee0d756fbe802, type: 2}
+  - {fileID: 11400000, guid: 719e4b16fd65d0742a959d6d757b6566, type: 2}
+  - {fileID: 11400000, guid: b140bc02de3a42843ae868430124833b, type: 2}
+  - {fileID: 11400000, guid: 91fd4b2f9f8e40144becbc60e57f0284, type: 2}
+  - {fileID: 11400000, guid: b140bc02de3a42843ae868430124833b, type: 2}
+  - {fileID: 11400000, guid: 178562e7f36c50d4dbd696e36832c2a2, type: 2}
+  - {fileID: 11400000, guid: d4ae585222d88164c9604c37c69b126c, type: 2}
+  - {fileID: 11400000, guid: 47245e2df609d4a49a7600d2831a5a66, type: 2}
+  - {fileID: 11400000, guid: 47245e2df609d4a49a7600d2831a5a66, type: 2}
+  - {fileID: 11400000, guid: 47245e2df609d4a49a7600d2831a5a66, type: 2}
+  - {fileID: 11400000, guid: 47245e2df609d4a49a7600d2831a5a66, type: 2}
+  - {fileID: 11400000, guid: 47245e2df609d4a49a7600d2831a5a66, type: 2}
+  - {fileID: 11400000, guid: 47245e2df609d4a49a7600d2831a5a66, type: 2}
+  - {fileID: 11400000, guid: 47245e2df609d4a49a7600d2831a5a66, type: 2}
+  - {fileID: 11400000, guid: 47245e2df609d4a49a7600d2831a5a66, type: 2}
+  - {fileID: 11400000, guid: 47245e2df609d4a49a7600d2831a5a66, type: 2}
+  - {fileID: 11400000, guid: 47245e2df609d4a49a7600d2831a5a66, type: 2}
+  <PerkHero>k__BackingField: {fileID: 11400000, guid: 2fb6e634d3f5df04fbaf408616cdbddc, type: 2}
+  <PerkHeroUpgrade>k__BackingField: {fileID: 11400000, guid: 6d6d2dacd3275754c8df5d6b7c0f5f7d, type: 2}

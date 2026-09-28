@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c56e9f6794da2a4f813e9ad32fe3c60, type: 3}
+  m_Name: Demon Slime
+  m_EditorClassIdentifier: 
+  <Image>k__BackingField: {fileID: 4012125072139123244, guid: fe2bac26a1cde5e48a77fa49dec37634, type: 3}
+  flipSprite: 0
+  scaleX: 6
+  scaleY: 6
+  intentionYPosition: 0
+  <AnimatorController>k__BackingField: {fileID: 9100000, guid: ccc8cc6e0fcff974088f06ad36509846, type: 2}
+  <Health>k__BackingField: 100
+  followAbilityPattern: 0
+  enemyAbilityList:
+  - name: Strenght
+    intention: {fileID: 11400000, guid: 8af15a8044f781e42869f2cf85836bf9, type: 2}
+    hideActionValue: 1
+    actionList:
+    - actionType: 8
+      actionValue: 3

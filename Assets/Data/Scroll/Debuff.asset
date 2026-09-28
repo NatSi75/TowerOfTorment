@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c3454e138cd7814587343ef2d438369, type: 3}
+  m_Name: Debuff
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Debuff Scroll
+  <Description>k__BackingField: Apply 1 Weak and 1 Vulnerable to all enemies
+  <Image>k__BackingField: {fileID: 6480212072753342072, guid: 343ce5bc4c980aa4ba5b143268ce032d, type: 3}
+  <ManualTargetEffect>k__BackingField: []
+  <OtherEffects>k__BackingField:
+  - <TargetMode>k__BackingField:
+      rid: 1786786086447480870
+    <Effect>k__BackingField:
+      rid: 1786786086447480871
+  - <TargetMode>k__BackingField:
+      rid: 1786786086447480870
+    <Effect>k__BackingField:
+      rid: 1786786086447480872
+  references:
+    version: 2
+    RefIds:
+    - rid: 1786786086447480870
+      type: {class: AllEnemiesTM, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 1786786086447480871
+      type: {class: AddStatusEffectEffect, ns: , asm: Assembly-CSharp}
+      data:
+        <statusEffectType>k__BackingField: 4
+        stackCount: 1
+    - rid: 1786786086447480872
+      type: {class: AddStatusEffectEffect, ns: , asm: Assembly-CSharp}
+      data:
+        <statusEffectType>k__BackingField: 5
+        stackCount: 1

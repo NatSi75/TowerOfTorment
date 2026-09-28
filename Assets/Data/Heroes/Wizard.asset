@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d809cf165e37a4d868b1a2c4f59565, type: 3}
+  m_Name: Wizard
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Wizard
+  <Description>k__BackingField: An exiled scholar who delved into forbidden alchemy
+    and toxic dark arts. Suffocates enemies with noxious spells, applying deadly
+    Poison to slowly wither their life away.
+  <Image>k__BackingField: {fileID: 4723107735738678597, guid: e4a00dc681498a747b8e6dec2cc519b0, type: 3}
+  flipSprite: 0
+  <Animator>k__BackingField: {fileID: 9100000, guid: 3055ff1fc6c8900479ab406c973c34b0, type: 2}
+  <Health>k__BackingField: 68
+  <Torment>k__BackingField: 0
+  <MaxTorment>k__BackingField: 55
+  scaleX: 5
+  scaleY: 5
+  <Deck>k__BackingField:
+  - {fileID: 11400000, guid: aa4aa4cc80c48ad40a89906a6d74f94f, type: 2}
+  - {fileID: 11400000, guid: aa4aa4cc80c48ad40a89906a6d74f94f, type: 2}
+  - {fileID: 11400000, guid: aa4aa4cc80c48ad40a89906a6d74f94f, type: 2}
+  - {fileID: 11400000, guid: aa4aa4cc80c48ad40a89906a6d74f94f, type: 2}
+  - {fileID: 11400000, guid: aa4aa4cc80c48ad40a89906a6d74f94f, type: 2}
+  - {fileID: 11400000, guid: e11b7126b0dc8ba48a0d01b6b33ed938, type: 2}
+  - {fileID: 11400000, guid: e11b7126b0dc8ba48a0d01b6b33ed938, type: 2}
+  - {fileID: 11400000, guid: e11b7126b0dc8ba48a0d01b6b33ed938, type: 2}
+  - {fileID: 11400000, guid: e11b7126b0dc8ba48a0d01b6b33ed938, type: 2}
+  - {fileID: 11400000, guid: e11b7126b0dc8ba48a0d01b6b33ed938, type: 2}
+  - {fileID: 11400000, guid: e2a12bf06df2b0542b4c3a06ced89cd0, type: 2}
+  - {fileID: 11400000, guid: 93797b06b4c888c4e9a6c12a335953f1, type: 2}
+  <PerkHero>k__BackingField: {fileID: 11400000, guid: ec8612f7939aaeb43b50d598aabb033b, type: 2}
+  <PerkHeroUpgrade>k__BackingField: {fileID: 11400000, guid: 6f6cfbea95b52df439bceaa8d668ab1c, type: 2}

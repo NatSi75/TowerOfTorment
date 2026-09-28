@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 840e4821a5708a54ba96d8e4877b9575, type: 3}
+  m_Name: Greed's Pounch
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: "Greed\u2019s Pounch"
+  <Description>k__BackingField: Enemies drop 15 additional gold
+  <Image>k__BackingField: {fileID: 21300000, guid: 220da0cca06977b4a88bf4f908a1efb2, type: 3}

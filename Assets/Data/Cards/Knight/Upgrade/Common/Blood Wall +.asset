@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acda2892d44e9df43ab6ea8636c44019, type: 3}
+  m_Name: Blood Wall +
+  m_EditorClassIdentifier: 
+  <Description>k__BackingField: Lose 2 HP. Gain 20 Armor.
+  <Mana>k__BackingField: 2
+  <Image>k__BackingField: {fileID: 21300000, guid: 4e4beb159d4e0b44a8f3e0f378e1ba6c, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: 4e4beb159d4e0b44a8f3e0f378e1ba6c, type: 3}
+  <RarityVisual>k__BackingField: 0
+  <Type>k__BackingField: 1
+  exhaust: 0
+  <ManualTargetEffect>k__BackingField: []
+  <OtherEffects>k__BackingField:
+  - <TargetMode>k__BackingField:
+      rid: 7359767314047696952
+    <Effect>k__BackingField:
+      rid: 7359767314047696954
+  - <TargetMode>k__BackingField:
+      rid: 7359767314047696953
+    <Effect>k__BackingField:
+      rid: 7359767314047696955
+  upgradedCardData: {fileID: 0}
+  isUpgradedVersion: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 7359767314047696952
+      type: {class: HeroTM, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 7359767314047696953
+      type: {class: HeroTM, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 7359767314047696954
+      type: {class: HealEffect, ns: , asm: Assembly-CSharp}
+      data:
+        healAmount: -2
+    - rid: 7359767314047696955
+      type: {class: AddStatusEffectEffect, ns: , asm: Assembly-CSharp}
+      data:
+        <statusEffectType>k__BackingField: 0
+        stackCount: 20

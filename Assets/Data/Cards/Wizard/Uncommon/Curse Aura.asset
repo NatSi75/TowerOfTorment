@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acda2892d44e9df43ab6ea8636c44019, type: 3}
+  m_Name: Curse Aura
+  m_EditorClassIdentifier: 
+  <Description>k__BackingField: At the start of your turn, apply 2 Poison to All
+    enemies.
+  <Mana>k__BackingField: 1
+  <Image>k__BackingField: {fileID: 21300000, guid: 58dd0b57710400e408f1d5c7c3ffa223, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: 58dd0b57710400e408f1d5c7c3ffa223, type: 3}
+  <RarityVisual>k__BackingField: 1
+  <Type>k__BackingField: 2
+  exhaust: 1
+  <ManualTargetEffect>k__BackingField: []
+  <OtherEffects>k__BackingField:
+  - <TargetMode>k__BackingField:
+      rid: 1786786108711895117
+    <Effect>k__BackingField:
+      rid: 1786786108711895094
+  upgradedCardData: {fileID: 11400000, guid: 465248999285b4341b2ff4d151c38898, type: 2}
+  isUpgradedVersion: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 1786786108711895094
+      type: {class: AddStatusEffectEffect, ns: , asm: Assembly-CSharp}
+      data:
+        <statusEffectType>k__BackingField: 13
+        stackCount: 2
+    - rid: 1786786108711895117
+      type: {class: HeroTM, ns: , asm: Assembly-CSharp}
+      data: 

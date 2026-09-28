@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acda2892d44e9df43ab6ea8636c44019, type: 3}
+  m_Name: Haze +
+  m_EditorClassIdentifier: 
+  <Description>k__BackingField: Apply 6 Poison and 2 Weak to All enemies.
+  <Mana>k__BackingField: 2
+  <Image>k__BackingField: {fileID: 21300000, guid: 3dfbf6a51cb229d479de724419ddfa1a, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: 3dfbf6a51cb229d479de724419ddfa1a, type: 3}
+  <RarityVisual>k__BackingField: 1
+  <Type>k__BackingField: 1
+  exhaust: 0
+  <ManualTargetEffect>k__BackingField: []
+  <OtherEffects>k__BackingField:
+  - <TargetMode>k__BackingField:
+      rid: 1786786108711895079
+    <Effect>k__BackingField:
+      rid: 1786786108711895083
+  - <TargetMode>k__BackingField:
+      rid: 1786786108711895079
+    <Effect>k__BackingField:
+      rid: 1786786108711895082
+  upgradedCardData: {fileID: 0}
+  isUpgradedVersion: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 1786786108711895079
+      type: {class: AllEnemiesTM, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 1786786108711895082
+      type: {class: AddStatusEffectEffect, ns: , asm: Assembly-CSharp}
+      data:
+        <statusEffectType>k__BackingField: 4
+        stackCount: 2
+    - rid: 1786786108711895083
+      type: {class: AddStatusEffectEffect, ns: , asm: Assembly-CSharp}
+      data:
+        <statusEffectType>k__BackingField: 6
+        stackCount: 6
