@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acda2892d44e9df43ab6ea8636c44019, type: 3}
   m_Name: Bane
   m_EditorClassIdentifier: 
-  <Description>k__BackingField: Deal 7 damage. If the enemy has Poison, deal 7 damage
-    again.
+  <Description>k__BackingField: Deal 7 damage. If the enemy has Poison, deal 7 damage again.
   <Mana>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 21300000, guid: da069ecf0212ed743aa7f384e0223d40, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: da069ecf0212ed743aa7f384e0223d40, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: 8b31c3c4f5c6bbe4e9ed18ec31e7d888, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: 8b31c3c4f5c6bbe4e9ed18ec31e7d888, type: 3}
   <RarityVisual>k__BackingField: 0
+  <Type>k__BackingField: 0
   exhaust: 0
   <ManualTargetEffect>k__BackingField:
   - rid: 1786786108711895040

@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Description>k__BackingField: Deal 13 damage to All enemies. Exhaust this card.
   <Mana>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 21300000, guid: daecc60fa07d67f4dbf3f0c8201e1a64, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: daecc60fa07d67f4dbf3f0c8201e1a64, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: 9023a930171488e4789d2c6b07a7c004, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: 9023a930171488e4789d2c6b07a7c004, type: 3}
   <RarityVisual>k__BackingField: 2
+  <Type>k__BackingField: 0
   exhaust: 1
   <ManualTargetEffect>k__BackingField: []
   <OtherEffects>k__BackingField:

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Description>k__BackingField: Apply 5 Poison.
   <Mana>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 21300000, guid: 5582bbc152d94fa48a9b3e46bbedab47, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: 5582bbc152d94fa48a9b3e46bbedab47, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: f5bde288c3e634e45b694f39b4c88013, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: f5bde288c3e634e45b694f39b4c88013, type: 3}
   <RarityVisual>k__BackingField: 0
   <Type>k__BackingField: 1
   exhaust: 0

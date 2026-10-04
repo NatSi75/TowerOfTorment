@@ -49,7 +49,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 3e2977c71738f744e82592f0667b650d, type: 3}
     volume: 1
   wizardAttack:
-    clip: {fileID: 8300000, guid: 97a6d7facfb70124ba1aa923c89ebd1a, type: 3}
+    clip: {fileID: 8300000, guid: 8c95a13766cc25b4080f1509470b2d8a, type: 3}
     volume: 1
   burn:
     clip: {fileID: 8300000, guid: 46b8e182ee4e4614981bc3c21823293a, type: 3}

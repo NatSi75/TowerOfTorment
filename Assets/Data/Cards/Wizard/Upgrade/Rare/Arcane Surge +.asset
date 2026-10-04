@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Description>k__BackingField: Gain 2 Mana. Draw 2 cards. Exhaust this card.
   <Mana>k__BackingField: 0
-  <Image>k__BackingField: {fileID: 21300000, guid: 6ef75ccde9c8e544a9bec8892489a3c5, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: 6ef75ccde9c8e544a9bec8892489a3c5, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: be5f12f2a91f2894b994e92d8a1c5233, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: be5f12f2a91f2894b994e92d8a1c5233, type: 3}
   <RarityVisual>k__BackingField: 2
   <Type>k__BackingField: 1
   exhaust: 1

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Description>k__BackingField: Apply 4 Bleed to one enemy and exhaust the card.
   <Mana>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 21300000, guid: 47bcc7677dfd77149aa4d7bc73cb690b, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: 47bcc7677dfd77149aa4d7bc73cb690b, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: 9af821985bc98d44992a54181aa785ae, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: 9af821985bc98d44992a54181aa785ae, type: 3}
   <RarityVisual>k__BackingField: 0
   <Type>k__BackingField: 1
   exhaust: 1

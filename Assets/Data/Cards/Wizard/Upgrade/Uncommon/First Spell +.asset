@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Description>k__BackingField: Deal 15 damage. Exhaust this card.
   <Mana>k__BackingField: 0
-  <Image>k__BackingField: {fileID: 21300000, guid: 95b233d7a19ebf84d9f5e1b447859c4a, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: 95b233d7a19ebf84d9f5e1b447859c4a, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: ef6784303c25c6c42bb5234df745905a, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: ef6784303c25c6c42bb5234df745905a, type: 3}
   <RarityVisual>k__BackingField: 1
+  <Type>k__BackingField: 0
   exhaust: 1
   <ManualTargetEffect>k__BackingField:
   - rid: 1786786108711895076

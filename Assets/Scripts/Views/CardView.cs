@@ -21,6 +21,13 @@ public class CardView : MonoBehaviour
     public RarityVisual[] rarityVisualsWizard;
     [SerializeField] private Color upgradedTitleColor = new(0.45f, 0.95f, 0.35f);
     private Color? defaultTitleColor;
+
+    [Header("Card Art Window")]
+    [Tooltip("Opening of the card frame for the world art (Image Sr), in its parent's local space. Size 0 = keep as is.")]
+    [SerializeField] private Rect worldArtWindow;
+    [Tooltip("Opening of the card frame for the UI art (Image), in its parent's local space. Size 0 = keep as is.")]
+    [SerializeField] private Rect uiArtWindow;
+    private static readonly Dictionary<(Sprite, float), Sprite> croppedArt = new();
     public Card Card { get; private set; }
     private Vector3 dragStartPosition;
     private Quaternion dragStartRotation;
@@ -37,10 +44,68 @@ public class CardView : MonoBehaviour
         title.fontStyle = card.IsUpgradeVersion ? title.fontStyle | FontStyles.Bold : title.fontStyle & ~FontStyles.Bold;
         description.text = card.description;
         mana.text = card.Mana.ToString();
-        imageSR.sprite = card.Image;
-        image.sprite = card.ImageUI;
+        SetArt(card);
         rarity = card.RarityVisual;
         ApplyRarityVisuals(rarity);
+    }
+
+    // Card art comes in different sizes (256 / 512 px, square). Crop it to the frame opening's aspect
+    // and scale it to exactly fill the opening, so it is never too big or too small.
+    private void SetArt(Card card)
+    {
+        if (worldArtWindow.size.x > 0f && worldArtWindow.size.y > 0f && card.Image != null)
+        {
+            Sprite art = CropToAspect(card.Image, worldArtWindow.width / worldArtWindow.height);
+            imageSR.sprite = art;
+            imageSR.drawMode = SpriteDrawMode.Simple;
+            Transform artTransform = imageSR.transform;
+            artTransform.localPosition = new Vector3(worldArtWindow.center.x, worldArtWindow.center.y, artTransform.localPosition.z);
+            artTransform.localRotation = Quaternion.identity;
+            Vector2 artSize = art.rect.size / art.pixelsPerUnit;
+            artTransform.localScale = new Vector3(worldArtWindow.width / artSize.x, worldArtWindow.height / artSize.y, 1f);
+        }
+        else
+        {
+            imageSR.sprite = card.Image;
+        }
+
+        if (uiArtWindow.size.x > 0f && uiArtWindow.size.y > 0f && card.ImageUI != null)
+        {
+            image.sprite = CropToAspect(card.ImageUI, uiArtWindow.width / uiArtWindow.height);
+            image.preserveAspect = false;
+            RectTransform artRect = image.rectTransform;
+            artRect.anchorMin = artRect.anchorMax = artRect.pivot = new Vector2(0.5f, 0.5f);
+            artRect.anchoredPosition = uiArtWindow.center;
+            artRect.sizeDelta = uiArtWindow.size;
+            artRect.localScale = Vector3.one;
+        }
+        else
+        {
+            image.sprite = card.ImageUI;
+        }
+    }
+
+    private static Sprite CropToAspect(Sprite source, float aspect)
+    {
+        if (croppedArt.TryGetValue((source, aspect), out Sprite cached) && cached != null) return cached;
+
+        Rect rect = source.rect;
+        if (rect.width / rect.height > aspect)
+        {
+            float width = rect.height * aspect;
+            rect.x += (rect.width - width) / 2f;
+            rect.width = width;
+        }
+        else
+        {
+            float height = rect.width / aspect;
+            rect.y += (rect.height - height) / 2f;
+            rect.height = height;
+        }
+        Sprite cropped = Sprite.Create(source.texture, rect, new Vector2(0.5f, 0.5f), source.pixelsPerUnit, 0, SpriteMeshType.FullRect);
+        cropped.name = source.name + " (card art)";
+        croppedArt[(source, aspect)] = cropped;
+        return cropped;
     }
 
     private void ApplyRarityVisuals(CardRarity rarity)

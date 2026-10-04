@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Description>k__BackingField: Apply 3 Poison to a random enemy 3 times.
   <Mana>k__BackingField: 2
-  <Image>k__BackingField: {fileID: 21300000, guid: c83c672df79c49a4aac22da98588b7d4, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: c83c672df79c49a4aac22da98588b7d4, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: b694502fb33a15840af26fe722d38203, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: b694502fb33a15840af26fe722d38203, type: 3}
   <RarityVisual>k__BackingField: 1
   <Type>k__BackingField: 1
   exhaust: 0

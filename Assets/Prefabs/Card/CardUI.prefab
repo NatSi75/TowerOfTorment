@@ -635,6 +635,19 @@ MonoBehaviour:
     backgroundSprite: {fileID: 8096576214076922244, guid: c0f30c08bf1b3a74eafa6d0f65195b6c, type: 3}
   - rarity: 2
     backgroundSprite: {fileID: 8096576214076922244, guid: 9ae47b20af178be44b0f5f38c37b9692, type: 3}
+  upgradedTitleColor: {r: 0.45, g: 0.95, b: 0.35, a: 1}
+  worldArtWindow:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  uiArtWindow:
+    serializedVersion: 2
+    x: -384.57812
+    y: 75.52609
+    width: 269.15625
+    height: 200.72662
 --- !u!114 &5781076610336273534
 MonoBehaviour:
   m_ObjectHideFlags: 0

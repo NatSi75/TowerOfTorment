@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Description>k__BackingField: Draw 2 card.
   <Mana>k__BackingField: 0
-  <Image>k__BackingField: {fileID: 21300000, guid: dfa122a20ddabf74fa2610af469acb7b, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: dfa122a20ddabf74fa2610af469acb7b, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: 20a315566bcd3ec4996573be19b8e278, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: 20a315566bcd3ec4996573be19b8e278, type: 3}
   <RarityVisual>k__BackingField: 0
   <Type>k__BackingField: 1
   exhaust: 0

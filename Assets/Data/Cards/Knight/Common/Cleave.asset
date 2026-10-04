@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Description>k__BackingField: Deal 8 damage to all enemies.
   <Mana>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 21300000, guid: c4d488a9e58f02c43b8af8dac4b660ab, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: c4d488a9e58f02c43b8af8dac4b660ab, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: 58b7c054e38f5b146969e306ee3e7d02, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: 58b7c054e38f5b146969e306ee3e7d02, type: 3}
+  <RarityVisual>k__BackingField: 0
+  <Type>k__BackingField: 0
   exhaust: 0
   <ManualTargetEffect>k__BackingField: []
   <OtherEffects>k__BackingField:

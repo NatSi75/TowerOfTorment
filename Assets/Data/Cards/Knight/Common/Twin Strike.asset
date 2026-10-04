@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Description>k__BackingField: Deal 5 damage twice to one enemy.
   <Mana>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 21300000, guid: 92b2d4b87c0290c43a43a128f05e8daf, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: 92b2d4b87c0290c43a43a128f05e8daf, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: 0452525ae48c0ed478e15c5ba92db6ba, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: 0452525ae48c0ed478e15c5ba92db6ba, type: 3}
+  <RarityVisual>k__BackingField: 0
+  <Type>k__BackingField: 0
   exhaust: 0
   <ManualTargetEffect>k__BackingField:
   - rid: 7359767314047696912

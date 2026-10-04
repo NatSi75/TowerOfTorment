@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Description>k__BackingField: Deal 11 damage. Apply 3 Weak.
   <Mana>k__BackingField: 0
-  <Image>k__BackingField: {fileID: 21300000, guid: 4d49481dbe7f9d64384c9d1dc70ba284, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: 4d49481dbe7f9d64384c9d1dc70ba284, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: a4eb0f5a9b5b34f4880f5e07c52ecd12, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: a4eb0f5a9b5b34f4880f5e07c52ecd12, type: 3}
   <RarityVisual>k__BackingField: 2
+  <Type>k__BackingField: 0
   exhaust: 0
   <ManualTargetEffect>k__BackingField:
   - rid: 1786786108711895111

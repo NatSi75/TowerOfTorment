@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acda2892d44e9df43ab6ea8636c44019, type: 3}
   m_Name: Curse Aura +
   m_EditorClassIdentifier: 
-  <Description>k__BackingField: At the start of your turn, apply 3 Poison to All
-    enemies.
+  <Description>k__BackingField: At the start of your turn, apply 3 Poison to All enemies.
   <Mana>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 21300000, guid: 58dd0b57710400e408f1d5c7c3ffa223, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: 58dd0b57710400e408f1d5c7c3ffa223, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: 8d05838177e11884380de0f6419ca9b7, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: 8d05838177e11884380de0f6419ca9b7, type: 3}
   <RarityVisual>k__BackingField: 1
   <Type>k__BackingField: 2
   exhaust: 0

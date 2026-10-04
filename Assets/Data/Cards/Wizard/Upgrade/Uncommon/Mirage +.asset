@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Description>k__BackingField: Gain Armor equal to Poison on All enemies.
   <Mana>k__BackingField: 0
-  <Image>k__BackingField: {fileID: 21300000, guid: 452f4c32e8e2f29438d891531bb3fb8f, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: 452f4c32e8e2f29438d891531bb3fb8f, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: b625bf7660f453b42bb7bf2787a0d0d1, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: b625bf7660f453b42bb7bf2787a0d0d1, type: 3}
   <RarityVisual>k__BackingField: 1
   <Type>k__BackingField: 1
   exhaust: 0

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Description>k__BackingField: Gain 2 Mana.
   <Mana>k__BackingField: 0
-  <Image>k__BackingField: {fileID: 21300000, guid: 70a1dc7f6b63fe7428eced02193013e3, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: 70a1dc7f6b63fe7428eced02193013e3, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: 3fe642126899db747a1ace98fc91fb01, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: 3fe642126899db747a1ace98fc91fb01, type: 3}
   <RarityVisual>k__BackingField: 1
   <Type>k__BackingField: 1
   exhaust: 0

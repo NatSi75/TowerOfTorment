@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Description>k__BackingField: Gain 10 Armor. Deal 10 damage.
   <Mana>k__BackingField: 2
-  <Image>k__BackingField: {fileID: 21300000, guid: 53e810d7922f7454392b4a5bcb30c26a, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: 53e810d7922f7454392b4a5bcb30c26a, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: d05c6cd2eb848134ca06c38f29f9c427, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: d05c6cd2eb848134ca06c38f29f9c427, type: 3}
   <RarityVisual>k__BackingField: 1
+  <Type>k__BackingField: 0
   exhaust: 0
   <ManualTargetEffect>k__BackingField:
   - rid: 1786786108711895084

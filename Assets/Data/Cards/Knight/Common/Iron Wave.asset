@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Description>k__BackingField: 'Deal 5 Damage to one enemy. Gain 5 Armor. '
   <Mana>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 21300000, guid: b0e996e895f5b6f4091d2a71ed73f881, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: b0e996e895f5b6f4091d2a71ed73f881, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: 9d8158ce69f075e4186580b818e18d32, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: 9d8158ce69f075e4186580b818e18d32, type: 3}
+  <RarityVisual>k__BackingField: 0
+  <Type>k__BackingField: 0
   exhaust: 0
   <ManualTargetEffect>k__BackingField:
   - rid: 7359767314047696905

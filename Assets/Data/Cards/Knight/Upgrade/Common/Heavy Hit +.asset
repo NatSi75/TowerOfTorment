@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acda2892d44e9df43ab6ea8636c44019, type: 3}
+  m_Name: Heavy Hit +
+  m_EditorClassIdentifier: 
+  <Description>k__BackingField: Deal 10 damage to one enemy. Draw 2 card.
+  <Mana>k__BackingField: 1
+  <Image>k__BackingField: {fileID: 21300000, guid: 59eff75ec38f6bd4c948c6b546699ca5, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: 59eff75ec38f6bd4c948c6b546699ca5, type: 3}
+  <RarityVisual>k__BackingField: 0
+  <Type>k__BackingField: 0
+  exhaust: 0
+  <ManualTargetEffect>k__BackingField:
+  - rid: 7359767314047696906
+  <OtherEffects>k__BackingField:
+  - <TargetMode>k__BackingField:
+      rid: 7359767206971310081
+    <Effect>k__BackingField:
+      rid: 7359767206971310080
+  upgradedCardData: {fileID: 0}
+  isUpgradedVersion: 1
+  references:
+    version: 2
+    RefIds:
+    - rid: 7359767206971310080
+      type: {class: DrawCardsEffect, ns: , asm: Assembly-CSharp}
+      data:
+        drawAmount: 2
+    - rid: 7359767206971310081
+      type: {class: NoTM, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 7359767314047696906
+      type: {class: DealDamageEffect, ns: , asm: Assembly-CSharp}
+      data:
+        damageAmount: 10

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Description>k__BackingField: Gain 5 Armor.
   <Mana>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 21300000, guid: a5280f2a87b488c4eb7528f28afe3c29, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: a5280f2a87b488c4eb7528f28afe3c29, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: 967097fd9bf204b4f8fc295c9ae1daa2, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: 967097fd9bf204b4f8fc295c9ae1daa2, type: 3}
   <RarityVisual>k__BackingField: 0
   <Type>k__BackingField: 1
   exhaust: 0

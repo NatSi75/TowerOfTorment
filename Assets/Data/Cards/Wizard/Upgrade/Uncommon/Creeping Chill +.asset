@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Description>k__BackingField: If the enemy has Poison, apply 12 Poison.
   <Mana>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 21300000, guid: 087b0f934ad2b324bb4022892f59a7da, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: 087b0f934ad2b324bb4022892f59a7da, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: 34aa065228eb3334b94ab8ff58d78d3a, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: 34aa065228eb3334b94ab8ff58d78d3a, type: 3}
   <RarityVisual>k__BackingField: 1
   <Type>k__BackingField: 1
   exhaust: 0

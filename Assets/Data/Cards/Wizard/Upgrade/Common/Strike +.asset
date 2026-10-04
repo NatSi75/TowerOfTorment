@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Description>k__BackingField: Deal 9 damage to one enemy.
   <Mana>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 21300000, guid: 013f3181d52fe8a47b547c8a0dac96ee, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: 013f3181d52fe8a47b547c8a0dac96ee, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: b4cfa2041cdab5d4f9e1ca6eb1c26ce3, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: b4cfa2041cdab5d4f9e1ca6eb1c26ce3, type: 3}
   <RarityVisual>k__BackingField: 0
+  <Type>k__BackingField: 0
   exhaust: 0
   <ManualTargetEffect>k__BackingField:
   - rid: 1786786108711895049

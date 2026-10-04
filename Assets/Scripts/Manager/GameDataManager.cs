@@ -55,9 +55,9 @@ public class GameDataManager : MonoBehaviour
     [SerializeField] private List<CardData> minorEnemyCardRewardPoolWizard;
     [SerializeField] private List<CardData> eliteEnemyCardRewardPoolWizard;
     [SerializeField] private List<CardData> bossEnemyCardRewardPoolWizard;
-    public List<CardData> MinorEnemyCardRewardPoolWizard => minorEnemyCardRewardPoolKnight;
-    public List<CardData> EliteEnemyCardRewardPoolWizard => eliteEnemyCardRewardPoolKnight;
-    public List<CardData> BossEnemyCardRewardPoolWizard => bossEnemyCardRewardPoolKnight;
+    public List<CardData> MinorEnemyCardRewardPoolWizard => minorEnemyCardRewardPoolWizard;
+    public List<CardData> EliteEnemyCardRewardPoolWizard => eliteEnemyCardRewardPoolWizard;
+    public List<CardData> BossEnemyCardRewardPoolWizard => bossEnemyCardRewardPoolWizard;
 
     public List<PerkData> AllPerkPool => allPerkPool;
     public int indexHero; // 0 = Knight, 1 = Wizard

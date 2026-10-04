@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Description>k__BackingField: Deal 4 damage 5 times.
   <Mana>k__BackingField: 2
-  <Image>k__BackingField: {fileID: 21300000, guid: fc2894ea7f4d3cb499ded7fcb078f343, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: fc2894ea7f4d3cb499ded7fcb078f343, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: d0233e6e60522eb4fbd343cc10b9e622, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: d0233e6e60522eb4fbd343cc10b9e622, type: 3}
   <RarityVisual>k__BackingField: 1
+  <Type>k__BackingField: 0
   exhaust: 0
   <ManualTargetEffect>k__BackingField:
   - rid: 1786786108711895095

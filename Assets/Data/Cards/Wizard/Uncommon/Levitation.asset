@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Description>k__BackingField: Gain 2 Dexterity.
   <Mana>k__BackingField: 1
-  <Image>k__BackingField: {fileID: 21300000, guid: ab4ee6efecb17274688ef1db3164b379, type: 3}
-  <ImageUI>k__BackingField: {fileID: 21300000, guid: ab4ee6efecb17274688ef1db3164b379, type: 3}
+  <Image>k__BackingField: {fileID: 21300000, guid: 98e395055a5a62c46bca2ab48eec8595, type: 3}
+  <ImageUI>k__BackingField: {fileID: 21300000, guid: 98e395055a5a62c46bca2ab48eec8595, type: 3}
   <RarityVisual>k__BackingField: 1
   <Type>k__BackingField: 2
   exhaust: 1
