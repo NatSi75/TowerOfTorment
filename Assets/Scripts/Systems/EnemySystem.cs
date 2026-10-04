@@ -15,6 +15,7 @@ public class EnemySystem : Singleton<EnemySystem>
         ActionSystem.AttachPerformer<AttackHeroGA>(AttackHeroPerformer);
         ActionSystem.AttachPerformer<NewIntentionEnemyGA>(EnemyTurnIntentionPerformer);
         ActionSystem.AttachPerformer<KillEnemyGA>(KillEnemyPerformer);
+        ActionSystem.AttachPerformer<EnemyCastGA>(EnemyCastPerformer);
     }
 
     void OnDisable()
@@ -23,6 +24,7 @@ public class EnemySystem : Singleton<EnemySystem>
         ActionSystem.DetachPerformer<AttackHeroGA>();
         ActionSystem.DetachPerformer<NewIntentionEnemyGA>();
         ActionSystem.DetachPerformer<KillEnemyGA>();
+        ActionSystem.DetachPerformer<EnemyCastGA>();
     }
 
     public void Setup(List<EnemyData> enemyDatas)
@@ -88,6 +90,12 @@ public class EnemySystem : Singleton<EnemySystem>
                 CombatantView attacker = enemy;
                 DealDamageGA damageGA = new(3, new() { enemy }, attacker);
                 ActionSystem.Instance.AddReaction(damageGA);
+            }
+
+            if (IsCastAction(enemy.ActionType))
+            {
+                EnemyCastGA enemyCastGA = new(enemy);
+                ActionSystem.Instance.AddReaction(enemyCastGA);
             }
 
             switch (enemy.ActionType)
@@ -158,12 +166,37 @@ public class EnemySystem : Singleton<EnemySystem>
         EnemyView attacker = attackHeroGA.Attacker;
         if (attacker != null)
         {
+            float attackLength = attacker.PlayAnimation("Attack");
             Tween tween = attacker.transform.DOMoveX(attacker.transform.position.x - 1f, 0.15f);
             yield return tween.WaitForCompletion();
+            // the hit lands around the middle of the attack animation
+            if (attackLength > 0f) yield return new WaitForSeconds(Mathf.Max(0f, attackLength * 0.5f - 0.15f));
             attacker.transform.DOMoveX(attacker.transform.position.x + 1f, 0.25f);
             DealDamageGA dealDamageGA = new(Mathf.RoundToInt(attacker.ActionValue), new() { HeroSystem.Instance.HeroView }, attackHeroGA.Caster);
             ActionSystem.Instance.AddReaction(dealDamageGA);
         }
+    }
+
+    private IEnumerator EnemyCastPerformer(EnemyCastGA enemyCastGA)
+    {
+        EnemyView caster = enemyCastGA.Caster;
+        if (caster == null) yield break;
+        float castLength = caster.PlayAnimation("Attack");
+        // the debuff / buff is applied around the middle of the animation
+        if (castLength > 0f) yield return new WaitForSeconds(castLength * 0.5f);
+        if (caster.ActionType == EnemyActionType.DebuffBurn) AudioManager.PlaySfx(Sfx.Burn);
+    }
+
+    private static bool IsCastAction(EnemyActionType actionType)
+    {
+        return actionType is EnemyActionType.Debuff
+            or EnemyActionType.DebuffWeak
+            or EnemyActionType.DebuffVulnerable
+            or EnemyActionType.DebuffChilled
+            or EnemyActionType.DebuffBurn
+            or EnemyActionType.DebuffVoid
+            or EnemyActionType.DebuffPoison
+            or EnemyActionType.BuffStrength;
     }
 
     private IEnumerator EnemyTurnIntentionPerformer(NewIntentionEnemyGA newIntentionEnemy)
@@ -211,10 +244,16 @@ public class EnemySystem : Singleton<EnemySystem>
 
     private IEnumerator KillEnemyPerformer(KillEnemyGA killEnemyGA)
     {
+        // an enemy hit again in the same action can be "killed" twice; handle its death only once
+        if (killEnemyGA.EnemyView == null || !Enemies.Contains(killEnemyGA.EnemyView)) yield break;
+        EnemyData killedEnemy = killEnemyGA.EnemyView.EnemyData;
         yield return enemyBoardView.RemoveEnemy(killEnemyGA.EnemyView);
         if (GameDataManager.Instance != null)
         {
-            if (GameDataManager.Instance.currentAct == 2 && GameDataManager.Instance.indexEnemy == 2)
+            // Act 2 boss: only the death of phase 1 brings in phase 2 (otherwise phase 2 respawns when it dies)
+            if (GameDataManager.Instance.currentAct == 2 && GameDataManager.Instance.indexEnemy == 2
+                && GameDataManager.Instance.NextEncounter.Count > 1
+                && killedEnemy == GameDataManager.Instance.NextEncounter[0])
             {
                 enemyBoardView.AddEnemy(GameDataManager.Instance.NextEncounter[1]);
                 enemyBoardView.EnemyViews[0].AddStatusEffect(StatusEffectType.STRENGTH, enemyBoardView.GetStacksStrength(), enemyBoardView.EnemyViews[0]);
@@ -222,6 +261,7 @@ public class EnemySystem : Singleton<EnemySystem>
         }
         if (Enemies == null || Enemies.Count == 0)
         {
+            AudioManager.PlaySfx(Sfx.Victory);
             if (GameDataManager.Instance.currentAct == 2 && GameDataManager.Instance.indexEnemy == 2)
             {
                 victoryWindow.SetActive(true);

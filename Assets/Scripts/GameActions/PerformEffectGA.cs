@@ -6,6 +6,7 @@ public class PerformEffectGA : GameAction
 {
     public Effect Effect { get; set; }
     public List<CombatantView> Targets { get; set; }
+    public bool RawDamage { get; set; }
     public PerformEffectGA(Effect effect, List<CombatantView> targets)
     {
         Effect = effect;

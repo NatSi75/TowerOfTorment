@@ -10,6 +10,9 @@ public class MenuTextInteract : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [Tooltip("Nama scene yang akan diload saat diklik")]
     public string sceneToLoad;
 
+    [Tooltip("Centang untuk membuka panel Setting (volume) alih-alih pindah scene")]
+    public bool opensSettings;
+
     [Header("Hover Settings")]
     [Tooltip("Masukkan object Selected_line dari Hierarchy")]
     public GameObject selectedLine;
@@ -93,6 +96,12 @@ public class MenuTextInteract : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         // Kembalikan kursor ke default sebelum pindah scene
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+
+        if (opensSettings)
+        {
+            SettingsPanel.Open();
+            return;
+        }
 
         // 3. Pindah Scene
         if (!string.IsNullOrEmpty(sceneToLoad))

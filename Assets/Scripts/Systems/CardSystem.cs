@@ -78,6 +78,7 @@ public class CardSystem : Singleton<CardSystem>
     {
         hand.Remove(playCardGA.Card);
         CardView cardView = handView.RemoveCard(playCardGA.Card);
+        AudioManager.PlaySfx(Sfx.PlayCard);
         if (playCardGA.ManualTarget != null)
         {
             foreach (var effect in cardView.Card.data.ManualTargetEffect)
@@ -140,7 +141,16 @@ public class CardSystem : Singleton<CardSystem>
         {
             yield return DiscardCard(cardView);
         }
-        
+
+        if (playCardGA.Card.Type == CardType.Attack)
+        {
+            // the card's damage lands around the middle of the hero's attack animation
+            float attackLength = HeroSystem.Instance.HeroView.PlayAnimation("Attack");
+            if (attackLength > 0f) yield return new WaitForSeconds(attackLength * 0.5f);
+            bool isKnight = GameDataManager.Instance == null || GameDataManager.Instance.indexHero == 0;
+            AudioManager.PlaySfx(isKnight ? Sfx.KnightAttack : Sfx.WizardAttack);
+        }
+
         SpendManaGA spendManaGA = new(playCardGA.Card.Mana);
         ActionSystem.Instance.AddReaction(spendManaGA);
 

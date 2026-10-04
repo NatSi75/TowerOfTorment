@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40451dfc8ad56c143ad3c38d03bf2ca8, type: 3}
+  m_Name: AudioLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::AudioLibrary
+  sceneMusic:
+  - trackName: Menu - Cinematic Fantasy Dark
+    music:
+      clip: {fileID: 8300000, guid: 9dfe7d24305aa844da2da958dcdc38c9, type: 3}
+      volume: 1
+    sceneNames:
+    - Main Menu
+    - Character Select
+  - trackName: Map - Fantasy Worlds Dark Necropolis
+    music:
+      clip: {fileID: 8300000, guid: 73e032a6dff0eb34d8e427105b2e34ac, type: 3}
+      volume: 1
+    sceneNames:
+    - Map
+    - RestSite
+    - Shop
+    - Treasure
+    - Pillar of Despair
+  - trackName: Battle - Crawling Danger
+    music:
+      clip: {fileID: 8300000, guid: ac02454d9caae8343a8ae1113fea2a49, type: 3}
+      volume: 1
+    sceneNames:
+    - Battle
+  bossBattleMusic:
+    clip: {fileID: 8300000, guid: ac02454d9caae8343a8ae1113fea2a49, type: 3}
+    volume: 1
+  buttonClick:
+    clip: {fileID: 8300000, guid: d6dba4ca256f01444a2be1689502859b, type: 3}
+    volume: 1
+  playCard:
+    clip: {fileID: 8300000, guid: 4ea87afe31695e941bd4b7a7347b5670, type: 3}
+    volume: 1
+  knightAttack:
+    clip: {fileID: 8300000, guid: 3e2977c71738f744e82592f0667b650d, type: 3}
+    volume: 1
+  wizardAttack:
+    clip: {fileID: 8300000, guid: 97a6d7facfb70124ba1aa923c89ebd1a, type: 3}
+    volume: 1
+  burn:
+    clip: {fileID: 8300000, guid: 46b8e182ee4e4614981bc3c21823293a, type: 3}
+    volume: 1
+  restHeal:
+    clip: {fileID: 8300000, guid: 2b4904b31abfe7c4fa7b275943889647, type: 3}
+    volume: 1
+  shopBuy:
+    clip: {fileID: 8300000, guid: 1988162065f68fb45917d6fff27eb068, type: 3}
+    volume: 1
+  chestOpen:
+    clip: {fileID: 8300000, guid: 893eabb2eb3e5a646a83563e4d432702, type: 3}
+    volume: 1
+  rewardPickup:
+    clip: {fileID: 8300000, guid: 2992651d73f9c2042ba930b9f150e285, type: 3}
+    volume: 1
+  pillarSacrifice:
+    clip: {fileID: 8300000, guid: 73bbeac344bb8584fb07b3179311938c, type: 3}
+    volume: 1
+  tormentFull:
+    clip: {fileID: 8300000, guid: bcbd06bafadef034a9eeba2d7cd24e93, type: 3}
+    volume: 1
+  victory:
+    clip: {fileID: 8300000, guid: dbf46092845fd7349bbf86cfcf8c29f7, type: 3}
+    volume: 1
+  defeat:
+    clip: {fileID: 8300000, guid: 1700aa0d83f6ea4459f3cd4b9dc69f60, type: 3}
+    volume: 1
+  defaultBgmVolume: 0.6
+  defaultSfxVolume: 0.8

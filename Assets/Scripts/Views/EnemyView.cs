@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -102,5 +103,26 @@ public class EnemyView : CombatantView
     public void UpdateActionValue(float actionValue)
     {
         attackText.text = Mathf.RoundToInt(actionValue).ToString();
+    }
+
+    // Enemies without a hurt animation flash red instead.
+    protected override void PlayHurt()
+    {
+        if (PlayAnimation("Hurt") > 0f) return;
+        spriteRenderer.DOKill();
+        spriteRenderer.color = Color.white;
+        spriteRenderer.DOColor(new Color(1f, 0.35f, 0.35f), 0.08f).SetLoops(2, LoopType.Yoyo);
+    }
+
+    // Hides everything around the enemy and stops it from being targeted while it dies.
+    public void PrepareForDeath()
+    {
+        HideCombatInfo();
+        intetionShow.enabled = false;
+        attackText.enabled = false;
+        foreach (Collider2D collider in GetComponentsInChildren<Collider2D>())
+        {
+            collider.enabled = false;
+        }
     }
 }

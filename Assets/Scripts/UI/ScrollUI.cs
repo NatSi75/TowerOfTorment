@@ -26,11 +26,25 @@ public class ScrollUI : MonoBehaviour, ITooltipContent
         image.sprite = scroll.Image;
     }
 
+    // Clicking a scroll opens the Use / Remove menu.
+    public void OnScrollClicked()
+    {
+        ScrollActionMenu.Open(this);
+    }
+
     public void UseScroll()
     {
+        // Perform() ignores actions while another one is running; keep the scroll instead of losing it.
+        if (ActionSystem.Instance.IsPerforming) return;
         PlayScrollGA playScrollGA = new(Scroll);
         ActionSystem.Instance.Perform(playScrollGA);
         GameDataManager.Instance.RemoveScroll(Scroll.data);
-        Destroy(gameObject);
+        ScrollSystem.Instance.RemoveScroll(Scroll);
+    }
+
+    public void RemoveScroll()
+    {
+        GameDataManager.Instance.RemoveScroll(Scroll.data);
+        ScrollSystem.Instance.RemoveScroll(Scroll);
     }
 }

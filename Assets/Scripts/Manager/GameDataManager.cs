@@ -172,9 +172,15 @@ public class GameDataManager : MonoBehaviour
         MaxHeroHP += amount;
     }
 
-    public void AddScroll(ScrollData scroll)
+    public const int MaxScrolls = 3;
+    public bool CanAddScroll => ScrollDatas.Count < MaxScrolls;
+
+    // Returns false when all scroll slots are already used.
+    public bool AddScroll(ScrollData scroll)
     {
+        if (!CanAddScroll) return false;
         ScrollDatas.Add(scroll);
+        return true;
     }
 
     public void RemoveScroll(ScrollData scroll)

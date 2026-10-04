@@ -120,7 +120,7 @@ public class ShopManager : MonoBehaviour
         for (int i = 0; i < scrollsToSpawn; i++)
         {
             ScrollData randomScroll = chosenScrolls[i];
-            SpawnShopItem(randomScroll.Image, randomScroll.name, randomScroll.Description, Random.Range(baseScrollPrice.x, baseScrollPrice.y), () => BuyScroll(randomScroll));
+            SpawnShopItem(randomScroll.Image, randomScroll.name, randomScroll.Description, Random.Range(baseScrollPrice.x, baseScrollPrice.y), () => BuyScroll(randomScroll), () => GameDataManager.Instance.CanAddScroll);
         }
     }
 
@@ -136,6 +136,7 @@ public class ShopManager : MonoBehaviour
             if (currentGold >= price)
             {
                 GameDataManager.Instance.gold -= price;
+                AudioManager.PlaySfx(Sfx.ShopBuy);
                 BuyCard(card.data);
                 shopCardUI.MarkAsSold();
             }
@@ -148,7 +149,7 @@ public class ShopManager : MonoBehaviour
         shopCardUI.SetupCard(card, price, wrappedBuyLogic);
     }
 
-    private void SpawnShopItem(Sprite icon, string name, string description, int price, System.Action buyLogic)
+    private void SpawnShopItem(Sprite icon, string name, string description, int price, System.Action buyLogic, System.Func<bool> canBuy = null)
     {
         GameObject newItemObj2 = Instantiate(shopItemPrefab, shopContentContainer2);
         ShopItemUI itemUI2 = newItemObj2.GetComponent<ShopItemUI>();
@@ -157,10 +158,14 @@ public class ShopManager : MonoBehaviour
         {
             int currentGold = GameDataManager.Instance.gold;
 
-            if (currentGold >= price)
+            if (canBuy != null && !canBuy())
+            {
+                Debug.LogWarning("Slot scroll sudah penuh!");
+            }
+            else if (currentGold >= price)
             {
                 GameDataManager.Instance.gold -= price;
-
+                AudioManager.PlaySfx(Sfx.ShopBuy);
                 buyLogic.Invoke();
                 itemUI2.MarkAsSold(); 
             }

@@ -17,6 +17,7 @@ MonoBehaviour:
   <Image>k__BackingField: {fileID: 21300000, guid: 757b823aabc80b44a83d5e498bcdae7d, type: 3}
   <ImageUI>k__BackingField: {fileID: 21300000, guid: 757b823aabc80b44a83d5e498bcdae7d, type: 3}
   <RarityVisual>k__BackingField: 0
+  <Type>k__BackingField: 1
   exhaust: 0
   <ManualTargetEffect>k__BackingField: []
   <OtherEffects>k__BackingField:

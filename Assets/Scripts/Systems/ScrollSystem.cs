@@ -79,14 +79,14 @@ public class ScrollSystem : Singleton<ScrollSystem>
 
         foreach (var effectWrapper in playScrollGA.Scroll.ManualTargetEffect)
         {
-            PerformEffectGA performEffectGA = new(effectWrapper, new() { playScrollGA.ManualTarget });
+            PerformEffectGA performEffectGA = new(effectWrapper, new() { playScrollGA.ManualTarget }) { RawDamage = true };
             ActionSystem.Instance.AddReaction(performEffectGA);
         }
 
         foreach (var effectWrapper in playScrollGA.Scroll.OtherEffects)
         {
             List<CombatantView> targets = effectWrapper.TargetMode.GetTargets();
-            PerformEffectGA performEffectGA = new(effectWrapper.Effect, targets);
+            PerformEffectGA performEffectGA = new(effectWrapper.Effect, targets) { RawDamage = true };
             ActionSystem.Instance.AddReaction(performEffectGA);
         }
 

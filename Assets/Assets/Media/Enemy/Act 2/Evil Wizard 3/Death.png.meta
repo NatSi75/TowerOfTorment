@@ -60,7 +60,7 @@ TextureImporter:
       213: -5412344436964035232
     second: Death_18
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -110,7 +110,9 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationMethod: 0
   spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -124,19 +126,20 @@ TextureImporter:
   swizzle: 50462976
   cookieLightType: 0
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -146,9 +149,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -158,9 +162,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -170,10 +175,11 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -182,6 +188,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -191,13 +198,14 @@ TextureImporter:
       name: Death_0
       rect:
         serializedVersion: 2
-        x: 56
-        y: 42
-        width: 35
-        height: 55
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 0
+        y: 0
+        width: 140
+        height: 140
+      alignment: 9
+      pivot: {x: 0.525, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -212,13 +220,14 @@ TextureImporter:
       name: Death_1
       rect:
         serializedVersion: 2
-        x: 196
-        y: 42
-        width: 35
-        height: 55
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 140
+        y: 0
+        width: 140
+        height: 140
+      alignment: 9
+      pivot: {x: 0.525, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -233,13 +242,14 @@ TextureImporter:
       name: Death_2
       rect:
         serializedVersion: 2
-        x: 336
-        y: 42
-        width: 35
-        height: 55
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 280
+        y: 0
+        width: 140
+        height: 140
+      alignment: 9
+      pivot: {x: 0.525, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -254,13 +264,14 @@ TextureImporter:
       name: Death_3
       rect:
         serializedVersion: 2
-        x: 476
-        y: 42
-        width: 35
-        height: 55
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 420
+        y: 0
+        width: 140
+        height: 140
+      alignment: 9
+      pivot: {x: 0.525, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -275,13 +286,14 @@ TextureImporter:
       name: Death_4
       rect:
         serializedVersion: 2
-        x: 616
-        y: 42
-        width: 35
-        height: 55
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 560
+        y: 0
+        width: 140
+        height: 140
+      alignment: 9
+      pivot: {x: 0.525, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -296,13 +308,14 @@ TextureImporter:
       name: Death_5
       rect:
         serializedVersion: 2
-        x: 756
-        y: 42
-        width: 35
-        height: 55
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 700
+        y: 0
+        width: 140
+        height: 140
+      alignment: 9
+      pivot: {x: 0.525, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -317,13 +330,14 @@ TextureImporter:
       name: Death_6
       rect:
         serializedVersion: 2
-        x: 896
-        y: 42
-        width: 35
-        height: 55
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 840
+        y: 0
+        width: 140
+        height: 140
+      alignment: 9
+      pivot: {x: 0.525, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -338,13 +352,14 @@ TextureImporter:
       name: Death_7
       rect:
         serializedVersion: 2
-        x: 928
-        y: 85
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 980
+        y: 0
+        width: 140
+        height: 140
+      alignment: 9
+      pivot: {x: 0.525, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -359,13 +374,14 @@ TextureImporter:
       name: Death_8
       rect:
         serializedVersion: 2
-        x: 1036
-        y: 42
-        width: 39
-        height: 55
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1120
+        y: 0
+        width: 140
+        height: 140
+      alignment: 9
+      pivot: {x: 0.525, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -380,13 +396,14 @@ TextureImporter:
       name: Death_9
       rect:
         serializedVersion: 2
-        x: 1176
-        y: 42
-        width: 39
-        height: 57
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1260
+        y: 0
+        width: 140
+        height: 140
+      alignment: 9
+      pivot: {x: 0.525, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -401,13 +418,14 @@ TextureImporter:
       name: Death_10
       rect:
         serializedVersion: 2
-        x: 1316
-        y: 42
-        width: 39
-        height: 59
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1400
+        y: 0
+        width: 140
+        height: 140
+      alignment: 9
+      pivot: {x: 0.525, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -422,13 +440,14 @@ TextureImporter:
       name: Death_11
       rect:
         serializedVersion: 2
-        x: 1457
-        y: 42
-        width: 23
-        height: 54
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1540
+        y: 0
+        width: 140
+        height: 140
+      alignment: 9
+      pivot: {x: 0.525, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -443,13 +462,14 @@ TextureImporter:
       name: Death_12
       rect:
         serializedVersion: 2
-        x: 1595
-        y: 42
-        width: 23
-        height: 53
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1680
+        y: 0
+        width: 140
+        height: 140
+      alignment: 9
+      pivot: {x: 0.525, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -464,13 +484,14 @@ TextureImporter:
       name: Death_13
       rect:
         serializedVersion: 2
-        x: 1735
-        y: 42
-        width: 24
-        height: 51
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1820
+        y: 0
+        width: 140
+        height: 140
+      alignment: 9
+      pivot: {x: 0.525, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -485,13 +506,14 @@ TextureImporter:
       name: Death_14
       rect:
         serializedVersion: 2
-        x: 1870
-        y: 42
-        width: 29
-        height: 46
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1960
+        y: 0
+        width: 140
+        height: 140
+      alignment: 9
+      pivot: {x: 0.525, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -506,13 +528,14 @@ TextureImporter:
       name: Death_15
       rect:
         serializedVersion: 2
-        x: 2010
-        y: 42
-        width: 31
-        height: 29
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 2100
+        y: 0
+        width: 140
+        height: 140
+      alignment: 9
+      pivot: {x: 0.525, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -527,13 +550,14 @@ TextureImporter:
       name: Death_16
       rect:
         serializedVersion: 2
-        x: 2151
-        y: 42
-        width: 30
-        height: 25
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 2240
+        y: 0
+        width: 140
+        height: 140
+      alignment: 9
+      pivot: {x: 0.525, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -548,13 +572,14 @@ TextureImporter:
       name: Death_17
       rect:
         serializedVersion: 2
-        x: 2289
-        y: 42
-        width: 32
-        height: 25
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 2380
+        y: 0
+        width: 140
+        height: 140
+      alignment: 9
+      pivot: {x: 0.525, y: 0.3}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -565,28 +590,8 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Death_18
-      rect:
-        serializedVersion: 2
-        x: 2429
-        y: 42
-        width: 32
-        height: 25
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 06572b0196d73e4b0800000000000000
-      internalID: -5412344436964035232
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 14549bd70232cdc4aabfd82d06c01172
@@ -596,6 +601,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
     nameFileIdTable:
       Death_0: 6991849013916550155
       Death_1: -276728812324164698
@@ -607,7 +614,6 @@ TextureImporter:
       Death_15: 7483363142473959995
       Death_16: 2223956272848545170
       Death_17: -898221585893318736
-      Death_18: -5412344436964035232
       Death_2: 3156895337291164288
       Death_3: 1400002288684528572
       Death_4: -1891625820773287384

@@ -45,7 +45,7 @@ TextureImporter:
       213: -4213399628179650151
     second: Golem_1_attack_13
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -95,7 +95,9 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationMethod: 0
   spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -109,7 +111,7 @@ TextureImporter:
   swizzle: 50462976
   cookieLightType: 0
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -119,9 +121,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -131,9 +134,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -143,9 +147,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -155,10 +160,11 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -167,6 +173,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -176,13 +183,14 @@ TextureImporter:
       name: Golem_1_attack_0
       rect:
         serializedVersion: 2
-        x: 25
+        x: 0
         y: 0
-        width: 40
-        height: 39
-      alignment: 7
+        width: 90
+        height: 64
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -197,13 +205,14 @@ TextureImporter:
       name: Golem_1_attack_1
       rect:
         serializedVersion: 2
-        x: 115
+        x: 90
         y: 0
-        width: 40
-        height: 37
-      alignment: 7
+        width: 90
+        height: 64
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -218,13 +227,14 @@ TextureImporter:
       name: Golem_1_attack_2
       rect:
         serializedVersion: 2
-        x: 203
+        x: 180
         y: 0
-        width: 42
-        height: 38
-      alignment: 7
+        width: 90
+        height: 64
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -239,13 +249,14 @@ TextureImporter:
       name: Golem_1_attack_3
       rect:
         serializedVersion: 2
-        x: 296
+        x: 270
         y: 0
-        width: 38
-        height: 40
-      alignment: 7
+        width: 90
+        height: 64
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -260,13 +271,14 @@ TextureImporter:
       name: Golem_1_attack_4
       rect:
         serializedVersion: 2
-        x: 384
+        x: 360
         y: 0
-        width: 42
-        height: 43
-      alignment: 7
+        width: 90
+        height: 64
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -281,13 +293,14 @@ TextureImporter:
       name: Golem_1_attack_5
       rect:
         serializedVersion: 2
-        x: 474
+        x: 450
         y: 0
-        width: 39
-        height: 46
-      alignment: 7
+        width: 90
+        height: 64
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -302,13 +315,14 @@ TextureImporter:
       name: Golem_1_attack_6
       rect:
         serializedVersion: 2
-        x: 567
+        x: 540
         y: 0
-        width: 52
-        height: 44
-      alignment: 7
+        width: 90
+        height: 64
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -323,13 +337,14 @@ TextureImporter:
       name: Golem_1_attack_9
       rect:
         serializedVersion: 2
-        x: 650
+        x: 810
         y: 0
-        width: 62
-        height: 36
-      alignment: 7
+        width: 90
+        height: 64
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -344,13 +359,14 @@ TextureImporter:
       name: Golem_1_attack_10
       rect:
         serializedVersion: 2
-        x: 740
+        x: 900
         y: 0
-        width: 64
-        height: 34
-      alignment: 7
+        width: 90
+        height: 64
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -362,48 +378,51 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Golem_1_attack_11
+      name: Golem_1_attack_7
       rect:
         serializedVersion: 2
-        x: 839
+        x: 630
         y: 0
-        width: 47
-        height: 37
-      alignment: 7
+        width: 90
+        height: 64
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 56c7fb2eaa66ecc00800000000000000
-      internalID: 922787857792203877
+      spriteID: 8006893c95d823249a6b4d1a9b03882e
+      internalID: -1449785091
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Golem_1_attack_12
+      name: Golem_1_attack_8
       rect:
         serializedVersion: 2
-        x: 927
+        x: 720
         y: 0
-        width: 39
-        height: 38
-      alignment: 7
+        width: 90
+        height: 64
+      alignment: 9
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 85e2c6dd7fdeed740800000000000000
-      internalID: 5178838270350208600
+      spriteID: 9ef7c9bad195f244992dc838ed6da389
+      internalID: 1488786211
       vertices: []
       indices: 
       edges: []
       weights: []
     outline: []
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 44f3c50eedb98c0469fca1847abfac43
@@ -413,17 +432,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
     nameFileIdTable:
       Golem_1_attack_0: -8202827640963373859
       Golem_1_attack_1: -4330141590107089047
       Golem_1_attack_10: 1425954299726288318
-      Golem_1_attack_11: 922787857792203877
-      Golem_1_attack_12: 5178838270350208600
       Golem_1_attack_2: 6822457042559368046
       Golem_1_attack_3: -8602315955426212433
       Golem_1_attack_4: 4710624981754144640
       Golem_1_attack_5: -8272546438946279230
       Golem_1_attack_6: -6098713876489134856
+      Golem_1_attack_7: -1449785091
+      Golem_1_attack_8: 1488786211
       Golem_1_attack_9: 3400704551967492840
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0

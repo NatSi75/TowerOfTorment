@@ -47,6 +47,7 @@ public class PillarManager : MonoBehaviour
     // LOGIKA PILIHAN UPGRADE KARTU
     public void OnClicked()
     {
+        AudioManager.PlaySfx(Sfx.PillarSacrifice);
         if (GameDataManager.Instance.currentAct == 1)
         {
             OnUpgradeClicked();

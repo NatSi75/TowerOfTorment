@@ -23,7 +23,7 @@ public class DamageSystem : MonoBehaviour
             var caster = dealDamageGA.Caster;
 
             // For hero
-            if (caster != null && caster == HeroSystem.Instance.HeroView)
+            if (caster != null && caster == HeroSystem.Instance.HeroView && !dealDamageGA.IsRaw)
             {
                 float strengthStacks = caster.GetStatusEffectStacks(StatusEffectType.STRENGTH);
                 finalDamage += strengthStacks;
@@ -65,6 +65,10 @@ public class DamageSystem : MonoBehaviour
                 }
                 else
                 {
+                    target.HideCombatInfo();
+                    float deathLength = target.PlayAnimation("Death");
+                    if (deathLength > 0f) yield return new WaitForSeconds(deathLength + 0.5f);
+                    AudioManager.PlaySfx(Sfx.Defeat);
                     defeatWindow.SetActive(true);
                     yield return new WaitForSeconds(3f);
                     SceneManager.LoadScene("Main Menu");

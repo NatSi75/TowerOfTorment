@@ -27,6 +27,11 @@ public class CardRewardUI : MonoBehaviour
     public Vector2Int eliteGoldRange = new Vector2Int(40, 50);
     public Vector2Int bossGoldRange = new Vector2Int(65, 80);
 
+    [Header("Scroll Drop Chance")]
+    [Range(0f, 1f)] public float minorScrollDropChance = 0.5f;
+    [Range(0f, 1f)] public float eliteScrollDropChance = 1f;
+    [Range(0f, 1f)] public float bossScrollDropChance = 1f;
+
     [Header("UI Layout")]
     [SerializeField] private GameObject panelObject;
     [SerializeField] private List<CardView> rewardCardSlots;
@@ -66,22 +71,31 @@ public class CardRewardUI : MonoBehaviour
                 coinSprite = bossCoinSprite;
                 break;
         }
-        if (GameDataManager.Instance.HasPerk("Greed’s Pounch"))
+        if (GameDataManager.Instance.HasPerk("Greedï¿½s Pounch"))
         {
             goldAmount += 15;
         }
         goldSlot.SetupSlot(coinSprite, $"{goldAmount} Gold");
         GameDataManager.Instance.gold += goldAmount;
 
-        ScrollData droppedScroll = GameDataManager.Instance.RandomScroll();
-        if (droppedScroll != null)
+        float scrollChance = GameDataManager.Instance.indexEnemy switch
+        {
+            0 => minorScrollDropChance,
+            1 => eliteScrollDropChance,
+            _ => bossScrollDropChance,
+        };
+        ScrollData droppedScroll = Random.value < scrollChance ? GameDataManager.Instance.RandomScroll() : null;
+        if (droppedScroll == null)
+        {
+            scrollSlot.HideSlot();
+        }
+        else if (GameDataManager.Instance.AddScroll(droppedScroll))
         {
             scrollSlot.SetupSlot(droppedScroll.Image, droppedScroll.name);
-            GameDataManager.Instance.AddScroll(droppedScroll);
         }
         else
         {
-            scrollSlot.HideSlot();
+            scrollSlot.SetupSlot(droppedScroll.Image, $"{droppedScroll.name} (scroll slots full)");
         }
     }
 
@@ -167,6 +181,7 @@ public class CardRewardUI : MonoBehaviour
 
     private void OnRewardCardSelected(Card selectedCard)
     {
+        AudioManager.PlaySfx(Sfx.RewardPickup);
         if (GameDataManager.Instance != null)
         {
             GameDataManager.Instance.CurrentDeck.Add(selectedCard);
@@ -260,6 +275,7 @@ public class CardRewardUI : MonoBehaviour
 
     private void OnRelicSelected(PerkData selectedRelic)
     {
+        AudioManager.PlaySfx(Sfx.RewardPickup);
         if (GameDataManager.Instance != null)
         {
             if (selectedRelic.Name == "Green Elixir")
@@ -274,7 +290,7 @@ public class CardRewardUI : MonoBehaviour
             {
                 GameDataManager.Instance.IncreaseMaxHP(14);
             }
-            if (selectedRelic.Name == "Fallen King’s Crown")
+            if (selectedRelic.Name == "Fallen Kingï¿½s Crown")
             {
                 GameDataManager.Instance.gold += 300;
             }

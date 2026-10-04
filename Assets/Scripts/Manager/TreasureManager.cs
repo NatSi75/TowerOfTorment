@@ -24,6 +24,7 @@ public class TreasureManager : MonoBehaviour
     {
         if (isOpened) return;
         isOpened = true;
+        AudioManager.PlaySfx(Sfx.ChestOpen);
 
         StartCoroutine(OpenChestRoutine());
     }
@@ -90,6 +91,7 @@ public class TreasureManager : MonoBehaviour
     // 3. Dipanggil saat Pemain Memilih Salah Satu Relic
     private void OnRelicSelected(PerkData selectedRelic)
     {
+        AudioManager.PlaySfx(Sfx.RewardPickup);
         if (GameDataManager.Instance != null)
         {
             if (selectedRelic.Name == "Green Elixir")
@@ -104,7 +106,7 @@ public class TreasureManager : MonoBehaviour
             {
                 GameDataManager.Instance.IncreaseMaxHP(14);
             }
-            if (selectedRelic.Name == "Fallen King’s Crown")
+            if (selectedRelic.Name == "Fallen Kingï¿½s Crown")
             {
                 GameDataManager.Instance.gold += 300;
             }

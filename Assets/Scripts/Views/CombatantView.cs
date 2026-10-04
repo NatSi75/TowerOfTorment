@@ -13,6 +13,7 @@ public class CombatantView : MonoBehaviour
     public float CurrentHealth { get; set; }
     public float currentArmor { get; private set; }
     private Dictionary<StatusEffectType, float> statusEffects = new();
+    private bool isDying;
 
     protected void SetupBase(int health, float currentHealth, Sprite image, RuntimeAnimatorController animatorController, bool flipSprite)
     {
@@ -27,6 +28,38 @@ public class CombatantView : MonoBehaviour
     public void UpdateHealthText()
     {
         healthText.text = "HP: " + CurrentHealth + "/" + MaxHealth;
+    }
+
+    public bool HasAnimation(string stateName)
+    {
+        return animatorController != null
+            && animatorController.runtimeAnimatorController != null
+            && animatorController.HasState(0, Animator.StringToHash(stateName));
+    }
+
+    // Triggers the "Attack" / "Hurt" / "Death" animation and returns its length (0 when it has none).
+    // Once Death has played nothing else can interrupt it.
+    public float PlayAnimation(string stateName)
+    {
+        if (isDying || !HasAnimation(stateName)) return 0f;
+        if (stateName == "Death") isDying = true;
+        animatorController.SetTrigger(stateName);
+        foreach (AnimationClip clip in animatorController.runtimeAnimatorController.animationClips)
+        {
+            if (clip.name.EndsWith(" " + stateName)) return clip.length;
+        }
+        return 0f;
+    }
+
+    public void HideCombatInfo()
+    {
+        healthText.gameObject.SetActive(false);
+        statusEffectsUI.gameObject.SetActive(false);
+    }
+
+    protected virtual void PlayHurt()
+    {
+        PlayAnimation("Hurt");
     }
 
     public void Damage(float damageAmount)
@@ -51,6 +84,10 @@ public class CombatantView : MonoBehaviour
             if (CurrentHealth < 0)
             {
                 CurrentHealth = 0;
+            }
+            if (CurrentHealth > 0)
+            {
+                PlayHurt();
             }
         }
 

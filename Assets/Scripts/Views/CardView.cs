@@ -19,6 +19,8 @@ public class CardView : MonoBehaviour
     [SerializeField] private GameObject backgroundParentCard;
     public RarityVisual[] rarityVisualsKnight;
     public RarityVisual[] rarityVisualsWizard;
+    [SerializeField] private Color upgradedTitleColor = new(0.45f, 0.95f, 0.35f);
+    private Color? defaultTitleColor;
     public Card Card { get; private set; }
     private Vector3 dragStartPosition;
     private Quaternion dragStartRotation;
@@ -28,14 +30,11 @@ public class CardView : MonoBehaviour
     {
         Card = card;
         type.text = card.Type.ToString();
-        if (card.IsUpgradeVersion)
-        {
-            title.text = card.Title;
-            title.fontWeight = FontWeight.Black;
-        } else
-        {
-            title.text = card.Title;
-        }
+        title.text = card.Title;
+        // Kurale has no bold weight, so upgraded cards are marked with a colour and synthetic bold.
+        defaultTitleColor ??= title.color;
+        title.color = card.IsUpgradeVersion ? upgradedTitleColor : defaultTitleColor.Value;
+        title.fontStyle = card.IsUpgradeVersion ? title.fontStyle | FontStyles.Bold : title.fontStyle & ~FontStyles.Bold;
         description.text = card.description;
         mana.text = card.Mana.ToString();
         imageSR.sprite = card.Image;

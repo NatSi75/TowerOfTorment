@@ -60,7 +60,7 @@ TextureImporter:
       213: -5412344436964035232
     second: Death_18
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -110,7 +110,9 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
+  spriteTessellationMethod: 0
   spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -124,19 +126,20 @@ TextureImporter:
   swizzle: 50462976
   cookieLightType: 0
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -146,9 +149,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -158,9 +162,10 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -170,10 +175,11 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -182,6 +188,7 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+    ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
@@ -191,13 +198,14 @@ TextureImporter:
       name: Death_0
       rect:
         serializedVersion: 2
-        x: 105
-        y: 82
-        width: 47
-        height: 85
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 0
+        y: 0
+        width: 250
+        height: 250
+      alignment: 9
+      pivot: {x: 0.544, y: 0.328}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
@@ -209,132 +217,139 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Death_7
+      name: Death_1
       rect:
         serializedVersion: 2
-        x: 857
-        y: 82
-        width: 98
-        height: 108
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 250
+        y: 0
+        width: 250
+        height: 250
+      alignment: 9
+      pivot: {x: 0.544, y: 0.328}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: e0d726ab394952a50800000000000000
-      internalID: 6495761399759928590
+      spriteID: 639bb8e558745d84291346ad83d2efa4
+      internalID: 1037586353
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Death_8
+      name: Death_2
       rect:
         serializedVersion: 2
-        x: 1107
-        y: 82
-        width: 107
-        height: 112
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 500
+        y: 0
+        width: 250
+        height: 250
+      alignment: 9
+      pivot: {x: 0.544, y: 0.328}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 74f96c4432afd9240800000000000000
-      internalID: 4800267807231483719
+      spriteID: 6db52cef487976e49aee243a1c2751aa
+      internalID: -1265520706
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Death_9
+      name: Death_3
       rect:
         serializedVersion: 2
-        x: 1357
-        y: 82
-        width: 98
-        height: 124
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 750
+        y: 0
+        width: 250
+        height: 250
+      alignment: 9
+      pivot: {x: 0.544, y: 0.328}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: fe3f5de036c69faa0800000000000000
-      internalID: -6126746645354384401
+      spriteID: c3bd7b9f569e3d443911286684acda9f
+      internalID: 1286663366
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Death_11
+      name: Death_4
       rect:
         serializedVersion: 2
-        x: 357
-        y: 82
-        width: 54
-        height: 94
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1000
+        y: 0
+        width: 250
+        height: 250
+      alignment: 9
+      pivot: {x: 0.544, y: 0.328}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2230b726086f459d0800000000000000
-      internalID: -2786331238167018718
+      spriteID: f6d9ff1fe1faf604cbd5e435a0dfb845
+      internalID: 528822123
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Death_15
+      name: Death_5
       rect:
         serializedVersion: 2
-        x: 607
-        y: 82
-        width: 69
-        height: 97
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1250
+        y: 0
+        width: 250
+        height: 250
+      alignment: 9
+      pivot: {x: 0.544, y: 0.328}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: b3a4968212f3ad760800000000000000
-      internalID: 7483363142473959995
+      spriteID: 478f0c09d2eba8545b233c4086d558a1
+      internalID: 292425576
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Death_18
+      name: Death_6
       rect:
         serializedVersion: 2
-        x: 1607
-        y: 82
-        width: 107
-        height: 15
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
+        x: 1500
+        y: 0
+        width: 250
+        height: 250
+      alignment: 9
+      pivot: {x: 0.544, y: 0.328}
       border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 06572b0196d73e4b0800000000000000
-      internalID: -5412344436964035232
+      spriteID: 1a11c6b4ccf096b42bb8cefa8c50f2ce
+      internalID: 1646865435
       vertices: []
       indices: 
       edges: []
       weights: []
     outline: []
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 02a2ce8c0ce10d34a9ee80b1399b54b8
@@ -344,14 +359,16 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
     nameFileIdTable:
       Death_0: 6991849013916550155
-      Death_11: -2786331238167018718
-      Death_15: 7483363142473959995
-      Death_18: -5412344436964035232
-      Death_7: 6495761399759928590
-      Death_8: 4800267807231483719
-      Death_9: -6126746645354384401
+      Death_1: 1037586353
+      Death_2: -1265520706
+      Death_3: 1286663366
+      Death_4: 528822123
+      Death_5: 292425576
+      Death_6: 1646865435
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

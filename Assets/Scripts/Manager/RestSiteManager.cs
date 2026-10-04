@@ -69,6 +69,7 @@ public class RestSiteManager : MonoBehaviour
             }
 
             GameDataManager.Instance.CurrentHeroHP = Mathf.Min(GameDataManager.Instance.CurrentHeroHP + healAmount, GameDataManager.Instance.MaxHeroHP);
+            AudioManager.PlaySfx(Sfx.RestHeal);
             int tormentCurrent = GameDataManager.Instance.torment;
             if (tormentCurrent < 25)
             {

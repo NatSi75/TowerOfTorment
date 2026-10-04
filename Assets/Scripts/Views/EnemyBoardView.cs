@@ -30,8 +30,19 @@ public class EnemyBoardView : MonoBehaviour
             }
         }
         EnemyViews.Remove(enemyView);
-        Tween tween = enemyView.transform.DOScale(Vector3.zero, 0.25f);
-        yield return tween.WaitForCompletion();
+        enemyView.PrepareForDeath();
+        float deathLength = enemyView.PlayAnimation("Death");
+        if (deathLength > 0f)
+        {
+            yield return new WaitForSeconds(deathLength);
+            Tween fade = enemyView.spriteRenderer.DOFade(0f, 0.3f);
+            yield return fade.WaitForCompletion();
+        }
+        else
+        {
+            Tween tween = enemyView.transform.DOScale(Vector3.zero, 0.25f);
+            yield return tween.WaitForCompletion();
+        }
         Destroy(enemyView.gameObject);
     }
     public void SetStacksStrength(float strengthStacks)

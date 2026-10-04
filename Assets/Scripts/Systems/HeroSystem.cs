@@ -30,6 +30,7 @@ public class HeroSystem : Singleton<HeroSystem>
         HeroView.UpdateTormentText(1);
         if (HeroView.savedTorment >= HeroView.savedMaxTorment)
         {
+            if (HeroView.GetStatusEffectStacks(StatusEffectType.TORMENT) == 0) AudioManager.PlaySfx(Sfx.TormentFull);
             List<CombatantView> targetsDebuffTorment = new() { HeroSystem.Instance.HeroView };
             AddStatusEffectGA debuffTormentGA = new AddStatusEffectGA(StatusEffectType.TORMENT, 1, targetsDebuffTorment);
             ActionSystem.Instance.AddReaction(debuffTormentGA);

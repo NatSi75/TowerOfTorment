@@ -295,6 +295,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 609663337644175433, guid: 5e1833f95fbc4274496f534cfb1aeea4, type: 3}
+      propertyPath: m_fontSize
+      value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 609663337644175433, guid: 5e1833f95fbc4274496f534cfb1aeea4, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: e3f54f2386eacfb498711344712aeeef, type: 2}
@@ -627,6 +631,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3670792683555595454, guid: 5e1833f95fbc4274496f534cfb1aeea4, type: 3}
+      propertyPath: m_fontSize
+      value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 3670792683555595454, guid: 5e1833f95fbc4274496f534cfb1aeea4, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: e3f54f2386eacfb498711344712aeeef, type: 2}
@@ -725,6 +733,10 @@ PrefabInstance:
     - target: {fileID: 5479935573255901109, guid: 5e1833f95fbc4274496f534cfb1aeea4, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5613896928755076114, guid: 5e1833f95fbc4274496f534cfb1aeea4, type: 3}
+      propertyPath: m_fontSize
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 5613896928755076114, guid: 5e1833f95fbc4274496f534cfb1aeea4, type: 3}
       propertyPath: m_fontAsset
@@ -887,6 +899,10 @@ PrefabInstance:
       value: About
       objectReference: {fileID: 0}
     - target: {fileID: 7678455442053180425, guid: 5e1833f95fbc4274496f534cfb1aeea4, type: 3}
+      propertyPath: m_fontSize
+      value: 38
+      objectReference: {fileID: 0}
+    - target: {fileID: 7678455442053180425, guid: 5e1833f95fbc4274496f534cfb1aeea4, type: 3}
       propertyPath: m_fontAsset
       value: 
       objectReference: {fileID: 11400000, guid: e3f54f2386eacfb498711344712aeeef, type: 2}
@@ -1021,6 +1037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: 
+  opensSettings: 1
   selectedLine: {fileID: 879529820}
   hoverCursor: {fileID: 0}
   lineOffset: {x: 0, y: -25}
@@ -1050,6 +1067,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: 
+  opensSettings: 0
   selectedLine: {fileID: 1956105984}
   hoverCursor: {fileID: 0}
   lineOffset: {x: 0, y: -25}
@@ -1152,7 +1170,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
+  m_fontSize: 38
   m_fontSizeBase: 28
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1218,6 +1236,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: 
+  opensSettings: 0
   selectedLine: {fileID: 341349632}
   hoverCursor: {fileID: 0}
   lineOffset: {x: 0, y: -25}
@@ -1252,6 +1271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: Character Select
+  opensSettings: 0
   selectedLine: {fileID: 1044874230}
   hoverCursor: {fileID: 0}
   lineOffset: {x: 0, y: -25}
@@ -1552,6 +1572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneToLoad: 
+  opensSettings: 0
   selectedLine: {fileID: 1714728358}
   hoverCursor: {fileID: 0}
   lineOffset: {x: 0, y: -25}

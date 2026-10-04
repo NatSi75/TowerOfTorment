@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: Wizard
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Wizard
-  <Description>k__BackingField: An exiled scholar who delved into forbidden alchemy
-    and toxic dark arts. Suffocates enemies with noxious spells, applying deadly
-    Poison to slowly wither their life away.
+  <Description>k__BackingField: An exiled scholar who delved into forbidden alchemy and toxic dark arts. Suffocates enemies with noxious spells, applying deadly Poison to slowly wither their life away.
   <Image>k__BackingField: {fileID: 4723107735738678597, guid: e4a00dc681498a747b8e6dec2cc519b0, type: 3}
   flipSprite: 0
   <Animator>k__BackingField: {fileID: 9100000, guid: 3055ff1fc6c8900479ab406c973c34b0, type: 2}

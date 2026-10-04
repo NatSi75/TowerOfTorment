@@ -106,7 +106,9 @@ public class EffectTurnSystem : MonoBehaviour
             Instantiate(chilledVFX, target.transform.position, Quaternion.identity);
             target.RemoveStatusEffect(StatusEffectType.CHILLED, 1);
         }
-        yield return new WaitForSeconds(0.5f);
+        // Chilled only counts down (no damage) and ticks after the new hand is drawn,
+        // so don't make the player wait for it.
+        yield return null;
     }
     private IEnumerator ApplyVoidPerformer(ApplyVoidGA applyVoidGA)
     {
