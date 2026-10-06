@@ -8,6 +8,8 @@ namespace Map
     public class MapConfig : ScriptableObject
     {
         public List<NodeBlueprint> nodeBlueprints;
+        [Tooltip("Background of this map. Leave empty to use the MapView background.")]
+        public Sprite background;
         [Tooltip("Nodes that will be used on layers with Randomize Nodes > 0")]
         public List<NodeType> randomNodes = new List<NodeType>
             {NodeType.Mystery, NodeType.Store, NodeType.Treasure, NodeType.MinorEnemy, NodeType.RestSite, NodeType.PillarOfDespair};

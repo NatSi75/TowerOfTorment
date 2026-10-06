@@ -106,19 +106,39 @@ namespace Map
 
         protected virtual void CreateMapBackground(Map m)
         {
-            if (background == null) return;
+            MapConfig config = GetConfig(m.configName);
+            Sprite sprite = config != null && config.background != null ? config.background : background;
+            if (sprite == null) return;
 
             GameObject backgroundObject = new GameObject("Background");
             backgroundObject.transform.SetParent(mapParent.transform);
-            MapNode bossNode = MapNodes.FirstOrDefault(node => node.Node.nodeType == NodeType.Boss);
             float span = m.DistanceBetweenFirstAndLastLayers();
-            backgroundObject.transform.localPosition = new Vector3(bossNode.transform.localPosition.x, span / 2f, 0f);
+            // centred on the camera (the map parent starts at the camera's x), so the frame is symmetric on screen
+            backgroundObject.transform.localPosition = new Vector3(0f, span / 2f, 0f);
             backgroundObject.transform.localRotation = Quaternion.identity;
             SpriteRenderer sr = backgroundObject.AddComponent<SpriteRenderer>();
             sr.color = backgroundColor;
-            sr.drawMode = SpriteDrawMode.Sliced;
-            sr.sprite = background;
-            sr.size = new Vector2(xSize, span + yOffset * 2f);
+            sr.sprite = sprite;
+            float height = span + yOffset * 2f;
+            if (sprite.border != Vector4.zero)
+            {
+                // 9-sliced panel: stretch to the map size
+                sr.drawMode = SpriteDrawMode.Sliced;
+                sr.size = new Vector2(xSize, height);
+            }
+            else
+            {
+                // full picture: cover the whole map length and the screen width, keeping its proportions
+                sr.drawMode = SpriteDrawMode.Simple;
+                Vector2 spriteSize = sprite.rect.size / sprite.pixelsPerUnit;
+                float viewWidth = cam.orthographic ? cam.orthographicSize * 2f * cam.aspect : xSize;
+                float scale = Mathf.Max(height / spriteSize.y, Mathf.Max(xSize, viewWidth) / spriteSize.x);
+                backgroundObject.transform.localScale = new Vector3(scale, scale, 1f);
+            }
+
+            // the player can't scroll past the ends of the background
+            ScrollNonUI scrollNonUi = mapParent.GetComponent<ScrollNonUI>();
+            if (scrollNonUi != null) scrollNonUi.boundsRenderer = sr;
         }
 
         protected virtual void CreateMapParent()

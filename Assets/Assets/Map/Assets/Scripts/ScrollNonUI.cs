@@ -11,6 +11,8 @@ namespace Map
         public FloatMinMax xConstraints = new FloatMinMax();
         public bool freezeY;
         public FloatMinMax yConstraints = new FloatMinMax();
+        [Tooltip("When set, scrolling stops at the edges of this renderer so the camera never shows anything outside it")]
+        public Renderer boundsRenderer;
         private Vector2 offset;
         // distance from the center of this Game Object to the point where we clicked to start dragging 
         private Vector3 pointerDisplacement;
@@ -49,6 +51,35 @@ namespace Map
                 transform.position.z);
         }
 
+        // Keep the camera view inside the bounds renderer (also after the screen is resized).
+        private void LateUpdate()
+        {
+            if (boundsRenderer == null || !mainCamera.orthographic) return;
+
+            Bounds bounds = boundsRenderer.bounds;
+            Vector3 camPos = mainCamera.transform.position;
+            float halfHeight = mainCamera.orthographicSize;
+            float halfWidth = halfHeight * mainCamera.aspect;
+            Vector3 shift = Vector3.zero;
+            if (!freezeY) shift.y = ClampShift(bounds.min.y, bounds.max.y, camPos.y - halfHeight, camPos.y + halfHeight);
+            if (!freezeX) shift.x = ClampShift(bounds.min.x, bounds.max.x, camPos.x - halfWidth, camPos.x + halfWidth);
+            if (shift == Vector3.zero) return;
+
+            transform.DOKill();
+            transform.position += shift;
+        }
+
+        // How far the content has to move so that [viewMin, viewMax] lies inside [contentMin, contentMax].
+        // Content smaller than the view is centred.
+        private static float ClampShift(float contentMin, float contentMax, float viewMin, float viewMax)
+        {
+            if (contentMax - contentMin < viewMax - viewMin)
+                return (viewMin + viewMax) / 2f - (contentMin + contentMax) / 2f;
+            if (contentMin > viewMin) return viewMin - contentMin;
+            if (contentMax < viewMax) return viewMax - contentMax;
+            return 0f;
+        }
+
         // returns mouse position in World coordinates for our GameObject to follow. 
         private Vector3 MouseInWorldCoords()
         {
@@ -60,6 +91,7 @@ namespace Map
 
         private void TweenBack()
         {
+            if (boundsRenderer != null) return; // LateUpdate already keeps it inside the bounds
             if (freezeY)
             {
                 if (transform.localPosition.x >= xConstraints.min && transform.localPosition.x <= xConstraints.max)

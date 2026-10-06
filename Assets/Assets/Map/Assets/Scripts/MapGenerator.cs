@@ -63,8 +63,8 @@ namespace Map
             MapLayer layer = config.layers[layerIndex];
             List<Node> nodesOnThisLayer = new List<Node>();
 
-            // offset of this layer to make all the nodes centered:
-            float offset = layer.nodesApartDistance * config.GridWidth / 2f;
+            // offset of this layer to make all the nodes centered (first and last column equally far from 0):
+            float offset = layer.nodesApartDistance * (config.GridWidth - 1) / 2f;
 
             for (int i = 0; i < config.GridWidth; i++)
             {

@@ -1212,7 +1212,7 @@ Transform:
   m_GameObject: {fileID: 963012700}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.5, z: 0}
+  m_LocalPosition: {x: 0, y: -3.75, z: 0}
   m_LocalScale: {x: 2.5, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3166,6 +3166,7 @@ GameObject:
   - component: {fileID: 1922741813}
   - component: {fileID: 1922741812}
   - component: {fileID: 1922741814}
+  - component: {fileID: 1922741815}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -3222,7 +3223,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300000, guid: 22802af9b5160c141baa43e37a8ed831, type: 3}
+  m_Sprite: {fileID: -9150190521648681272, guid: 8290eea4fc4a52f4bbe2cab1daf2957f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3260,6 +3261,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4447701691d6a484dbc6f8a49b85a16a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResponsiveBackground
+--- !u!114 &1922741815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922741811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ccc27cf622740e43b5ec4a141b6e388, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackgroundSelector
+  background:
+    act1: {fileID: -9150190521648681272, guid: 8290eea4fc4a52f4bbe2cab1daf2957f, type: 3}
+    act2: {fileID: -3881344018584686164, guid: 5b886d8162abf8f40bb3cc29ad9454e0, type: 3}
+  byEnemyType: 0
+  minorEnemy:
+    act1: {fileID: 0}
+    act2: {fileID: 0}
+  eliteEnemy:
+    act1: {fileID: 0}
+    act2: {fileID: 0}
+  boss:
+    act1: {fileID: 0}
+    act2: {fileID: 0}
+  verticalOffset: 0
 --- !u!1 &1951761800
 GameObject:
   m_ObjectHideFlags: 0
