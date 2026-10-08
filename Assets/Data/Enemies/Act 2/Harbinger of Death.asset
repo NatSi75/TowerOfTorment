@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Harbinger of Death
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: 547910251586419615, guid: 8fa07c4cf077f734a9777b0a11645ebc, type: 3}
+  attackSound: 1
   flipSprite: 0
   scaleX: 11
   scaleY: 11

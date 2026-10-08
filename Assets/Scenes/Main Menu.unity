@@ -1219,6 +1219,7 @@ MonoBehaviour:
   boss:
     act1: {fileID: 0}
     act2: {fileID: 0}
+  verticalOffset: 0
 --- !u!1 &941967473 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3820603181148267843, guid: 5e1833f95fbc4274496f534cfb1aeea4, type: 3}

@@ -11,7 +11,8 @@ public class CardViewCreator : Singleton<CardViewCreator>
     {
         CardView cardView = Instantiate(cardViewPrefab, position, rotation);
         cardView.transform.localScale = Vector3.zero;
-        cardView.transform.DOScale(new Vector3(1f, 1f), 0.15f);
+        float scale = MobileLayout.HandScale;
+        cardView.transform.DOScale(new Vector3(scale, scale), 0.15f);
         cardView.Setup(card);
         return cardView;
     }

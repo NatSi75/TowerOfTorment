@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Skeleton Spear
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: -5895240819618427197, guid: 433274a1abbe37945920dcd514fb2ae2, type: 3}
+  attackSound: 1
   flipSprite: 1
   scaleX: 9
   scaleY: 9

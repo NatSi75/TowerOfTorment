@@ -196,8 +196,17 @@ public class CardView : MonoBehaviour
         else
         {
             Interactions.Instance.PlayerIsDragging = true;
-            wrapper.SetActive(true);
-            CardViewHoverSystem.Instance.Hide();
+            if (MobileLayout.IsSmallScreen)
+            {
+                // touch: keep the enlarged preview while the finger rests on the card, hide it once dragging starts
+                touchPreview = true;
+                touchStartPosition = MouseUtil.GetMousePositionInWorldSpace();
+            }
+            else
+            {
+                wrapper.SetActive(true);
+                CardViewHoverSystem.Instance.Hide();
+            }
             dragStartPosition = transform.position;
             dragStartRotation = transform.rotation;
             transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -209,7 +218,20 @@ public class CardView : MonoBehaviour
     {
         if (!Interactions.Instance.PlayerCanInteract()) return;
         if (Card.ManualTargetEffect != null && Card.ManualTargetEffect.Count > 0) return;
-        transform.position = MouseUtil.GetMousePositionInWorldSpace() + dragOffset;
+        Vector3 mousePosition = MouseUtil.GetMousePositionInWorldSpace();
+        if (touchPreview && Vector3.Distance(mousePosition, touchStartPosition) > TouchDragThreshold) EndTouchPreview();
+        transform.position = mousePosition + dragOffset;
+    }
+
+    private const float TouchDragThreshold = 1f;
+    private bool touchPreview;
+    private Vector3 touchStartPosition;
+
+    private void EndTouchPreview()
+    {
+        touchPreview = false;
+        wrapper.SetActive(true);
+        CardViewHoverSystem.Instance.Hide();
     }
 
     void OnMouseUp()
@@ -227,6 +249,7 @@ public class CardView : MonoBehaviour
         }
         else
         {
+            if (touchPreview) EndTouchPreview();
             Vector3 checkPosition = transform.position;
             checkPosition.z = 0f;
             Collider2D hitCollider = Physics2D.OverlapPoint(checkPosition, dropLayer);

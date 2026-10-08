@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Demon
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: 0}
+  attackSound: 1
   flipSprite: 0
   scaleX: 11.5
   scaleY: 11.5

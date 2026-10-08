@@ -30,7 +30,7 @@ MonoBehaviour:
     max: 4
   extraPaths: 5
   layers:
-  - nodeType: 2
+  - nodeType: 0
     distanceFromPreviousLayer:
       min: 0
       max: 0

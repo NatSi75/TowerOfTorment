@@ -8,6 +8,8 @@ using UnityEngine.Splines;
 public class HandView : MonoBehaviour
 {
     [SerializeField] private SplineContainer splineContainer;
+    [Tooltip("Bottom-centre of a card's artwork relative to its pivot (at scale 1). Larger cards on small screens grow upward from here.")]
+    [SerializeField] private Vector3 cardBottomAnchor = new(2.65f, -8.38f, 0f);
     private readonly List<CardView> cards = new();
     public IEnumerator AddCard (CardView cardView)
     {
@@ -35,14 +37,19 @@ public class HandView : MonoBehaviour
         float cardSpacing = 1f / 10f;
         float firstCardPosition = 0.5f - (cards.Count - 1) * cardSpacing / 2;
         Spline spline = splineContainer.Spline;
+        // larger cards (small screens) are spread further apart and keep their bottom edge in place
+        float scale = MobileLayout.HandScale;
+        Vector3 splineCenter = spline.EvaluatePosition(0.5f);
         for (int i = 0; i < cards.Count; i++)
         {
             float p = firstCardPosition + i * cardSpacing;
             Vector3 splinePosition = spline.EvaluatePosition(p);
+            splinePosition = splineCenter + (splinePosition - splineCenter) * scale;
             Vector3 forward = spline.EvaluateTangent(p);
             Vector3 up = spline.EvaluateUpVector(p);
             Quaternion rotation = Quaternion.LookRotation(-up, Vector3.Cross(-up, forward).normalized);
-            cards[i].transform.DOMove(splinePosition + transform.position + 0.01f * i * Vector3.back, duration);
+            Vector3 growUpward = rotation * (cardBottomAnchor * (1f - scale));
+            cards[i].transform.DOMove(splinePosition + transform.position + growUpward + 0.01f * i * Vector3.back, duration);
             cards[i].transform.DORotate(rotation.eulerAngles, duration);
         }
         yield return new WaitForSeconds(duration);

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Goblin
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: 4723107735738678597, guid: 1ce8dfaad2e3ef047bbbce70dd71a330, type: 3}
+  attackSound: 1
   flipSprite: 1
   scaleX: 9
   scaleY: 9

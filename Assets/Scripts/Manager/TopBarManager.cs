@@ -19,6 +19,12 @@ public class TopBarManager : MonoBehaviour
     [Header("UI Elements - Right")]
     [SerializeField] public Button mapButton;
     [SerializeField] private Button deckButton;
+    [Tooltip("Opens the pause menu; only shown in battle, to the right of the deck")]
+    [SerializeField] private Button pauseButton;
+    [Tooltip("How far the deck and map buttons move left while the pause button is shown")]
+    [SerializeField] private float pauseButtonSpace = 60f;
+    private Vector2 deckButtonPosition;
+    private Vector2 mapButtonPosition;
 
     [SerializeField] private GameObject viewerPanel;
     [SerializeField] private Transform gridContent;
@@ -47,6 +53,35 @@ public class TopBarManager : MonoBehaviour
     private void Start()
     {
         viewerPanel.SetActive(false);
+        deckButtonPosition = ((RectTransform)deckButton.transform).anchoredPosition;
+        mapButtonPosition = ((RectTransform)mapButton.transform).anchoredPosition;
+    }
+
+    public void OnPauseClicked()
+    {
+        PauseMenu.Open();
+    }
+
+    // The pause button (and Escape) only works in battle, not while the map is opened on top of it.
+    private bool CanPause()
+    {
+        return SceneManager.GetActiveScene().name == "Battle" && !isViewOnlyMode;
+    }
+
+    private void UpdatePauseButton()
+    {
+        if (pauseButton == null) return;
+        bool show = CanPause();
+        pauseButton.gameObject.SetActive(show);
+        Vector2 shift = show ? new Vector2(-pauseButtonSpace, 0f) : Vector2.zero;
+        ((RectTransform)deckButton.transform).anchoredPosition = deckButtonPosition + shift;
+        ((RectTransform)mapButton.transform).anchoredPosition = mapButtonPosition + shift;
+
+        if (show && Input.GetKeyDown(KeyCode.Escape) && !PauseMenu.IsPaused && !SettingsPanel.IsOpen
+            && (Interactions.Instance == null || !Interactions.Instance.PlayerIsDragging))
+        {
+            PauseMenu.Open();
+        }
     }
 
     private void Update()
@@ -55,6 +90,7 @@ public class TopBarManager : MonoBehaviour
         UpdateTormentUI();
         UpdateGoldUI();
         ToggleVisibilityBasedOnScene();
+        UpdatePauseButton();
     }
 
     private void UpdateHealthUI()
@@ -150,6 +186,8 @@ public class TopBarManager : MonoBehaviour
                 dragComponent.enabled = false;
             } */
         }
+
+        CardGridLayout.Fit(gridContent, cardDataList.Count);
     }
 
     private void ClearSpawnedCards()
@@ -172,7 +210,7 @@ public class TopBarManager : MonoBehaviour
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
 
-        if (currentSceneName == "MainMenu")
+        if (currentSceneName == "MainMenu" || currentSceneName == "Main Menu")
         {
             GetComponent<Canvas>().enabled = false;
         }

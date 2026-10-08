@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Evil Wizard Void
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: 3234629978573100161, guid: d3d4d7317bf76f94a82f41b8e19c20ec, type: 3}
+  attackSound: 1
   flipSprite: 1
   scaleX: 10
   scaleY: 10

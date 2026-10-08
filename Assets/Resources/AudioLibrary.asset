@@ -51,6 +51,74 @@ MonoBehaviour:
   wizardAttack:
     clip: {fileID: 8300000, guid: 8c95a13766cc25b4080f1509470b2d8a, type: 3}
     volume: 1
+  enemyAttackBlunt:
+    clip: {fileID: 8300000, guid: e7ed10a18140f4f448c93602d68ae931, type: 3}
+    volume: 1
+  enemyAttackSharp:
+    clip: {fileID: 8300000, guid: 10651d5f33a6d444ba7142a3b9c61fcd, type: 3}
+    volume: 1
+  enemyBlock:
+    clip: {fileID: 8300000, guid: cb5c3c361e6c1ce4a87af43d5b52dd14, type: 3}
+    volume: 1
+  enemyHeal:
+    clip: {fileID: 8300000, guid: 19c9713194c33804096273d1dd0ebb37, type: 3}
+    volume: 1
+  debuffApplied:
+    clip: {fileID: 8300000, guid: 27d307ddd33483947a3324e4d8b38040, type: 3}
+    volume: 1
+  debuffTick:
+    clip: {fileID: 0}
+    volume: 1
+  statusEffectSounds:
+  - statusEffect: 4
+    applied:
+      clip: {fileID: 0}
+      volume: 1
+    tick:
+      clip: {fileID: 0}
+      volume: 1
+  - statusEffect: 5
+    applied:
+      clip: {fileID: 0}
+      volume: 1
+    tick:
+      clip: {fileID: 0}
+      volume: 1
+  - statusEffect: 8
+    applied:
+      clip: {fileID: 0}
+      volume: 1
+    tick:
+      clip: {fileID: 0}
+      volume: 1
+  - statusEffect: 1
+    applied:
+      clip: {fileID: 0}
+      volume: 1
+    tick:
+      clip: {fileID: 0}
+      volume: 1
+  - statusEffect: 9
+    applied:
+      clip: {fileID: 0}
+      volume: 1
+    tick:
+      clip: {fileID: 0}
+      volume: 1
+  - statusEffect: 6
+    applied:
+      clip: {fileID: 0}
+      volume: 1
+    tick:
+      clip: {fileID: 0}
+      volume: 1
+  - statusEffect: 7
+    applied:
+      clip: {fileID: 0}
+      volume: 1
+    tick:
+      clip: {fileID: 0}
+      volume: 1
   burn:
     clip: {fileID: 8300000, guid: 46b8e182ee4e4614981bc3c21823293a, type: 3}
     volume: 1

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Golem Blue
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: -3499944936518720492, guid: 1ccd9fa4423f95e4197c28346e8e9630, type: 3}
+  attackSound: 1
   flipSprite: 1
   scaleX: 13
   scaleY: 13

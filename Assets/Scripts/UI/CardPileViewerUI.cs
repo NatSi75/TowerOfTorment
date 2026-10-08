@@ -56,6 +56,8 @@ public class CardPileViewerUI : MonoBehaviour
                 dragComponent.enabled = false;
             } */
         }
+
+        CardGridLayout.Fit(gridContent, cardDataList.Count);
     }
 
     public void CloseViewer()

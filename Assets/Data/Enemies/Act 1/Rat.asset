@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Rat
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: 8793639957104055765, guid: f9af5cef53d9fd1409f99395ffe7ce54, type: 3}
+  attackSound: 1
   flipSprite: 1
   scaleX: 9
   scaleY: 9

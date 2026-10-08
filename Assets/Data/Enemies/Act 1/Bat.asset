@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Bat
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: 5352286359449648278, guid: 2457c4b558f190f4497bc3eef8b0d8c5, type: 3}
+  attackSound: 1
   flipSprite: 1
   scaleX: 6
   scaleY: 6

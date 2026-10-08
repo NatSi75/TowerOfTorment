@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Flying Demon
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: 815424164945274260, guid: 2c6fc4511242edd4197c0da055b19193, type: 3}
+  attackSound: 1
   flipSprite: 0
   scaleX: 6
   scaleY: 6

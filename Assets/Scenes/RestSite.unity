@@ -877,6 +877,8 @@ GameObject:
   - component: {fileID: 668361977}
   - component: {fileID: 668361976}
   - component: {fileID: 668361975}
+  - component: {fileID: 668361979}
+  - component: {fileID: 668361978}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -960,6 +962,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 668361973}
   m_CullTransparentMesh: 1
+--- !u!114 &668361978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668361973}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!223 &668361979
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668361973}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
 --- !u!1 &691592050
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,6 +1948,7 @@ GameObject:
   - component: {fileID: 1013775502}
   - component: {fileID: 1013775504}
   - component: {fileID: 1013775503}
+  - component: {fileID: 1013775505}
   m_Layer: 5
   m_Name: Panel Upgrade
   m_TagString: Untagged
@@ -1973,6 +2017,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1013775501}
   m_CullTransparentMesh: 1
+--- !u!114 &1013775505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013775501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2878b297d2eb3f4684828c1ebf81fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MobileUIScale
+  scale: 1.4
+  keepOnScreenSize: 0
 --- !u!1001 &1064501016
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2108,6 +2166,7 @@ GameObject:
   - component: {fileID: 1200732170}
   - component: {fileID: 1200732172}
   - component: {fileID: 1200732171}
+  - component: {fileID: 1200732173}
   m_Layer: 5
   m_Name: Panel Remove
   m_TagString: Untagged
@@ -2175,6 +2234,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1200732169}
   m_CullTransparentMesh: 1
+--- !u!114 &1200732173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200732169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2878b297d2eb3f4684828c1ebf81fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MobileUIScale
+  scale: 1.4
+  keepOnScreenSize: 0
 --- !u!1 &1204714882
 GameObject:
   m_ObjectHideFlags: 0
@@ -3047,6 +3120,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1648722900}
   - component: {fileID: 1648722901}
+  - component: {fileID: 1648722902}
   m_Layer: 5
   m_Name: CardUI
   m_TagString: Untagged
@@ -3097,6 +3171,20 @@ MonoBehaviour:
   m_Spacing: {x: 350, y: 500}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &1648722902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1648722899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2878b297d2eb3f4684828c1ebf81fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MobileUIScale
+  scale: 1.35
+  keepOnScreenSize: 1
 --- !u!1 &1660977199
 GameObject:
   m_ObjectHideFlags: 0

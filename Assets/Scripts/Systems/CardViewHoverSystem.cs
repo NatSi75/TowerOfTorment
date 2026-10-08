@@ -120,7 +120,47 @@ public class CardViewHoverSystem : Singleton<CardViewHoverSystem>
         }
         
         cardViewHover.Setup(card);
+        baseScale ??= cardViewHover.transform.localScale;
+        float scale = MobileLayout.HoverScale;
+        cardViewHover.transform.localScale = baseScale.Value * scale;
         cardViewHover.transform.position = position;
+        if (scale > 1f) KeepOnScreen();
+    }
+
+    private Vector3? baseScale;
+
+    // Moves the (enlarged) preview card so it is fully inside the camera view.
+    private void KeepOnScreen()
+    {
+        Camera cam = Camera.main;
+        if (cam == null || !cam.orthographic) return;
+
+        Bounds? cardBounds = null;
+        foreach (SpriteRenderer sr in cardViewHover.GetComponentsInChildren<SpriteRenderer>())
+        {
+            if (sr.sprite == null || !sr.enabled) continue;
+            if (cardBounds == null) cardBounds = sr.bounds;
+            else { Bounds b = cardBounds.Value; b.Encapsulate(sr.bounds); cardBounds = b; }
+        }
+        if (cardBounds == null) return;
+
+        const float margin = 0.3f;
+        Bounds bounds = cardBounds.Value;
+        Vector3 camPos = cam.transform.position;
+        float halfHeight = cam.orthographicSize - margin;
+        float halfWidth = cam.orthographicSize * cam.aspect - margin;
+        Vector3 shift = Vector3.zero;
+        shift.x = Shift(bounds.min.x, bounds.max.x, camPos.x - halfWidth, camPos.x + halfWidth);
+        shift.y = Shift(bounds.min.y, bounds.max.y, camPos.y - halfHeight, camPos.y + halfHeight);
+        cardViewHover.transform.position += shift;
+    }
+
+    // How far [min, max] has to move to lie inside [viewMin, viewMax]; if it does not fit, its top edge is kept visible.
+    private static float Shift(float min, float max, float viewMin, float viewMax)
+    {
+        if (max > viewMax || max - min > viewMax - viewMin) return viewMax - max;
+        if (min < viewMin) return viewMin - min;
+        return 0f;
     }
 
     public void Hide()

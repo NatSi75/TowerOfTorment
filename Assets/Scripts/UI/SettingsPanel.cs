@@ -13,6 +13,8 @@ public class SettingsPanel : MonoBehaviour
 
     private static SettingsPanel openPanel;
 
+    public static bool IsOpen => openPanel != null;
+
     public static void Open()
     {
         if (openPanel != null) return;

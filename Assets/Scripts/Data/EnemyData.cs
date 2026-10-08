@@ -2,10 +2,20 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+// What the enemy hits with, for its attack sound.
+public enum EnemyAttackSound
+{
+    Blunt, // fists, bodies, shields, staffs, spell blasts
+    Sharp, // blades, spears, scythes, claws, fangs, spikes
+}
+
 [CreateAssetMenu(menuName = "Data/Enemy")]
 public class EnemyData : ScriptableObject
 {
     [field: SerializeField] public Sprite Image { get; private set; }
+    [Tooltip("Sound of this enemy's attack hitting the hero")]
+    [SerializeField] private EnemyAttackSound attackSound;
+    public EnemyAttackSound AttackSound => attackSound;
     [SerializeField] private bool flipSprite;
     [SerializeField] public float scaleX;
     [SerializeField] public float scaleY;

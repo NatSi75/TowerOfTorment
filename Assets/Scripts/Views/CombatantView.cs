@@ -78,6 +78,7 @@ public class CombatantView : MonoBehaviour
                 remainingDamage -= currentArmor;
             }
         }
+        float healthBefore = CurrentHealth;
         if (remainingDamage > 0)
         {
             CurrentHealth -= remainingDamage;
@@ -93,8 +94,31 @@ public class CombatantView : MonoBehaviour
 
         if (this != null && gameObject != null)
         {
+            ShowDamageNumber(healthBefore - CurrentHealth, damageAmount - remainingDamage);
             transform.DOShakePosition(0.2f, 0.5f);
             UpdateHealthText();
+        }
+    }
+
+    // Red number for the health lost; "Blocked" when the armor took all of it.
+    private void ShowDamageNumber(float healthLost, float blocked)
+    {
+        if (healthLost <= 0f && blocked <= 0f) return;
+
+        // around the upper part of the body, a little to the side so quick multi-hits don't stack
+        Bounds body = spriteRenderer.bounds;
+        Vector3 position = new(
+            body.center.x + Random.Range(-0.5f, 0.5f),
+            body.center.y + body.extents.y * 0.7f,
+            0f);
+
+        if (healthLost > 0f)
+        {
+            DamageNumber.Show(position, Mathf.RoundToInt(healthLost).ToString(), DamageNumber.DamageColor, healthText.font);
+        }
+        else
+        {
+            DamageNumber.Show(position, "Blocked", DamageNumber.BlockedColor, healthText.font, 0.7f);
         }
     }
 

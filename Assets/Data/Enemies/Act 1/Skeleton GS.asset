@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Skeleton GS
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: -5895240819618427197, guid: 8834471887bc3f8419920cf4fa7e619b, type: 3}
+  attackSound: 1
   flipSprite: 1
   scaleX: 9
   scaleY: 9

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Flying Eye
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: -4795363162621231457, guid: 4f022189ecc4d8d41b5c0c5158b24154, type: 3}
+  attackSound: 1
   flipSprite: 1
   scaleX: 6
   scaleY: 6

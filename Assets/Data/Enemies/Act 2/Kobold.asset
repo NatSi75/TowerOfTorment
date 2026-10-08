@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Kobold
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: 815424164945274260, guid: d0b6d21c489f36943b3d154bfbbe9f2e, type: 3}
+  attackSound: 1
   flipSprite: 1
   scaleX: 6
   scaleY: 6

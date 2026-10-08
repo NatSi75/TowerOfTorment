@@ -172,6 +172,8 @@ public class EnemySystem : Singleton<EnemySystem>
             // the hit lands around the middle of the attack animation
             if (attackLength > 0f) yield return new WaitForSeconds(Mathf.Max(0f, attackLength * 0.5f - 0.15f));
             attacker.transform.DOMoveX(attacker.transform.position.x + 1f, 0.25f);
+            bool sharp = attacker.EnemyData != null && attacker.EnemyData.AttackSound == EnemyAttackSound.Sharp;
+            AudioManager.PlaySfx(sharp ? Sfx.EnemyAttackSharp : Sfx.EnemyAttackBlunt);
             DealDamageGA dealDamageGA = new(Mathf.RoundToInt(attacker.ActionValue), new() { HeroSystem.Instance.HeroView }, attackHeroGA.Caster);
             ActionSystem.Instance.AddReaction(dealDamageGA);
         }
@@ -181,15 +183,43 @@ public class EnemySystem : Singleton<EnemySystem>
     {
         EnemyView caster = enemyCastGA.Caster;
         if (caster == null) yield break;
-        float castLength = caster.PlayAnimation("Attack");
-        // the debuff / buff is applied around the middle of the animation
-        if (castLength > 0f) yield return new WaitForSeconds(castLength * 0.5f);
-        if (caster.ActionType == EnemyActionType.DebuffBurn) AudioManager.PlaySfx(Sfx.Burn);
+        // the attack animation is only for Attack intents; the other intents only get their sound,
+        // played right before the effect (queued next) is applied
+        switch (caster.ActionType)
+        {
+            case EnemyActionType.Block:
+                AudioManager.PlaySfx(Sfx.EnemyBlock);
+                break;
+            case EnemyActionType.Heal:
+                AudioManager.PlaySfx(Sfx.EnemyHeal);
+                break;
+            default:
+                StatusEffectType? debuff = DebuffOf(caster.ActionType);
+                if (debuff.HasValue) AudioManager.PlayDebuffApplied(debuff.Value);
+                break;
+        }
+        yield break;
+    }
+
+    private static StatusEffectType? DebuffOf(EnemyActionType actionType)
+    {
+        return actionType switch
+        {
+            EnemyActionType.DebuffWeak => StatusEffectType.WEAK,
+            EnemyActionType.DebuffVulnerable => StatusEffectType.VULNERABLE,
+            EnemyActionType.DebuffChilled => StatusEffectType.CHILLED,
+            EnemyActionType.DebuffBurn => StatusEffectType.BURN,
+            EnemyActionType.DebuffVoid => StatusEffectType.VOID,
+            EnemyActionType.DebuffPoison => StatusEffectType.POISON,
+            _ => null,
+        };
     }
 
     private static bool IsCastAction(EnemyActionType actionType)
     {
-        return actionType is EnemyActionType.Debuff
+        return actionType is EnemyActionType.Block
+            or EnemyActionType.Heal
+            or EnemyActionType.Debuff
             or EnemyActionType.DebuffWeak
             or EnemyActionType.DebuffVulnerable
             or EnemyActionType.DebuffChilled

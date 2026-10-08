@@ -48,6 +48,7 @@ public class EffectTurnSystem : MonoBehaviour
         if (target != null)
         {
             Instantiate(vulnerableVFX, target.transform.position, Quaternion.identity);
+            AudioManager.PlayDebuffTick(StatusEffectType.VULNERABLE);
             target.RemoveStatusEffect(StatusEffectType.VULNERABLE, 1);
         }
         yield return new WaitForSeconds(0.5f);
@@ -61,6 +62,7 @@ public class EffectTurnSystem : MonoBehaviour
             Instantiate(burnVFX, target.transform.position, Quaternion.identity);
             DealDamageGA damageGA = new(applyBurnGA.BurnDamage, new() { target }, caster);
             //target.Damage(applyBurnGA.BurnDamage);
+            AudioManager.PlayDebuffTick(StatusEffectType.BURN);
             target.RemoveStatusEffect(StatusEffectType.BURN, 1);
         }
         yield return new WaitForSeconds(0.5f);
@@ -71,6 +73,7 @@ public class EffectTurnSystem : MonoBehaviour
         if (target != null)
         {
             Instantiate(weakVFX, target.transform.position, Quaternion.identity);
+            AudioManager.PlayDebuffTick(StatusEffectType.WEAK);
             target.RemoveStatusEffect(StatusEffectType.WEAK, 1);
         }
         yield return new WaitForSeconds(0.5f);
@@ -84,6 +87,7 @@ public class EffectTurnSystem : MonoBehaviour
             DealDamageGA damageGA = new(applyPoisonGA.PoisonDamage, new() { target }, target);
             ActionSystem.Instance.AddReaction(damageGA);
             //target.Damage(applyPoisonGA.PoisonDamage);
+            AudioManager.PlayDebuffTick(StatusEffectType.POISON);
             target.RemoveStatusEffect(StatusEffectType.POISON, 1);
         }
         yield return new WaitForSeconds(0.5f);
@@ -94,6 +98,7 @@ public class EffectTurnSystem : MonoBehaviour
         if (target != null)
         {
             Instantiate(bleedVFX, target.transform.position, Quaternion.identity);
+            AudioManager.PlayDebuffTick(StatusEffectType.BLEED);
             target.RemoveStatusEffect(StatusEffectType.BLEED, 1);
         }
         yield return new WaitForSeconds(0.5f);
@@ -104,6 +109,7 @@ public class EffectTurnSystem : MonoBehaviour
         if (target != null)
         {
             Instantiate(chilledVFX, target.transform.position, Quaternion.identity);
+            AudioManager.PlayDebuffTick(StatusEffectType.CHILLED);
             target.RemoveStatusEffect(StatusEffectType.CHILLED, 1);
         }
         // Chilled only counts down (no damage) and ticks after the new hand is drawn,
@@ -116,6 +122,7 @@ public class EffectTurnSystem : MonoBehaviour
         if (target != null)
         {
             Instantiate(voidVFX, target.transform.position, Quaternion.identity);
+            AudioManager.PlayDebuffTick(StatusEffectType.VOID);
             target.RemoveStatusEffect(StatusEffectType.VOID, 1);
         }
         yield return new WaitForSeconds(0.5f);

@@ -198,6 +198,8 @@ public class PillarManager : MonoBehaviour
                 dragComponent.enabled = false;
             } */
         }
+
+        CardGridLayout.Fit(gridContent, cardDataList.Count);
     }
 
     public void CloseViewer()

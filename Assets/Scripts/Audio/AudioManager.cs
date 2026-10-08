@@ -50,6 +50,18 @@ public class AudioManager : MonoBehaviour
         Instance.PlayOneShot(Instance.library.Get(sfx));
     }
 
+    // A debuff is put on a combatant.
+    public static void PlayDebuffApplied(StatusEffectType type)
+    {
+        Instance.PlayOneShot(Instance.library.GetDebuffApplied(type));
+    }
+
+    // A debuff triggers / loses a stack.
+    public static void PlayDebuffTick(StatusEffectType type)
+    {
+        Instance.PlayOneShot(Instance.library.GetDebuffTick(type));
+    }
+
     private void Awake()
     {
         library = Resources.Load<AudioLibrary>("AudioLibrary");

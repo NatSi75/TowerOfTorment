@@ -624,6 +624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   splineContainer: {fileID: 1749591196}
+  cardBottomAnchor: {x: 2.65, y: -8.38, z: 0}
 --- !u!1 &173254006
 GameObject:
   m_ObjectHideFlags: 0
@@ -3359,6 +3360,8 @@ GameObject:
   - component: {fileID: 864763072}
   - component: {fileID: 864763071}
   - component: {fileID: 864763070}
+  - component: {fileID: 864763074}
+  - component: {fileID: 864763073}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -3442,6 +3445,47 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 864763068}
   m_CullTransparentMesh: 1
+--- !u!114 &864763073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864763068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!223 &864763074
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 864763068}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_VertexColorAlwaysGammaSpace: 0
+  m_UseReflectionProbes: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
 --- !u!1 &871364556
 GameObject:
   m_ObjectHideFlags: 0
@@ -3603,7 +3647,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &890690453
 GameObject:
@@ -4464,6 +4508,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1150035776}
   - component: {fileID: 1150035777}
+  - component: {fileID: 1150035778}
   m_Layer: 5
   m_Name: CardUI
   m_TagString: Untagged
@@ -4514,6 +4559,20 @@ MonoBehaviour:
   m_Spacing: {x: 350, y: 500}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &1150035778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1150035775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2878b297d2eb3f4684828c1ebf81fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MobileUIScale
+  scale: 1.35
+  keepOnScreenSize: 1
 --- !u!1 &1151112240
 GameObject:
   m_ObjectHideFlags: 0
@@ -4697,6 +4756,7 @@ GameObject:
   - component: {fileID: 1183896073}
   - component: {fileID: 1183896072}
   - component: {fileID: 1183896074}
+  - component: {fileID: 1183896075}
   m_Layer: 5
   m_Name: ChooseCard
   m_TagString: Untagged
@@ -4798,6 +4858,20 @@ MonoBehaviour:
   - {fileID: 1443818166}
   - {fileID: 1113937233}
   - {fileID: 2030386796}
+--- !u!114 &1183896075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1183896070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2878b297d2eb3f4684828c1ebf81fd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MobileUIScale
+  scale: 1.4
+  keepOnScreenSize: 0
 --- !u!1 &1199683971
 GameObject:
   m_ObjectHideFlags: 0
