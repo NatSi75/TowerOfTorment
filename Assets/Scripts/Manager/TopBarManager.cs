@@ -93,9 +93,23 @@ public class TopBarManager : MonoBehaviour
         UpdatePauseButton();
     }
 
+    // During a battle the hero's live values are only written back to GameDataManager when the battle is won,
+    // so the top bar reads them from the hero itself (otherwise it shows the start-of-battle HP / torment).
+    private static HeroView BattleHero()
+    {
+        if (HeroSystem.Instance == null) return null;
+        HeroView hero = HeroSystem.Instance.HeroView;
+        return hero != null && hero.savedMaxTorment > 0 ? hero : null;
+    }
+
     private void UpdateHealthUI()
     {
-        if (GameDataManager.Instance != null)
+        HeroView hero = BattleHero();
+        if (hero != null)
+        {
+            hpText.text = "HP: " + $"{hero.CurrentHealth}/{hero.MaxHealth}";
+        }
+        else if (GameDataManager.Instance != null)
         {
             float currentHp = GameDataManager.Instance.CurrentHeroHP;
             int maxHp = GameDataManager.Instance.MaxHeroHP;
@@ -106,7 +120,14 @@ public class TopBarManager : MonoBehaviour
 
     private void UpdateTormentUI()
     {
-        if (GameDataManager.Instance != null)
+        HeroView hero = BattleHero();
+        if (hero != null)
+        {
+            // savedTorment goes one past the maximum to mean "full"
+            int torment = Mathf.Min(hero.savedTorment, hero.savedMaxTorment);
+            tormentText.text = "Torment: " + $"{torment}" + "/" + hero.savedMaxTorment;
+        }
+        else if (GameDataManager.Instance != null)
         {
             float tormentHp = GameDataManager.Instance.torment;
             tormentText.text = "Torment: " + $"{tormentHp}" + "/" + GameDataManager.Instance.heroData.MaxTorment;
@@ -206,18 +227,19 @@ public class TopBarManager : MonoBehaviour
     }
 
 
+    // Scenes outside a run: the top bar survives scene loads (DontDestroyOnLoad), so after going back
+    // to the main menu it must stay hidden there and in character select until the next run starts.
+    private static readonly string[] scenesWithoutTopBar = { "MainMenu", "Main Menu", "Character Select" };
+
     private void ToggleVisibilityBasedOnScene()
     {
         string currentSceneName = SceneManager.GetActiveScene().name;
+        bool show = System.Array.IndexOf(scenesWithoutTopBar, currentSceneName) < 0;
 
-        if (currentSceneName == "MainMenu" || currentSceneName == "Main Menu")
-        {
-            GetComponent<Canvas>().enabled = false;
-        }
-        else
-        {
-            GetComponent<Canvas>().enabled = true;
-        }
+        Canvas topBarCanvas = GetComponent<Canvas>();
+        if (topBarCanvas.enabled != show) topBarCanvas.enabled = show;
+        // a deck view left open must not stay on screen either
+        if (!show && viewerPanel != null && viewerPanel.activeSelf) CloseViewer();
 
         if (currentSceneName == "Map")
         {

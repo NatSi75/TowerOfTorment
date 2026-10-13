@@ -25,6 +25,9 @@ public class CombatantView : MonoBehaviour
         UpdateHealthText();
     }
 
+    // Font of the HP label, shared by the floating combat texts.
+    public TMP_FontAsset LabelFont => healthText != null ? healthText.font : null;
+
     public void UpdateHealthText()
     {
         healthText.text = "HP: " + CurrentHealth + "/" + MaxHealth;
@@ -62,11 +65,11 @@ public class CombatantView : MonoBehaviour
         PlayAnimation("Hurt");
     }
 
-    public void Damage(float damageAmount)
+    public void Damage(float damageAmount, bool ignoreArmor = false)
     {
         float remainingDamage = damageAmount;
         currentArmor = GetStatusEffectStacks(StatusEffectType.ARMOR);
-        if (currentArmor > 0)
+        if (currentArmor > 0 && !ignoreArmor)
         {
             if (currentArmor >= damageAmount)
             {
@@ -122,12 +125,16 @@ public class CombatantView : MonoBehaviour
         }
     }
 
+    // All armor goes away at the start of the hero's turn. Read the real amount: currentArmor is only
+    // refreshed when the hero is hit, so after a turn without attacks it was stale and the armor stayed.
     public void ResetArmorHero()
     {
-        if (currentArmor >= 0)
+        float armor = GetStatusEffectStacks(StatusEffectType.ARMOR);
+        if (armor > 0)
         {
-            RemoveStatusEffect(StatusEffectType.ARMOR, currentArmor);
+            RemoveStatusEffect(StatusEffectType.ARMOR, armor);
         }
+        currentArmor = 0;
     }
 
     public void ResetArmorEnemy(float currentArmor)

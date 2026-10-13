@@ -57,11 +57,13 @@ public class EffectTurnSystem : MonoBehaviour
     {
         CombatantView caster = null;
         CombatantView target = applyBurnGA.Target;
-        if (target != null) 
+        // Burn deals its current stacks, then loses one stack
+        float burnStacks = target != null ? target.GetStatusEffectStacks(StatusEffectType.BURN) : 0f;
+        if (target != null && burnStacks > 0)
         {
             Instantiate(burnVFX, target.transform.position, Quaternion.identity);
-            DealDamageGA damageGA = new(applyBurnGA.BurnDamage, new() { target }, caster);
-            //target.Damage(applyBurnGA.BurnDamage);
+            DealDamageGA damageGA = new(burnStacks, new() { target }, caster) { IsRaw = true };
+            ActionSystem.Instance.AddReaction(damageGA);
             AudioManager.PlayDebuffTick(StatusEffectType.BURN);
             target.RemoveStatusEffect(StatusEffectType.BURN, 1);
         }
@@ -81,10 +83,14 @@ public class EffectTurnSystem : MonoBehaviour
     private IEnumerator ApplyPoisonPerformer(ApplyPoisonGA applyPoisonGA)
     {
         CombatantView target = applyPoisonGA.Target;
-        if (target != null)
+        // Poison deals its current stacks. Accelerant queues several triggers at once, and each trigger
+        // removes a stack, so the stacks are read now instead of using the amount from when it was queued.
+        float poisonStacks = target != null ? target.GetStatusEffectStacks(StatusEffectType.POISON) : 0f;
+        if (target != null && poisonStacks > 0)
         {
             Instantiate(poisonVFX, target.transform.position, Quaternion.identity);
-            DealDamageGA damageGA = new(applyPoisonGA.PoisonDamage, new() { target }, target);
+            // HP loss like in Slay the Spire: not changed by Strength / Weak / Vulnerable / Bleed, not blocked by armor
+            DealDamageGA damageGA = new(poisonStacks, new() { target }, target) { IsRaw = true, IgnoresArmor = true };
             ActionSystem.Instance.AddReaction(damageGA);
             //target.Damage(applyPoisonGA.PoisonDamage);
             AudioManager.PlayDebuffTick(StatusEffectType.POISON);

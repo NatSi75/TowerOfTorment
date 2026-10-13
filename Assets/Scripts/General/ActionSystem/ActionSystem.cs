@@ -58,7 +58,8 @@ public class ActionSystem : Singleton<ActionSystem>
         Type type = action.GetType();
         if (subs.ContainsKey(type))
         {
-            foreach (var sub in subs[type])
+            // a copy: a subscriber may (un)subscribe while the list is being walked
+            foreach (var sub in new List<Action<GameAction>>(subs[type]))
             {
                 sub(action);
             }
@@ -88,28 +89,27 @@ public class ActionSystem : Singleton<ActionSystem>
         Type type = typeof(T);
         if (performers.ContainsKey(type)) performers.Remove(type);
     }
-    public static void SubscribeReaction<T>(Action<T> reaction, ReactionTiming timing) where T : GameAction 
+    // The wrapper made for each subscribed reaction, so unsubscribing removes that same wrapper.
+    // (A freshly made wrapper never equals the subscribed one, so subscribers from a previous battle,
+    // already destroyed, used to stay registered and get called again.)
+    private static readonly Dictionary<(Delegate reaction, ReactionTiming timing), Action<GameAction>> wrappedReactions = new();
+
+    public static void SubscribeReaction<T>(Action<T> reaction, ReactionTiming timing) where T : GameAction
     {
+        if (wrappedReactions.ContainsKey((reaction, timing))) return; // already subscribed
         Dictionary<Type, List<Action<GameAction>>> subs = timing == ReactionTiming.PRE ? preSubs : postSubs;
         void wrappedReaction(GameAction action) => reaction((T)action);
-        if (subs.ContainsKey(typeof(T)))
-        {
-            subs[typeof(T)].Add(wrappedReaction);
-        }
-        else
-        {
-            subs.Add(typeof(T), new());
-            subs[typeof(T)].Add(wrappedReaction);
-        }
+        Action<GameAction> wrapper = wrappedReaction;
+        wrappedReactions[(reaction, timing)] = wrapper;
+        if (!subs.ContainsKey(typeof(T))) subs.Add(typeof(T), new());
+        subs[typeof(T)].Add(wrapper);
     }
-    public static void UnsubscribeReaction<T>(Action<T> reaction, ReactionTiming timing) where T : GameAction 
+    public static void UnsubscribeReaction<T>(Action<T> reaction, ReactionTiming timing) where T : GameAction
     {
+        if (!wrappedReactions.TryGetValue((reaction, timing), out Action<GameAction> wrapper)) return;
+        wrappedReactions.Remove((reaction, timing));
         Dictionary<Type, List<Action<GameAction>>> subs = timing == ReactionTiming.PRE ? preSubs : postSubs;
-        if (subs.ContainsKey(typeof(T)))
-        {
-            void wrappedReaction(GameAction action) => reaction((T)action);
-            subs[typeof(T)].Remove(wrappedReaction);
-        }
+        if (subs.ContainsKey(typeof(T))) subs[typeof(T)].Remove(wrapper);
     }
 
     public void ResetReaction()

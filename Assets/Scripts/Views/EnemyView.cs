@@ -59,6 +59,13 @@ public class EnemyView : CombatantView
         }
     }
 
+    // Torment hides what the enemies are going to do.
+    public void SetIntentHidden(bool hidden)
+    {
+        intetionShow.enabled = !hidden;
+        attackText.enabled = !hidden;
+    }
+
     public void UpdateIntention(EnemyAbilityData newEnemyAbilityData)
     {
         if (HeroSystem.Instance.HeroView.GetStatusEffectStacks(StatusEffectType.TORMENT) >= 1)

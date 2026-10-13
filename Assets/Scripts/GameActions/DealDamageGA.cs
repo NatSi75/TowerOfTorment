@@ -12,6 +12,9 @@ public class DealDamageGA : GameAction, IHaveCaster
     // Raw damage ignores Strength, Weak, Vulnerable and Bleed (used by scrolls).
     public bool IsRaw { get; set; }
 
+    // HP loss that armor can't block (Poison).
+    public bool IgnoresArmor { get; set; }
+
     public DealDamageGA(float amount, List<CombatantView> targets, CombatantView caster)
     {
         Amount = amount;

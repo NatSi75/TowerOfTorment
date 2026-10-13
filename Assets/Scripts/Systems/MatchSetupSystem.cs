@@ -120,5 +120,8 @@ public class MatchSetupSystem : MonoBehaviour
         {
             HeroSystem.Instance.HeroView.AddStatusEffect(StatusEffectType.DEXTERITY, 1, HeroSystem.Instance.HeroView);
         }
+
+        // "Turn 1" banner, then one for every following player turn
+        TurnBanner.Begin();
     }
 }

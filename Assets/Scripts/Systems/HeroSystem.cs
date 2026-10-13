@@ -10,11 +10,19 @@ public class HeroSystem : Singleton<HeroSystem>
     {
         ActionSystem.SubscribeReaction<EnemyTurnGA>(EnemyTurnPreReaction, ReactionTiming.PRE);
         ActionSystem.SubscribeReaction<EnemyTurnGA>(EnemyTurnPostReaction, ReactionTiming.POST);
+        ActionSystem.AttachPerformer<ResetHeroArmorGA>(ResetHeroArmorPerformer);
     }
     void OnDisable()
     {
         ActionSystem.UnsubscribeReaction<EnemyTurnGA>(EnemyTurnPreReaction, ReactionTiming.PRE);
         ActionSystem.UnsubscribeReaction<EnemyTurnGA>(EnemyTurnPostReaction, ReactionTiming.POST);
+        ActionSystem.DetachPerformer<ResetHeroArmorGA>();
+    }
+
+    private IEnumerator ResetHeroArmorPerformer(ResetHeroArmorGA resetHeroArmorGA)
+    {
+        if (HeroView != null) HeroView.ResetArmorHero();
+        yield break;
     }
     public void Setup(HeroData heroData)
     {
@@ -27,18 +35,8 @@ public class HeroSystem : Singleton<HeroSystem>
     {
         DiscardAllCardsGA discardAllCardsGA = new();
         ActionSystem.Instance.AddReaction(discardAllCardsGA);
-        HeroView.UpdateTormentText(1);
-        if (HeroView.savedTorment >= HeroView.savedMaxTorment)
-        {
-            if (HeroView.GetStatusEffectStacks(StatusEffectType.TORMENT) == 0) AudioManager.PlaySfx(Sfx.TormentFull);
-            List<CombatantView> targetsDebuffTorment = new() { HeroSystem.Instance.HeroView };
-            AddStatusEffectGA debuffTormentGA = new AddStatusEffectGA(StatusEffectType.TORMENT, 1, targetsDebuffTorment);
-            ActionSystem.Instance.AddReaction(debuffTormentGA);
-        }
-        else
-        {
-            HeroView.RemoveStatusEffect(StatusEffectType.TORMENT, 1);
-        }
+        // +1 torment each enemy turn; the Torment status is applied the moment it becomes full
+        HeroView.AddTorment(1);
 
         float regenStacks = HeroView.GetStatusEffectStacks(StatusEffectType.REGEN);
         if (regenStacks > 0)
@@ -81,6 +79,8 @@ public class HeroSystem : Singleton<HeroSystem>
             ApplyBurnGA applyBurnGA = new(burnStacks, HeroView);
             ActionSystem.Instance.AddReaction(applyBurnGA);
         }
+        // armor still blocks Burn (end of the enemy turn); it runs out right after
+        ActionSystem.Instance.AddReaction(new ResetHeroArmorGA());
         float poisonStacks = HeroView.GetStatusEffectStacks(StatusEffectType.POISON);
         if (poisonStacks > 0)
         {
@@ -93,6 +93,5 @@ public class HeroSystem : Singleton<HeroSystem>
             ApplyChilledGA applyChilledGA = new(HeroView);
             ActionSystem.Instance.AddReaction(applyChilledGA);
         }
-        HeroView.ResetArmorHero();
     }
 }

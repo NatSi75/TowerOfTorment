@@ -138,12 +138,32 @@ public class GameDataManager : MonoBehaviour
         }
     }
 
+    // Every way of getting a relic (shop, treasure, battle reward) goes through here,
+    // so the one-time "upon pickup" effects are applied in one place.
     public void AddPerk(PerkData perk)
     {
         if (!PerkDatas.Contains(perk))
         {
             PerkDatas.Add(perk);
+            ApplyPickupEffect(perk);
         }
+    }
+
+    private void ApplyPickupEffect(PerkData perk)
+    {
+        switch (NormalizePerkName(perk.Name))
+        {
+            case "Green Elixir": IncreaseMaxHP(7); break;
+            case "Purple Elixir": IncreaseMaxHP(10); break;
+            case "Crimson Elixir": IncreaseMaxHP(14); break;
+            case "Fallen King's Crown": gold += 300; break;
+        }
+    }
+
+    // Relic names may use a typographic apostrophe (’); compare them with a plain one.
+    private static string NormalizePerkName(string name)
+    {
+        return string.IsNullOrEmpty(name) ? "" : name.Replace('’', '\'').Replace('‘', '\'').Replace('�', '\'').Trim();
     }
 
     public void RemovePerk(PerkData perk)
@@ -156,14 +176,22 @@ public class GameDataManager : MonoBehaviour
 
     public bool HasPerk(string namePerk)
     {
+        string wanted = NormalizePerkName(namePerk);
         foreach (PerkData perk in PerkDatas)
         {
-            if (perk.Name == namePerk)
+            if (NormalizePerkName(perk.Name) == wanted)
             {
                 return true;
             }
         }
         return false;
+    }
+
+    // Adds torment without going past the hero's maximum.
+    public void AddTorment(int amount)
+    {
+        int max = heroData != null ? heroData.MaxTorment : int.MaxValue;
+        torment = Mathf.Clamp(torment + amount, 0, max);
     }
 
     public void IncreaseMaxHP(int amount)

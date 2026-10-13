@@ -108,7 +108,7 @@ public class PillarManager : MonoBehaviour
                 OnUpgradeClicked();
                 actionCount++;
             } else {
-                GameDataManager.Instance.torment += 10;
+                GameDataManager.Instance.AddTorment(10);
                 SceneManager.LoadScene("Map");
             }
         }
@@ -151,7 +151,7 @@ public class PillarManager : MonoBehaviour
         }
         else
         {
-            GameDataManager.Instance.torment += 10;
+            GameDataManager.Instance.AddTorment(10);
             SceneManager.LoadScene("Map");
         }
     }

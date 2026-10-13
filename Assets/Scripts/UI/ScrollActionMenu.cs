@@ -36,8 +36,7 @@ public class ScrollActionMenu : MonoBehaviour
         RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform, screenPoint, null, out Vector2 localPoint);
         menu.anchoredPosition = localPoint + offsetFromScroll;
 
-        // scrolls can only be used while nothing else is happening (same rule as playing a card)
-        useButton.interactable = Interactions.Instance == null || Interactions.Instance.PlayerCanInteract();
+        UpdateUseButton();
 
         useButton.onClick.AddListener(() =>
         {
@@ -55,6 +54,15 @@ public class ScrollActionMenu : MonoBehaviour
     private void Update()
     {
         if (target == null) Close();
+        else UpdateUseButton();
+    }
+
+    // Scrolls can only be used while nothing else is happening (same rule as playing a card).
+    // Checked every frame: the menu may open while an action is still running and must light up once it ends.
+    private void UpdateUseButton()
+    {
+        bool canUse = Interactions.Instance == null || Interactions.Instance.PlayerCanInteract();
+        if (useButton.interactable != canUse) useButton.interactable = canUse;
     }
 
     public void Close()

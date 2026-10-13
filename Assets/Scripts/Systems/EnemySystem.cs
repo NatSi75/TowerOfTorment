@@ -16,6 +16,7 @@ public class EnemySystem : Singleton<EnemySystem>
         ActionSystem.AttachPerformer<NewIntentionEnemyGA>(EnemyTurnIntentionPerformer);
         ActionSystem.AttachPerformer<KillEnemyGA>(KillEnemyPerformer);
         ActionSystem.AttachPerformer<EnemyCastGA>(EnemyCastPerformer);
+        ActionSystem.AttachPerformer<EnemyActionGA>(EnemyActionPerformer);
     }
 
     void OnDisable()
@@ -25,6 +26,7 @@ public class EnemySystem : Singleton<EnemySystem>
         ActionSystem.DetachPerformer<NewIntentionEnemyGA>();
         ActionSystem.DetachPerformer<KillEnemyGA>();
         ActionSystem.DetachPerformer<EnemyCastGA>();
+        ActionSystem.DetachPerformer<EnemyActionGA>();
     }
 
     public void Setup(List<EnemyData> enemyDatas)
@@ -92,72 +94,82 @@ public class EnemySystem : Singleton<EnemySystem>
                 ActionSystem.Instance.AddReaction(damageGA);
             }
 
-            if (IsCastAction(enemy.ActionType))
-            {
-                EnemyCastGA enemyCastGA = new(enemy);
-                ActionSystem.Instance.AddReaction(enemyCastGA);
-            }
-
-            switch (enemy.ActionType)
-            {
-                case EnemyActionType.Attack:
-                    AttackHeroGA attackHeroGA = new(enemy); 
-                    ActionSystem.Instance.AddReaction(attackHeroGA); 
-                    break;
-                case EnemyActionType.Block:
-                    List<CombatantView> targets = new() { enemy };
-                    AddStatusEffectGA addBlockGA = new (StatusEffectType.ARMOR, enemy.ActionValue, targets);
-                    ActionSystem.Instance.AddReaction(addBlockGA);
-                    break;
-                 case EnemyActionType.DebuffVulnerable:
-                    List<CombatantView> targetsDebuffVulnerable = new() { HeroSystem.Instance.HeroView };
-                    AddStatusEffectGA debuffVulnerableGA = new AddStatusEffectGA(StatusEffectType.VULNERABLE, enemy.ActionValue, targetsDebuffVulnerable);
-                    ActionSystem.Instance.AddReaction(debuffVulnerableGA); 
-                    break;
-                case EnemyActionType.DebuffWeak:
-                    List<CombatantView> targetsDebuffWeak = new() { HeroSystem.Instance.HeroView };
-                    AddStatusEffectGA debuffWeakGA = new AddStatusEffectGA(StatusEffectType.WEAK, enemy.ActionValue, targetsDebuffWeak); 
-                    ActionSystem.Instance.AddReaction(debuffWeakGA);
-                    break;
-                case EnemyActionType.DebuffChilled:
-                    List<CombatantView> targetsDebuffChilled = new() { HeroSystem.Instance.HeroView };
-                    AddStatusEffectGA debuffChilledGA = new AddStatusEffectGA(StatusEffectType.CHILLED, enemy.ActionValue, targetsDebuffChilled);
-                    ActionSystem.Instance.AddReaction(debuffChilledGA);
-                    break;
-                case EnemyActionType.DebuffBurn:
-                    List<CombatantView> targetsDebuffBurn = new() { HeroSystem.Instance.HeroView };
-                    AddStatusEffectGA debuffBurnGA = new AddStatusEffectGA(StatusEffectType.BURN, enemy.ActionValue, targetsDebuffBurn);
-                    ActionSystem.Instance.AddReaction(debuffBurnGA);
-                    break;
-                case EnemyActionType.Heal:
-                    List<CombatantView> targetsHeal = new() { enemy };
-                    HealGA healGA = new(Mathf.RoundToInt(enemy.ActionValue));
-                    HealEffect healEffect = new();
-                    healEffect.healAmount = Mathf.RoundToInt(enemy.ActionValue);
-                    GameAction effectAction = healEffect.GetGameAction(targetsHeal, enemy);
-                    ActionSystem.Instance.AddReaction(effectAction);
-                    break;
-                case EnemyActionType.BuffStrength:
-                    List<CombatantView> targetsBuffStrength = new() { enemy };
-                    AddStatusEffectGA buffStrengthGA = new AddStatusEffectGA(StatusEffectType.STRENGTH, enemy.ActionValue, targetsBuffStrength);
-                    ActionSystem.Instance.AddReaction(buffStrengthGA);
-                    break;
-                case EnemyActionType.DebuffVoid:
-                    List<CombatantView> targetsDebuffVoid = new() { HeroSystem.Instance.HeroView };
-                    AddStatusEffectGA debuffVoidGA = new AddStatusEffectGA(StatusEffectType.VOID, enemy.ActionValue, targetsDebuffVoid);
-                    ActionSystem.Instance.AddReaction(debuffVoidGA);
-                    break;
-                case EnemyActionType.DebuffPoison:
-                    List<CombatantView> targetsDebuffPoison = new() { HeroSystem.Instance.HeroView };
-                    AddStatusEffectGA debuffPoisonGA = new AddStatusEffectGA(StatusEffectType.POISON, enemy.ActionValue, targetsDebuffPoison);
-                    ActionSystem.Instance.AddReaction(debuffPoisonGA);
-                    break;
-                default:
-                    break;
-            }
+            // the enemy's own action is decided when its turn comes: if Poison / Bleed above killed it, it doesn't act
+            ActionSystem.Instance.AddReaction(new EnemyActionGA(enemy));
         }
         NewIntentionEnemyGA newIntentionEnemyGA = new();
         ActionSystem.Instance.AddReaction(newIntentionEnemyGA);
+        yield return null;
+    }
+
+    private IEnumerator EnemyActionPerformer(EnemyActionGA enemyActionGA)
+    {
+        EnemyView enemy = enemyActionGA.Enemy;
+        if (enemy == null || !Enemies.Contains(enemy) || enemy.CurrentHealth <= 0) yield break;
+
+        if (IsCastAction(enemy.ActionType))
+        {
+            EnemyCastGA enemyCastGA = new(enemy);
+            ActionSystem.Instance.AddReaction(enemyCastGA);
+        }
+
+        switch (enemy.ActionType)
+        {
+            case EnemyActionType.Attack:
+                AttackHeroGA attackHeroGA = new(enemy); 
+                ActionSystem.Instance.AddReaction(attackHeroGA); 
+                break;
+            case EnemyActionType.Block:
+                List<CombatantView> targets = new() { enemy };
+                AddStatusEffectGA addBlockGA = new (StatusEffectType.ARMOR, enemy.ActionValue, targets);
+                ActionSystem.Instance.AddReaction(addBlockGA);
+                break;
+             case EnemyActionType.DebuffVulnerable:
+                List<CombatantView> targetsDebuffVulnerable = new() { HeroSystem.Instance.HeroView };
+                AddStatusEffectGA debuffVulnerableGA = new AddStatusEffectGA(StatusEffectType.VULNERABLE, enemy.ActionValue, targetsDebuffVulnerable);
+                ActionSystem.Instance.AddReaction(debuffVulnerableGA); 
+                break;
+            case EnemyActionType.DebuffWeak:
+                List<CombatantView> targetsDebuffWeak = new() { HeroSystem.Instance.HeroView };
+                AddStatusEffectGA debuffWeakGA = new AddStatusEffectGA(StatusEffectType.WEAK, enemy.ActionValue, targetsDebuffWeak); 
+                ActionSystem.Instance.AddReaction(debuffWeakGA);
+                break;
+            case EnemyActionType.DebuffChilled:
+                List<CombatantView> targetsDebuffChilled = new() { HeroSystem.Instance.HeroView };
+                AddStatusEffectGA debuffChilledGA = new AddStatusEffectGA(StatusEffectType.CHILLED, enemy.ActionValue, targetsDebuffChilled);
+                ActionSystem.Instance.AddReaction(debuffChilledGA);
+                break;
+            case EnemyActionType.DebuffBurn:
+                List<CombatantView> targetsDebuffBurn = new() { HeroSystem.Instance.HeroView };
+                AddStatusEffectGA debuffBurnGA = new AddStatusEffectGA(StatusEffectType.BURN, enemy.ActionValue, targetsDebuffBurn);
+                ActionSystem.Instance.AddReaction(debuffBurnGA);
+                break;
+            case EnemyActionType.Heal:
+                List<CombatantView> targetsHeal = new() { enemy };
+                HealGA healGA = new(Mathf.RoundToInt(enemy.ActionValue));
+                HealEffect healEffect = new();
+                healEffect.healAmount = Mathf.RoundToInt(enemy.ActionValue);
+                GameAction effectAction = healEffect.GetGameAction(targetsHeal, enemy);
+                ActionSystem.Instance.AddReaction(effectAction);
+                break;
+            case EnemyActionType.BuffStrength:
+                List<CombatantView> targetsBuffStrength = new() { enemy };
+                AddStatusEffectGA buffStrengthGA = new AddStatusEffectGA(StatusEffectType.STRENGTH, enemy.ActionValue, targetsBuffStrength);
+                ActionSystem.Instance.AddReaction(buffStrengthGA);
+                break;
+            case EnemyActionType.DebuffVoid:
+                List<CombatantView> targetsDebuffVoid = new() { HeroSystem.Instance.HeroView };
+                AddStatusEffectGA debuffVoidGA = new AddStatusEffectGA(StatusEffectType.VOID, enemy.ActionValue, targetsDebuffVoid);
+                ActionSystem.Instance.AddReaction(debuffVoidGA);
+                break;
+            case EnemyActionType.DebuffPoison:
+                List<CombatantView> targetsDebuffPoison = new() { HeroSystem.Instance.HeroView };
+                AddStatusEffectGA debuffPoisonGA = new AddStatusEffectGA(StatusEffectType.POISON, enemy.ActionValue, targetsDebuffPoison);
+                ActionSystem.Instance.AddReaction(debuffPoisonGA);
+                break;
+            default:
+                break;
+        }
         yield return null;
     }
 
@@ -301,7 +313,9 @@ public class EnemySystem : Singleton<EnemySystem>
             }
             ActionSystem.Instance.ResetReaction();
             GameDataManager.Instance.CurrentHeroHP = HeroSystem.Instance.HeroView.CurrentHealth;
-            GameDataManager.Instance.torment = HeroSystem.Instance.HeroView.savedTorment;
+            // savedTorment goes one past the maximum to mean "full"; store the real value
+            HeroView heroView = HeroSystem.Instance.HeroView;
+            GameDataManager.Instance.torment = Mathf.Min(heroView.savedTorment, heroView.savedMaxTorment);
             GameDataManager.Instance.gauge = HeroSystem.Instance.HeroView.savedGauge;
             if (GameDataManager.Instance != null)
             {

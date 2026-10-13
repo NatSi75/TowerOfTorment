@@ -21,6 +21,17 @@ public class EnemyCastGA : GameAction
     }
 }
 
+// One enemy carries out its intent (attack, block, debuff...). Queued per enemy during the enemy turn,
+// after its Poison / Bleed, so an enemy that dies from those skips its action.
+public class EnemyActionGA : GameAction
+{
+    public EnemyView Enemy { get; private set; }
+    public EnemyActionGA(EnemyView enemy)
+    {
+        Enemy = enemy;
+    }
+}
+
 public class EnemyTurnGA : GameAction {}
 
 public class NewIntentionEnemyGA : GameAction {}

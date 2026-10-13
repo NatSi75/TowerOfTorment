@@ -169,6 +169,15 @@ public class CardSystem : Singleton<CardSystem>
             HeroSystem.Instance.HeroView.AddStatusEffect(StatusEffectType.ARMOR, HeroSystem.Instance.HeroView.GetStatusEffectStacks(StatusEffectType.MIRRORIMAGE), HeroSystem.Instance.HeroView);
         }
 
+        // "Lose X HP" is paid before the attack: if the attack kills the last enemy the battle ends
+        // and the remaining queued effects are dropped, so the HP cost would otherwise be skipped.
+        foreach (var effectWrapper in playCardGA.Card.OtherEffects)
+        {
+            if (!IsHealthCost(effectWrapper)) continue;
+            PerformEffectGA payHealthGA = new(effectWrapper.Effect, effectWrapper.TargetMode.GetTargets());
+            ActionSystem.Instance.AddReaction(payHealthGA);
+        }
+
         foreach (var effectWrapper in playCardGA.Card.ManualTargetEffect)
         {
             if (cardView.Card.data.name == "Bane" && playCardGA.ManualTarget is EnemyView enemyView && enemyView.GetStatusEffectStacks(StatusEffectType.POISON) > 0)
@@ -205,6 +214,7 @@ public class CardSystem : Singleton<CardSystem>
 
         foreach (var effectWrapper in playCardGA.Card.OtherEffects)
         {
+            if (IsHealthCost(effectWrapper)) continue; // already paid above
             List<CombatantView> targets = effectWrapper.TargetMode.GetTargets();
             if (cardView.Card.data.name == "Mirage")
             {
@@ -221,13 +231,21 @@ public class CardSystem : Singleton<CardSystem>
     }
 
     // Helpers
+    // A "Lose X HP" effect on the hero (a negative heal).
+    private static bool IsHealthCost(AutoTargetEffect effectWrapper)
+    {
+        return effectWrapper.Effect is HealEffect heal && heal.healAmount < 0 && effectWrapper.TargetMode is HeroTM;
+    }
+
     private IEnumerator DrawCard()
     {
         Card card = drawPile.Draw();
         hand.Add(card);
         UpdatePileUI();
         CardView cardView = CardViewCreator.Instance.CreateCardView(card, drawPilePoint.position, drawPilePoint.rotation);
+        cardView.SetAnimating(true);
         yield return handView.AddCard(cardView);
+        if (cardView != null) cardView.SetAnimating(false);
     }
 
     private void RefillDeck()
@@ -239,6 +257,7 @@ public class CardSystem : Singleton<CardSystem>
 
     private IEnumerator DiscardCard (CardView cardView)
     {
+        cardView.SetAnimating(true);
         discardPile.Add(cardView.Card);
         UpdatePileUI();
         cardView.transform.DOScale(Vector3.zero, 1.5f);
@@ -249,6 +268,7 @@ public class CardSystem : Singleton<CardSystem>
 
     private IEnumerator ExhaustCard(CardView cardView)
     {
+        cardView.SetAnimating(true);
         exhaustPile.Add(cardView.Card);
         UpdatePileUI();
         cardView.transform.DOScale(Vector3.zero, 1.5f);

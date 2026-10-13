@@ -30,12 +30,52 @@ public class HeroView : CombatantView
         }
         HeroSystem.Instance.HeroView.spriteRenderer.transform.localScale = new(heroData.scaleX, heroData.scaleY);
         SetupBase(savedMaxHP, savedHP, heroData.Image, heroData.Animator, heroData.FlipSprite);
-        if (savedTorment >= 50)
-        {
-            HeroSystem.Instance.HeroView.AddStatusEffect(StatusEffectType.TORMENT, 1, HeroSystem.Instance.HeroView);
-        }
         UpdateTormentText(0);
         UpdateGaugeText(0);
+        // entering a battle with full torment: tormented right away
+        RefreshTormentStatus(false);
+    }
+
+    public bool IsTormentFull => savedMaxTorment > 0 && savedTorment >= savedMaxTorment;
+
+    // Adds torment points and applies / removes the Torment status immediately.
+    public void AddTorment(int amount)
+    {
+        UpdateTormentText(amount);
+        RefreshTormentStatus(true);
+    }
+
+    // Torment is on/off: exactly one stack while torment is full (each hero has its own maximum), none otherwise.
+    public void RefreshTormentStatus(bool playSound)
+    {
+        float stacks = GetStatusEffectStacks(StatusEffectType.TORMENT);
+        if (IsTormentFull)
+        {
+            if (stacks == 0)
+            {
+                AddStatusEffect(StatusEffectType.TORMENT, 1, this);
+                if (playSound) AudioManager.PlaySfx(Sfx.TormentFull);
+                SetEnemyIntentsHidden(true);
+            }
+            else if (stacks > 1)
+            {
+                RemoveStatusEffect(StatusEffectType.TORMENT, stacks - 1);
+            }
+        }
+        else if (stacks > 0)
+        {
+            RemoveStatusEffect(StatusEffectType.TORMENT, stacks);
+            SetEnemyIntentsHidden(false);
+        }
+    }
+
+    private static void SetEnemyIntentsHidden(bool hidden)
+    {
+        if (EnemySystem.Instance == null || EnemySystem.Instance.Enemies == null) return;
+        foreach (EnemyView enemy in EnemySystem.Instance.Enemies)
+        {
+            if (enemy != null) enemy.SetIntentHidden(hidden);
+        }
     }
 
     public void UpdateTormentText(int torment)

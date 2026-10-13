@@ -139,9 +139,27 @@ public class CardView : MonoBehaviour
         }   
     }
 
+    // True while the card flies from the draw pile into the hand, or from the hand to the discard / exhaust pile.
+    // A moving card can't be hovered (the preview would pop up at a wrong place or stay behind).
+    public bool IsAnimating { get; private set; }
+    private bool hovered;
+
+    public void SetAnimating(bool animating)
+    {
+        IsAnimating = animating;
+        if (animating && hovered) EndHover();
+    }
+
+    // Closes this card's preview (if it has one open) and shows the card in the hand again.
+    public void CancelHover()
+    {
+        if (hovered) EndHover();
+    }
+
     void OnMouseEnter()
     {
-        if (!Interactions.Instance.PlayerCanHover()) return;
+        if (IsAnimating || !Interactions.Instance.PlayerCanHover()) return;
+        hovered = true;
         wrapper.SetActive(false);
         Vector3 pos = new(transform.position.x, 0, 0);
         CardViewHoverSystem.Instance.Show(Card, pos);
@@ -149,7 +167,13 @@ public class CardView : MonoBehaviour
 
     void OnMouseExit()
     {
-        if (!Interactions.Instance.PlayerCanHover()) return;
+        if (!hovered || !Interactions.Instance.PlayerCanHover()) return;
+        EndHover();
+    }
+
+    private void EndHover()
+    {
+        hovered = false;
         CardViewHoverSystem.Instance.Hide();
         wrapper.SetActive(true);
         ResetCardVisual();

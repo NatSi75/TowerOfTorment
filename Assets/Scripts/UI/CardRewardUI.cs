@@ -43,6 +43,34 @@ public class CardRewardUI : MonoBehaviour
     private List<CardData> poolCopy;
     private List<Card> chosenListToDisplay = new List<Card>();
 
+    // A full-screen semi-transparent black image over the battle HUD, with the reward panels kept on top of it.
+    private void ShowBattleEndOverlay()
+    {
+        if (battleEndOverlay != null || rewardPanel == null) return;
+        Transform canvas = rewardPanel.transform.parent;
+
+        battleEndOverlay = new GameObject("Battle End Overlay", typeof(RectTransform));
+        RectTransform rect = (RectTransform)battleEndOverlay.transform;
+        rect.SetParent(canvas, false);
+        rect.anchorMin = Vector2.zero;
+        rect.anchorMax = Vector2.one;
+        rect.offsetMin = Vector2.zero;
+        rect.offsetMax = Vector2.zero;
+        Image image = battleEndOverlay.AddComponent<Image>();
+        image.color = battleEndOverlayColor;
+        image.raycastTarget = true; // swallows clicks on End Turn, piles, scrolls...
+        rect.SetAsLastSibling();
+
+        // every reward panel above the overlay, keeping their order
+        List<Transform> panels = new();
+        foreach (GameObject panel in new[] { rewardPanelObject, panelObject, rewardPanel })
+        {
+            if (panel != null && panel.transform.parent == canvas) panels.Add(panel.transform);
+        }
+        panels.Sort((a, b) => a.GetSiblingIndex().CompareTo(b.GetSiblingIndex()));
+        foreach (Transform panel in panels) panel.SetAsLastSibling();
+    }
+
     private void Awake()
     {
         Instance = this;
@@ -50,8 +78,18 @@ public class CardRewardUI : MonoBehaviour
         if (rewardPanel != null) rewardPanel.SetActive(false);
     }
 
+    [Header("Battle End Overlay")]
+    [Tooltip("Darkens the battle behind the rewards and blocks it (cards, End Turn...)")]
+    [SerializeField] private Color battleEndOverlayColor = new(0f, 0f, 0f, 0.6f);
+    private GameObject battleEndOverlay;
+
     public void ShowBattleReward()
     {
+        // the battle is over: no more hovering / playing cards, the HUD sits under a dark overlay
+        if (Interactions.Instance != null) Interactions.Instance.BattleEnded = true;
+        foreach (CardView card in FindObjectsByType<CardView>(FindObjectsInactive.Exclude)) card.CancelHover();
+        if (CardViewHoverSystem.Instance != null) CardViewHoverSystem.Instance.Hide();
+        ShowBattleEndOverlay();
         rewardPanel.SetActive(true);
         int goldAmount = 0;
         Sprite coinSprite = null;
@@ -71,7 +109,7 @@ public class CardRewardUI : MonoBehaviour
                 coinSprite = bossCoinSprite;
                 break;
         }
-        if (GameDataManager.Instance.HasPerk("Greed�s Pounch"))
+        if (GameDataManager.Instance.HasPerk("Greed's Pounch"))
         {
             goldAmount += 15;
         }
@@ -95,7 +133,7 @@ public class CardRewardUI : MonoBehaviour
         }
         else
         {
-            scrollSlot.SetupSlot(droppedScroll.Image, $"{droppedScroll.name} (scroll slots full)");
+            scrollSlot.SetupSlot(droppedScroll.Image, $"{droppedScroll.name} (full)");
         }
     }
 
@@ -278,22 +316,7 @@ public class CardRewardUI : MonoBehaviour
         AudioManager.PlaySfx(Sfx.RewardPickup);
         if (GameDataManager.Instance != null)
         {
-            if (selectedRelic.Name == "Green Elixir")
-            {
-                GameDataManager.Instance.IncreaseMaxHP(7);
-            }
-            if (selectedRelic.Name == "Purple Elixir")
-            {
-                GameDataManager.Instance.IncreaseMaxHP(10);
-            }
-            if (selectedRelic.Name == "Crimson Elixir")
-            {
-                GameDataManager.Instance.IncreaseMaxHP(14);
-            }
-            if (selectedRelic.Name == "Fallen King�s Crown")
-            {
-                GameDataManager.Instance.gold += 300;
-            }
+            // AddPerk also applies the relic's pickup effect (Max HP, gold)
             GameDataManager.Instance.AddPerk(selectedRelic);
         }
 

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Slime Purple
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: 8793639957104055765, guid: e0fbb66655412854f9e2846ca9790a67, type: 3}
+  attackSound: 0
   flipSprite: 1
   scaleX: 9
   scaleY: 9

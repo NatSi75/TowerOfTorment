@@ -94,22 +94,7 @@ public class TreasureManager : MonoBehaviour
         AudioManager.PlaySfx(Sfx.RewardPickup);
         if (GameDataManager.Instance != null)
         {
-            if (selectedRelic.Name == "Green Elixir")
-            {
-                GameDataManager.Instance.IncreaseMaxHP(7);
-            }
-            if (selectedRelic.Name == "Purple Elixir")
-            {
-                GameDataManager.Instance.IncreaseMaxHP(10);
-            }
-            if (selectedRelic.Name == "Crimson Elixir")
-            {
-                GameDataManager.Instance.IncreaseMaxHP(14);
-            }
-            if (selectedRelic.Name == "Fallen King�s Crown")
-            {
-                GameDataManager.Instance.gold += 300;
-            }
+            // AddPerk also applies the relic's pickup effect (Max HP, gold)
             GameDataManager.Instance.AddPerk(selectedRelic);
         }
 

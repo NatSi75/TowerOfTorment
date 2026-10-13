@@ -47,7 +47,7 @@ public class DamageSystem : MonoBehaviour
                 }
             }
 
-            target.Damage(finalDamage);
+            target.Damage(finalDamage, dealDamageGA.IgnoresArmor);
 
             if (target != null)
             {
