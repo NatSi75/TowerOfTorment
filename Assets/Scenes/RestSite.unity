@@ -1553,7 +1553,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonsCanvasGroup: {fileID: 479271761}
   healPercentage: 30
-  tormentAmount: 25
+  tormentAmount: 15
   viewerPanel: {fileID: 668361973}
   gridContent: {fileID: 1648722900}
   titleText: {fileID: 2006348621}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mana
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Mana Scroll
-  <Description>k__BackingField: Gain 2 Mana
+  <Description>k__BackingField: Gain 2 Mana.
   <Image>k__BackingField: {fileID: -293111285314937374, guid: 141fe6230ec50c34fbfe2bce31a3e088, type: 3}
   <ManualTargetEffect>k__BackingField: []
   <OtherEffects>k__BackingField:

@@ -936,7 +936,7 @@ PrefabInstance:
     - {fileID: 5874586141558176727, guid: 5e1833f95fbc4274496f534cfb1aeea4, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6593777650130534442, guid: 5e1833f95fbc4274496f534cfb1aeea4, type: 3}
-      insertIndex: 2
+      insertIndex: 1
       addedObject: {fileID: 843053523}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2102473399833604903, guid: 5e1833f95fbc4274496f534cfb1aeea4, type: 3}
@@ -974,6 +974,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: 
   opensSettings: 1
+  opensCompendium: 0
+  opensAbout: 0
   selectedLine: {fileID: 879529820}
   hoverCursor: {fileID: 0}
   lineOffset: {x: 0, y: -25}
@@ -1004,6 +1006,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: 
   opensSettings: 0
+  opensCompendium: 0
+  opensAbout: 0
   selectedLine: {fileID: 1956105984}
   hoverCursor: {fileID: 0}
   lineOffset: {x: 0, y: -25}
@@ -1173,6 +1177,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: 
   opensSettings: 0
+  opensCompendium: 1
+  opensAbout: 0
   selectedLine: {fileID: 341349632}
   hoverCursor: {fileID: 0}
   lineOffset: {x: 0, y: -25}
@@ -1239,6 +1245,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: Character Select
   opensSettings: 0
+  opensCompendium: 0
+  opensAbout: 0
   selectedLine: {fileID: 1044874230}
   hoverCursor: {fileID: 0}
   lineOffset: {x: 0, y: -25}
@@ -1539,6 +1547,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneToLoad: 
   opensSettings: 0
+  opensCompendium: 0
+  opensAbout: 1
   selectedLine: {fileID: 1714728358}
   hoverCursor: {fileID: 0}
   lineOffset: {x: 0, y: -25}

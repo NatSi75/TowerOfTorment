@@ -13,25 +13,33 @@ MonoBehaviour:
   m_Name: Buff
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Buff Scroll
-  <Description>k__BackingField: Gain 1 Strength and 1 Dexterity
+  <Description>k__BackingField: Gain 1 Strength and 1 Dexterity.
   <Image>k__BackingField: {fileID: -2249795497994276538, guid: ba48952fca8be5347a27ed8ad3948ce6, type: 3}
   <ManualTargetEffect>k__BackingField: []
   <OtherEffects>k__BackingField:
   - <TargetMode>k__BackingField:
-      rid: 1786786086447480868
+      rid: 982227255942447104
     <Effect>k__BackingField:
-      rid: 1786786086447480869
+      rid: 982227255942447105
   - <TargetMode>k__BackingField:
-      rid: 1786786086447480868
+      rid: 982227255942447106
     <Effect>k__BackingField:
-      rid: 1786786086447480869
+      rid: 982227255942447107
   references:
     version: 2
     RefIds:
-    - rid: 1786786086447480868
+    - rid: 982227255942447104
       type: {class: HeroTM, ns: , asm: Assembly-CSharp}
       data: 
-    - rid: 1786786086447480869
+    - rid: 982227255942447105
+      type: {class: AddStatusEffectEffect, ns: , asm: Assembly-CSharp}
+      data:
+        <statusEffectType>k__BackingField: 2
+        stackCount: 1
+    - rid: 982227255942447106
+      type: {class: HeroTM, ns: , asm: Assembly-CSharp}
+      data: 
+    - rid: 982227255942447107
       type: {class: AddStatusEffectEffect, ns: , asm: Assembly-CSharp}
       data:
         <statusEffectType>k__BackingField: 3

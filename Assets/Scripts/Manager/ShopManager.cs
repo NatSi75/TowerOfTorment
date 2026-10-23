@@ -11,19 +11,22 @@ public class ShopManager : MonoBehaviour
     public GameObject shopCardPrefab;
     public GameObject shopItemPrefab;
 
-    [Header("Pricing")]
-    public Vector2Int baseCardPrice = new (60, 75);
-    public Vector2Int baseCardPriceElite = new(80, 95);
-    public Vector2Int baseCardPriceBoss = new(100, 115);
+    [Header("Card Pricing (min inclusive, max exclusive)")]
+    public Vector2Int commonCardPrice = new(45, 56);
+    public Vector2Int uncommonCardPrice = new(68, 83);
+    public Vector2Int rareCardPrice = new(135, 166);
+
+    [Header("Relic / Scroll Pricing")]
     public Vector2Int basePerkPrice = new(275, 300);
     public Vector2Int baseScrollPrice = new(135, 160);
 
     [Header("Shop Generation Limits")]
-    public int cardsToSpawn = 6;
+    [Tooltip("Cards are laid out from the left: commons, then uncommons, then rares")]
+    public int commonCardsToSpawn = 2;
+    public int uncommonCardsToSpawn = 2;
+    public int rareCardsToSpawn = 1;
     public int perksToSpawn = 3;
     public int scrollsToSpawn = 3;
-
-    CardData randomCardData;
 
     private void Start()
     {
@@ -32,48 +35,11 @@ public class ShopManager : MonoBehaviour
 
     private void GenerateShop()
     {
-        // 1. Generate Cards
-        for (int i = 0; i < cardsToSpawn; i++)
-        {
-            if (i < 2) // 2 Common Card
-            {
-                if (GameDataManager.Instance.indexHero == 0) // Knight
-                {
-                    randomCardData = GameDataManager.Instance.MinorEnemyCardRewardPoolKnight[Random.Range(0, GameDataManager.Instance.MinorEnemyCardRewardPoolKnight.Count)];
-                }
-                else // Wizard
-                {
-                    randomCardData = GameDataManager.Instance.MinorEnemyCardRewardPoolWizard[Random.Range(0, GameDataManager.Instance.MinorEnemyCardRewardPoolWizard.Count)];
-                }
-                
-                Card newCardModel = new(randomCardData);
-                SpawnShopCard(newCardModel, Random.Range(baseCardPrice.x, baseCardPrice.y));
-            } else if (i < 4) // 2 Uncommon Card
-            {
-                if (GameDataManager.Instance.indexHero == 0) // Knight
-                {
-                    randomCardData = GameDataManager.Instance.EliteEnemyCardRewardPoolKnight[Random.Range(0, GameDataManager.Instance.EliteEnemyCardRewardPoolKnight.Count)];
-                }
-                else // Wizard
-                {
-                    randomCardData = GameDataManager.Instance.EliteEnemyCardRewardPoolWizard[Random.Range(0, GameDataManager.Instance.EliteEnemyCardRewardPoolWizard.Count)];
-                }
-                Card newCardModel = new(randomCardData);
-                SpawnShopCard(newCardModel, Random.Range(baseCardPriceElite.x, baseCardPriceElite.y));
-            } else // 1 Card Rare
-            {
-                if (GameDataManager.Instance.indexHero == 0) // Knight
-                {
-                    randomCardData = GameDataManager.Instance.BossEnemyCardRewardPoolKnight[Random.Range(0, GameDataManager.Instance.BossEnemyCardRewardPoolKnight.Count)];
-                }
-                else // Wizard
-                {
-                    randomCardData = GameDataManager.Instance.BossEnemyCardRewardPoolWizard[Random.Range(0, GameDataManager.Instance.BossEnemyCardRewardPoolWizard.Count)];
-                }
-                Card newCardModel = new(randomCardData);
-                SpawnShopCard(newCardModel, Random.Range(baseCardPriceBoss.x, baseCardPriceBoss.y));
-            }
-        }
+        // 1. Generate Cards: 2 common, 2 uncommon, 1 rare (left to right), picked by the card's own rarity
+        List<CardData> heroCards = HeroCardPool();
+        SpawnShopCards(heroCards, CardRarity.COMMON, commonCardsToSpawn, commonCardPrice);
+        SpawnShopCards(heroCards, CardRarity.UNCOMMON, uncommonCardsToSpawn, uncommonCardPrice);
+        SpawnShopCards(heroCards, CardRarity.RARE, rareCardsToSpawn, rareCardPrice);
 
         // 2. Generate Perks
         List<PerkData> availableRelics = new List<PerkData>();
@@ -121,6 +87,38 @@ public class ShopManager : MonoBehaviour
         {
             ScrollData randomScroll = chosenScrolls[i];
             SpawnShopItem(randomScroll.Image, randomScroll.name, randomScroll.Description, Random.Range(baseScrollPrice.x, baseScrollPrice.y), () => BuyScroll(randomScroll), () => GameDataManager.Instance.CanAddScroll);
+        }
+    }
+
+    // Every card the current hero can get as a reward (the three reward pools together, no duplicates).
+    private static List<CardData> HeroCardPool()
+    {
+        GameDataManager data = GameDataManager.Instance;
+        bool knight = data.indexHero == 0;
+        List<CardData> pool = new();
+        foreach (List<CardData> rewardPool in knight
+            ? new[] { data.MinorEnemyCardRewardPoolKnight, data.EliteEnemyCardRewardPoolKnight, data.BossEnemyCardRewardPoolKnight }
+            : new[] { data.MinorEnemyCardRewardPoolWizard, data.EliteEnemyCardRewardPoolWizard, data.BossEnemyCardRewardPoolWizard })
+        {
+            if (rewardPool == null) continue;
+            foreach (CardData card in rewardPool)
+            {
+                if (card != null && !pool.Contains(card)) pool.Add(card);
+            }
+        }
+        return pool;
+    }
+
+    // Spawns `count` different cards of one rarity, each with a price from that rarity's range.
+    private void SpawnShopCards(List<CardData> heroCards, CardRarity rarity, int count, Vector2Int priceRange)
+    {
+        List<CardData> candidates = heroCards.FindAll(card => card.RarityVisual == rarity);
+        for (int i = 0; i < count && candidates.Count > 0; i++)
+        {
+            int index = Random.Range(0, candidates.Count);
+            CardData cardData = candidates[index];
+            candidates.RemoveAt(index); // no two identical cards in the shop
+            SpawnShopCard(new Card(cardData), Random.Range(priceRange.x, priceRange.y));
         }
     }
 

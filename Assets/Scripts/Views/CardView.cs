@@ -108,9 +108,19 @@ public class CardView : MonoBehaviour
         return cropped;
     }
 
+    // Shows a card for a given hero (0 = Knight, 1 = Wizard) when there is no run going on, e.g. in the Compendium.
+    public void Setup(Card card, int heroIndex)
+    {
+        heroIndexOverride = heroIndex;
+        Setup(card);
+    }
+
+    private int? heroIndexOverride;
+
     private void ApplyRarityVisuals(CardRarity rarity)
     {
-        if (GameDataManager.Instance.indexHero == 0) // Knight
+        int heroIndex = heroIndexOverride ?? (GameDataManager.Instance != null ? GameDataManager.Instance.indexHero : 0);
+        if (heroIndex == 0) // Knight
         {
             foreach (var visual in rarityVisualsKnight)
             {

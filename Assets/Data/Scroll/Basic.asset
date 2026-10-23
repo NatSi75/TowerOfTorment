@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Basic
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Basic Scroll
-  <Description>k__BackingField: Draw 3 Cards
+  <Description>k__BackingField: Draw 3 Cards.
   <Image>k__BackingField: {fileID: 6456994884156613365, guid: 30bfd950e0fde034ba5ed0882889b127, type: 3}
   <ManualTargetEffect>k__BackingField: []
   <OtherEffects>k__BackingField:

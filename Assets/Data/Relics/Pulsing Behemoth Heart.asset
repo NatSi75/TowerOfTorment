@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 840e4821a5708a54ba96d8e4877b9575, type: 3}
-  m_Name: Greed's Pounch
+  m_Name: Pulsing Behemoth Heart
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: "Greed\u2019s Pounch"
-  <Description>k__BackingField: Enemies drop 15 additional gold
-  <Image>k__BackingField: {fileID: 21300000, guid: 220da0cca06977b4a88bf4f908a1efb2, type: 3}
+  <Name>k__BackingField: Pulsing Behemoth Heart
+  <Description>k__BackingField: At the start of each Boss combat, heal 25 HP.
+  <Image>k__BackingField: {fileID: 21300000, guid: e01480e820ddfed419c7f73bd66c0622, type: 3}

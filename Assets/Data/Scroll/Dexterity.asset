@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dexterity
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Dexterity Scroll
-  <Description>k__BackingField: Gain 2 Dexterity
+  <Description>k__BackingField: Gain 2 Dexterity.
   <Image>k__BackingField: {fileID: -6057779030635103744, guid: 169c0ca0940d9f94c96de7bc45dbd8af, type: 3}
   <ManualTargetEffect>k__BackingField: []
   <OtherEffects>k__BackingField:

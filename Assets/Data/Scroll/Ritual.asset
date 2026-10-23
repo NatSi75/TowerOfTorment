@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Ritual
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Ritual Scroll
-  <Description>k__BackingField: Gain 1 Ritual
+  <Description>k__BackingField: Gain 1 Ritual.
   <Image>k__BackingField: {fileID: -1497479284421134366, guid: f68e843c9e680864b92d81008327b91e, type: 3}
   <ManualTargetEffect>k__BackingField: []
   <OtherEffects>k__BackingField:

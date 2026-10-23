@@ -13,6 +13,12 @@ public class MenuTextInteract : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [Tooltip("Centang untuk membuka panel Setting (volume) alih-alih pindah scene")]
     public bool opensSettings;
 
+    [Tooltip("Centang untuk membuka panel Compendium")]
+    public bool opensCompendium;
+
+    [Tooltip("Centang untuk membuka panel About")]
+    public bool opensAbout;
+
     [Header("Hover Settings")]
     [Tooltip("Masukkan object Selected_line dari Hierarchy")]
     public GameObject selectedLine;
@@ -100,6 +106,16 @@ public class MenuTextInteract : MonoBehaviour, IPointerEnterHandler, IPointerExi
         if (opensSettings)
         {
             SettingsPanel.Open();
+            return;
+        }
+        if (opensCompendium)
+        {
+            CompendiumPanel.Open();
+            return;
+        }
+        if (opensAbout)
+        {
+            AboutPanel.Open();
             return;
         }
 

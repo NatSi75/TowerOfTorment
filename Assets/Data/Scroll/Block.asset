@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Block
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Block Scroll
-  <Description>k__BackingField: Gain 12 Armor
+  <Description>k__BackingField: Gain 12 Armor.
   <Image>k__BackingField: {fileID: -6674826455981463842, guid: 83a49864308f865428e5cbd58a5cfa3d, type: 3}
   <ManualTargetEffect>k__BackingField: []
   <OtherEffects>k__BackingField:

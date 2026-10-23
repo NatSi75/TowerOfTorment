@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Heal
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Heal Scroll
-  <Description>k__BackingField: Heal 14 HP
+  <Description>k__BackingField: Heal 14 HP.
   <Image>k__BackingField: {fileID: 577279534342272023, guid: 1af412ba42220464998465d977ee2bf8, type: 3}
   <ManualTargetEffect>k__BackingField: []
   <OtherEffects>k__BackingField:

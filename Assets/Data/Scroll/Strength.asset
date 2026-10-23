@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Strength
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Strength Scroll
-  <Description>k__BackingField: Gain 2 Strength
+  <Description>k__BackingField: Gain 2 Strength.
   <Image>k__BackingField: {fileID: 7287894395675825763, guid: e34d3456996dd3c45b3def641c7852a4, type: 3}
   <ManualTargetEffect>k__BackingField: []
   <OtherEffects>k__BackingField:
