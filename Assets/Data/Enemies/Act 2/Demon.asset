@@ -19,7 +19,7 @@ MonoBehaviour:
   scaleY: 11.5
   intentionYPosition: 6.5
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: 5b4e541a2aec5204aa890f8190de75d8, type: 2}
-  <Health>k__BackingField: 250
+  <Health>k__BackingField: 600
   followAbilityPattern: 1
   enemyAbilityList:
   - name: Burn

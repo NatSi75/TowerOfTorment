@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Skeleton Shield
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: -5895240819618427197, guid: 9e9d5cced1677b54f874b40a78960c92, type: 3}
+  attackSound: 0
   flipSprite: 1
   scaleX: 9
   scaleY: 9
   intentionYPosition: 3
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: c0ce444c26dfe66418b1f7f552c4cad5, type: 2}
-  <Health>k__BackingField: 32
+  <Health>k__BackingField: 78
   followAbilityPattern: 1
   enemyAbilityList:
   - name: Attack
@@ -26,7 +27,7 @@ MonoBehaviour:
     hideActionValue: 0
     actionList:
     - actionType: 0
-      actionValue: 6
+      actionValue: 9
   - name: Block
     intention: {fileID: 11400000, guid: a45aaaf448aaf784f9a51d9127d292e3, type: 2}
     hideActionValue: 1
@@ -44,4 +45,4 @@ MonoBehaviour:
     hideActionValue: 0
     actionList:
     - actionType: 0
-      actionValue: 9
+      actionValue: 15

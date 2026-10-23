@@ -1,0 +1,990 @@
+fileFormatVersion: 2
+guid: 539355eeba5626848ac530f7972dfd2d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4513704015892711090
+    second: Logo-Fakultas-TI-1_0
+  - first:
+      213: 6018581642617293537
+    second: Logo-Fakultas-TI-1_1
+  - first:
+      213: -3139304323858004506
+    second: Logo-Fakultas-TI-1_2
+  - first:
+      213: -9146297509427778200
+    second: Logo-Fakultas-TI-1_3
+  - first:
+      213: 1413112911486135381
+    second: Logo-Fakultas-TI-1_4
+  - first:
+      213: -4414434263329349384
+    second: Logo-Fakultas-TI-1_5
+  - first:
+      213: -739180456456493918
+    second: Logo-Fakultas-TI-1_6
+  - first:
+      213: 4452488968345949685
+    second: Logo-Fakultas-TI-1_7
+  - first:
+      213: 8757854866486213706
+    second: Logo-Fakultas-TI-1_8
+  - first:
+      213: 6725532850955561723
+    second: Logo-Fakultas-TI-1_9
+  - first:
+      213: -5270546147042839943
+    second: Logo-Fakultas-TI-1_10
+  - first:
+      213: 4601083956106835435
+    second: Logo-Fakultas-TI-1_11
+  - first:
+      213: -4608155639097444120
+    second: Logo-Fakultas-TI-1_12
+  - first:
+      213: -7376501649731824668
+    second: Logo-Fakultas-TI-1_13
+  - first:
+      213: 7260512606087150465
+    second: Logo-Fakultas-TI-1_14
+  - first:
+      213: -2369250710421096962
+    second: Logo-Fakultas-TI-1_15
+  - first:
+      213: -1216201388146791028
+    second: Logo-Fakultas-TI-1_16
+  - first:
+      213: 1758178137161763891
+    second: Logo-Fakultas-TI-1_17
+  - first:
+      213: -3139027717064874912
+    second: Logo-Fakultas-TI-1_18
+  - first:
+      213: 5680896957245610925
+    second: Logo-Fakultas-TI-1_19
+  - first:
+      213: 3314251177870280153
+    second: Logo-Fakultas-TI-1_20
+  - first:
+      213: -3064193278458819920
+    second: Logo-Fakultas-TI-1_21
+  - first:
+      213: -3414488990281023943
+    second: Logo-Fakultas-TI-1_22
+  - first:
+      213: 4985229117643007993
+    second: Logo-Fakultas-TI-1_23
+  - first:
+      213: 1779599884592053086
+    second: Logo-Fakultas-TI-1_24
+  - first:
+      213: -680205572769459105
+    second: Logo-Fakultas-TI-1_25
+  - first:
+      213: -7141593906452793190
+    second: Logo-Fakultas-TI-1_26
+  - first:
+      213: 1752682496235882749
+    second: Logo-Fakultas-TI-1_27
+  - first:
+      213: -8979983973099574664
+    second: Logo-Fakultas-TI-1_28
+  - first:
+      213: -407560921435257080
+    second: Logo-Fakultas-TI-1_29
+  - first:
+      213: -7285098733434696326
+    second: Logo-Fakultas-TI-1_30
+  - first:
+      213: 2195978035560939621
+    second: Logo-Fakultas-TI-1_31
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 138
+        width: 196
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b60a8843e5e3ae30800000000000000
+      internalID: 4513704015892711090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_1
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 148
+        width: 116
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ea04ebbd1c468350800000000000000
+      internalID: 6018581642617293537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_2
+      rect:
+        serializedVersion: 2
+        x: 365
+        y: 148
+        width: 136
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e58896a953fe64d0800000000000000
+      internalID: -3139304323858004506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_3
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 148
+        width: 112
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86d6484dfd2d11180800000000000000
+      internalID: -9146297509427778200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_4
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 148
+        width: 134
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55c26acb4b26c9310800000000000000
+      internalID: 1413112911486135381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_5
+      rect:
+        serializedVersion: 2
+        x: 719
+        y: 148
+        width: 129
+        height: 142
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f0e0f91d67ccb2c0800000000000000
+      internalID: -4414434263329349384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_6
+      rect:
+        serializedVersion: 2
+        x: 561
+        y: 81
+        width: 25
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a4effb8a47edb5f0800000000000000
+      internalID: -739180456456493918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_7
+      rect:
+        serializedVersion: 2
+        x: 581
+        y: 81
+        width: 37
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f51b9c502b6acd30800000000000000
+      internalID: 4452488968345949685
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_8
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 81
+        width: 32
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4c365799962a8970800000000000000
+      internalID: 8757854866486213706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_9
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 81
+        width: 34
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfa2d6a9e74e55d50800000000000000
+      internalID: 6725532850955561723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_10
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 81
+        width: 27
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 972353d24324bd6b0800000000000000
+      internalID: -5270546147042839943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 81
+        width: 35
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be53f710b755adf30800000000000000
+      internalID: 4601083956106835435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_12
+      rect:
+        serializedVersion: 2
+        x: 731
+        y: 81
+        width: 63
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e832ed7cda8c00c0800000000000000
+      internalID: -4608155639097444120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_13
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 0
+        width: 29
+        height: 123
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e3d6aaf4d661a990800000000000000
+      internalID: -7376501649731824668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 43
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18bf1155fb582c460800000000000000
+      internalID: 7260512606087150465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_15
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 0
+        width: 35
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef5328d180bbe1fd0800000000000000
+      internalID: -2369250710421096962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_16
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 0
+        width: 41
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8d6c2cf74f2f1fe0800000000000000
+      internalID: -1216201388146791028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_17
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 0
+        width: 45
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33c826553bd466810800000000000000
+      internalID: 1758178137161763891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_18
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 56
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0642e303ceeef64d0800000000000000
+      internalID: -3139027717064874912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_19
+      rect:
+        serializedVersion: 2
+        x: 241
+        y: 0
+        width: 34
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dabd8361fa996de40800000000000000
+      internalID: 5680896957245610925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_20
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 0
+        width: 56
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d5c069f2e59efd20800000000000000
+      internalID: 3314251177870280153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_21
+      rect:
+        serializedVersion: 2
+        x: 330
+        y: 0
+        width: 51
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ba8252b27cc975d0800000000000000
+      internalID: -3064193278458819920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_22
+      rect:
+        serializedVersion: 2
+        x: 387
+        y: 0
+        width: 12
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93e31d4aa5c4d90d0800000000000000
+      internalID: -3414488990281023943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_23
+      rect:
+        serializedVersion: 2
+        x: 426
+        y: 0
+        width: 12
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f7ab0938771f2540800000000000000
+      internalID: 4985229117643007993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_24
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 0
+        width: 45
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5b7f639aa862b810800000000000000
+      internalID: 1779599884592053086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_25
+      rect:
+        serializedVersion: 2
+        x: 499
+        y: 0
+        width: 32
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f54d5dca2ac6f86f0800000000000000
+      internalID: -680205572769459105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_26
+      rect:
+        serializedVersion: 2
+        x: 532
+        y: 0
+        width: 56
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9879cb0e26f3ec90800000000000000
+      internalID: -7141593906452793190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_27
+      rect:
+        serializedVersion: 2
+        x: 593
+        y: 0
+        width: 41
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df84f28b177c25810800000000000000
+      internalID: 1752682496235882749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_28
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 0
+        width: 56
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87ae2ba8720b06380800000000000000
+      internalID: -8979983973099574664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_29
+      rect:
+        serializedVersion: 2
+        x: 692
+        y: 0
+        width: 48
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8074585508d085af0800000000000000
+      internalID: -407560921435257080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_30
+      rect:
+        serializedVersion: 2
+        x: 738
+        y: 0
+        width: 38
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7d0affcc4126ea90800000000000000
+      internalID: -7285098733434696326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Logo-Fakultas-TI-1_31
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 0
+        width: 12
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5608b28736ea97e10800000000000000
+      internalID: 2195978035560939621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Logo-Fakultas-TI-1_0: 4513704015892711090
+      Logo-Fakultas-TI-1_1: 6018581642617293537
+      Logo-Fakultas-TI-1_10: -5270546147042839943
+      Logo-Fakultas-TI-1_11: 4601083956106835435
+      Logo-Fakultas-TI-1_12: -4608155639097444120
+      Logo-Fakultas-TI-1_13: -7376501649731824668
+      Logo-Fakultas-TI-1_14: 7260512606087150465
+      Logo-Fakultas-TI-1_15: -2369250710421096962
+      Logo-Fakultas-TI-1_16: -1216201388146791028
+      Logo-Fakultas-TI-1_17: 1758178137161763891
+      Logo-Fakultas-TI-1_18: -3139027717064874912
+      Logo-Fakultas-TI-1_19: 5680896957245610925
+      Logo-Fakultas-TI-1_2: -3139304323858004506
+      Logo-Fakultas-TI-1_20: 3314251177870280153
+      Logo-Fakultas-TI-1_21: -3064193278458819920
+      Logo-Fakultas-TI-1_22: -3414488990281023943
+      Logo-Fakultas-TI-1_23: 4985229117643007993
+      Logo-Fakultas-TI-1_24: 1779599884592053086
+      Logo-Fakultas-TI-1_25: -680205572769459105
+      Logo-Fakultas-TI-1_26: -7141593906452793190
+      Logo-Fakultas-TI-1_27: 1752682496235882749
+      Logo-Fakultas-TI-1_28: -8979983973099574664
+      Logo-Fakultas-TI-1_29: -407560921435257080
+      Logo-Fakultas-TI-1_3: -9146297509427778200
+      Logo-Fakultas-TI-1_30: -7285098733434696326
+      Logo-Fakultas-TI-1_31: 2195978035560939621
+      Logo-Fakultas-TI-1_4: 1413112911486135381
+      Logo-Fakultas-TI-1_5: -4414434263329349384
+      Logo-Fakultas-TI-1_6: -739180456456493918
+      Logo-Fakultas-TI-1_7: 4452488968345949685
+      Logo-Fakultas-TI-1_8: 8757854866486213706
+      Logo-Fakultas-TI-1_9: 6725532850955561723
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

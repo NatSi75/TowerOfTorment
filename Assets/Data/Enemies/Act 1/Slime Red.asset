@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Slime Red
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: 8793639957104055765, guid: 7a63de2a35116434b8490df33b935731, type: 3}
+  attackSound: 0
   flipSprite: 1
   scaleX: 9
   scaleY: 9
@@ -33,9 +34,9 @@ MonoBehaviour:
     actionList:
     - actionType: 0
       actionValue: 4
-  - name: Attack
-    intention: {fileID: 11400000, guid: 5482379954dbac947b4a3536965b4dc2, type: 2}
-    hideActionValue: 0
+  - name: Block
+    intention: {fileID: 11400000, guid: a45aaaf448aaf784f9a51d9127d292e3, type: 2}
+    hideActionValue: 1
     actionList:
-    - actionType: 0
-      actionValue: 4
+    - actionType: 5
+      actionValue: 6

@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Demon Slime
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: 4012125072139123244, guid: fe2bac26a1cde5e48a77fa49dec37634, type: 3}
+  attackSound: 0
   flipSprite: 0
   scaleX: 6
   scaleY: 6
   intentionYPosition: 0
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: ccc8cc6e0fcff974088f06ad36509846, type: 2}
-  <Health>k__BackingField: 100
+  <Health>k__BackingField: 150
   followAbilityPattern: 0
   enemyAbilityList:
   - name: Strenght

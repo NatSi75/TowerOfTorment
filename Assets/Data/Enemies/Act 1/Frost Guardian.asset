@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Frost Guardian
   m_EditorClassIdentifier: 
   <Image>k__BackingField: {fileID: -4753702385071775785, guid: 0a929e9beb2d1094781e192eac1055f6, type: 3}
+  attackSound: 0
   flipSprite: 0
   scaleX: 10
   scaleY: 10
   intentionYPosition: 7
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: f28beee66f53cdd4d8416194156760bb, type: 2}
-  <Health>k__BackingField: 150
+  <Health>k__BackingField: 400
   followAbilityPattern: 1
   enemyAbilityList:
   - name: Attack
@@ -62,7 +63,7 @@ MonoBehaviour:
     hideActionValue: 0
     actionList:
     - actionType: 0
-      actionValue: 30
+      actionValue: 45
   - name: Attack
     intention: {fileID: 11400000, guid: 5482379954dbac947b4a3536965b4dc2, type: 2}
     hideActionValue: 0

@@ -62,7 +62,17 @@ public class GameDataManager : MonoBehaviour
     public List<PerkData> AllPerkPool => allPerkPool;
     public int indexHero; // 0 = Knight, 1 = Wizard
     public int indexEnemy; // 0 = Minor Enemy, 1 = Elite Enemy, 2 = Boss
-    private int currentEnemyIndex = 0;
+
+    [Header("Minor Enemy Selection (like Slay the Spire)")]
+    [Tooltip("The first encounters of each act's minor list are the easy (weak) pool")]
+    [SerializeField] private int weakEncounterPoolSize = 3;
+    [Tooltip("How many minor fights at the start of each act use the weak pool; the rest use the strong pool")]
+    [SerializeField] private int weakFightsPerAct = 3;
+    [Tooltip("A new encounter is never one of the last N minor encounters fought")]
+    [SerializeField] private int noRepeatOfLast = 2;
+    private int minorFightsThisAct;
+    private int minorFightsAct = -1;
+    private readonly List<Enemy> recentMinorEncounters = new();
 
     private void Awake()
     {
@@ -102,18 +112,43 @@ public class GameDataManager : MonoBehaviour
         PerkDatas.Add(heroData.PerkHero);
     }
 
+    // Picks the next minor encounter like Slay the Spire:
+    //  - the first fights of an act come from the weak pool (the first entries of the act's list), later ones from the strong pool,
+    //  - chosen at random, but never one of the last encounters fought,
+    //  - everything starts over in a new act.
+    // (Kept under its old name; it used to walk through the list in order.)
     public void SetSequentialMinorEnemy()
     {
         List<Enemy> activePool = (currentAct == 2) ? act2MinorEnemies : act1MinorEnemies;
         NextEncounter.Clear();
         indexEnemy = 0;
-        if (activePool != null && activePool.Count > 0)
+        if (activePool == null || activePool.Count == 0) return;
+
+        if (minorFightsAct != currentAct)
         {
-            int index = currentEnemyIndex % activePool.Count;
-            List<EnemyData> selectedEncounter = activePool[index].ListEnemyData;
-            NextEncounter.AddRange(selectedEncounter);
-            currentEnemyIndex++;
+            minorFightsAct = currentAct;
+            minorFightsThisAct = 0;
+            recentMinorEncounters.Clear();
         }
+
+        // weak or strong pool
+        int weakCount = Mathf.Clamp(weakEncounterPoolSize, 0, activePool.Count);
+        bool useWeak = minorFightsThisAct < weakFightsPerAct && weakCount > 0;
+        List<Enemy> candidates = useWeak
+            ? activePool.GetRange(0, weakCount)
+            : activePool.GetRange(weakCount, activePool.Count - weakCount);
+        if (candidates.Count == 0) candidates = new List<Enemy>(activePool);
+
+        // not one of the last encounters (unless the pool is too small for that)
+        List<Enemy> fresh = candidates.FindAll(encounter => !recentMinorEncounters.Contains(encounter));
+        if (fresh.Count > 0) candidates = fresh;
+
+        Enemy chosen = candidates[Random.Range(0, candidates.Count)];
+        NextEncounter.AddRange(chosen.ListEnemyData);
+
+        recentMinorEncounters.Add(chosen);
+        while (recentMinorEncounters.Count > Mathf.Max(0, noRepeatOfLast)) recentMinorEncounters.RemoveAt(0);
+        minorFightsThisAct++;
     }
 
     public void SetEliteEnemy()

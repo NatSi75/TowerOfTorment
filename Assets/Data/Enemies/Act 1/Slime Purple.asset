@@ -40,3 +40,9 @@ MonoBehaviour:
     actionList:
     - actionType: 3
       actionValue: 1
+  - name: Block
+    intention: {fileID: 11400000, guid: a45aaaf448aaf784f9a51d9127d292e3, type: 2}
+    hideActionValue: 1
+    actionList:
+    - actionType: 5
+      actionValue: 6

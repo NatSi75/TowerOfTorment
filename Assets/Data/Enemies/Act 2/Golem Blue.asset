@@ -19,7 +19,7 @@ MonoBehaviour:
   scaleY: 13
   intentionYPosition: 2.5
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: a8f2f923a674187498a949f256a3f7be, type: 2}
-  <Health>k__BackingField: 40
+  <Health>k__BackingField: 78
   followAbilityPattern: 1
   enemyAbilityList:
   - name: Attack
@@ -27,7 +27,7 @@ MonoBehaviour:
     hideActionValue: 0
     actionList:
     - actionType: 0
-      actionValue: 6
+      actionValue: 9
   - name: Chilled
     intention: {fileID: 11400000, guid: ea73d686bd5502949a978e534a5dfa7e, type: 2}
     hideActionValue: 1
@@ -39,7 +39,7 @@ MonoBehaviour:
     hideActionValue: 0
     actionList:
     - actionType: 0
-      actionValue: 6
+      actionValue: 9
   - name: Block
     intention: {fileID: 11400000, guid: a45aaaf448aaf784f9a51d9127d292e3, type: 2}
     hideActionValue: 1
@@ -51,4 +51,4 @@ MonoBehaviour:
     hideActionValue: 0
     actionList:
     - actionType: 0
-      actionValue: 9
+      actionValue: 12

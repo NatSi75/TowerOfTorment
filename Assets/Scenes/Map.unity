@@ -2996,10 +2996,12 @@ MonoBehaviour:
   - rid: 7359767407457992707
   - rid: 7359767407457992709
   - rid: 7359767472317136896
-  - rid: 7359767407457992708
   - rid: 7359767411115425792
   - rid: 7359767472317136898
   - rid: 7359767472317136897
+  - rid: 982227255942447291
+  - rid: 7359767407457992708
+  - rid: 982227255942447292
   <act1EliteEnemies>k__BackingField:
   - {fileID: 11400000, guid: ae546f853c8411046b5224134f7044e2, type: 2}
   - {fileID: 11400000, guid: ee45f6a309e01d242a18b9c5bb5e8055, type: 2}
@@ -3009,14 +3011,16 @@ MonoBehaviour:
   <act2MinorEnemies>k__BackingField:
   - rid: 7359767336243691535
   - rid: 1786785594171195392
-  - rid: 7359767336243691536
-  - rid: 1786785612562956288
-  - rid: 1786785612562956289
-  - rid: 1786785747969769472
-  - rid: 1786785612562956295
-  - rid: 1786785612562956290
-  - rid: 1786785747969769474
+  - rid: 982227255942447293
   - rid: 1786785747969769475
+  - rid: 982227255942447295
+  - rid: 982227255942447294
+  - rid: 982227255942447296
+  - rid: 982227255942447297
+  - rid: 982227255942447299
+  - rid: 982227255942447300
+  - rid: 982227255942447302
+  - rid: 982227255942447301
   <act2EliteEnemies>k__BackingField:
   - {fileID: 11400000, guid: 40342deab44e09346b59a48ae68b726a, type: 2}
   - {fileID: 11400000, guid: b39c71376d46b194183767ad37a7089b, type: 2}
@@ -3154,63 +3158,92 @@ MonoBehaviour:
   - {fileID: 11400000, guid: db0bed4bad0f13b4fb544594d19bbe42, type: 2}
   indexHero: 1
   indexEnemy: 0
+  weakEncounterPoolSize: 3
+  weakFightsPerAct: 3
+  noRepeatOfLast: 2
   references:
     version: 2
     RefIds:
-    - rid: 1786785594171195392
+    - rid: 982227255942447291
+      type: {class: Enemy, ns: , asm: Assembly-CSharp}
+      data:
+        <ListEnemyData>k__BackingField:
+        - {fileID: 11400000, guid: 057dee029b9371f4ea943d6925df27eb, type: 2}
+        - {fileID: 11400000, guid: 057dee029b9371f4ea943d6925df27eb, type: 2}
+    - rid: 982227255942447292
+      type: {class: Enemy, ns: , asm: Assembly-CSharp}
+      data:
+        <ListEnemyData>k__BackingField:
+        - {fileID: 11400000, guid: 38733d23cefb28c4fb6ecf28178f003b, type: 2}
+        - {fileID: 11400000, guid: 38733d23cefb28c4fb6ecf28178f003b, type: 2}
+    - rid: 982227255942447293
       type: {class: Enemy, ns: , asm: Assembly-CSharp}
       data:
         <ListEnemyData>k__BackingField:
         - {fileID: 11400000, guid: d8c432cbf0872b846890e98e2fe1d769, type: 2}
         - {fileID: 11400000, guid: 268befadbefd6794a8b84a4aef13e8ba, type: 2}
         - {fileID: 11400000, guid: 268befadbefd6794a8b84a4aef13e8ba, type: 2}
-    - rid: 1786785612562956288
+    - rid: 982227255942447294
+      type: {class: Enemy, ns: , asm: Assembly-CSharp}
+      data:
+        <ListEnemyData>k__BackingField:
+        - {fileID: 11400000, guid: 1f31e40f532e9734aa10289bd895d455, type: 2}
+        - {fileID: 11400000, guid: 1f31e40f532e9734aa10289bd895d455, type: 2}
+    - rid: 982227255942447295
+      type: {class: Enemy, ns: , asm: Assembly-CSharp}
+      data:
+        <ListEnemyData>k__BackingField:
+        - {fileID: 11400000, guid: 938cb8c53e7052646b563d1218a2abad, type: 2}
+        - {fileID: 11400000, guid: 938cb8c53e7052646b563d1218a2abad, type: 2}
+    - rid: 982227255942447296
+      type: {class: Enemy, ns: , asm: Assembly-CSharp}
+      data:
+        <ListEnemyData>k__BackingField:
+        - {fileID: 11400000, guid: 4aa7dd36433fe0f41a36a88adadb3360, type: 2}
+        - {fileID: 11400000, guid: 4aa7dd36433fe0f41a36a88adadb3360, type: 2}
+    - rid: 982227255942447297
+      type: {class: Enemy, ns: , asm: Assembly-CSharp}
+      data:
+        <ListEnemyData>k__BackingField:
+        - {fileID: 11400000, guid: 1f31e40f532e9734aa10289bd895d455, type: 2}
+        - {fileID: 11400000, guid: 4aa7dd36433fe0f41a36a88adadb3360, type: 2}
+    - rid: 982227255942447299
+      type: {class: Enemy, ns: , asm: Assembly-CSharp}
+      data:
+        <ListEnemyData>k__BackingField:
+        - {fileID: 11400000, guid: 938cb8c53e7052646b563d1218a2abad, type: 2}
+        - {fileID: 11400000, guid: d07dac3a6d3709c42bf2a59e0388181b, type: 2}
+    - rid: 982227255942447300
       type: {class: Enemy, ns: , asm: Assembly-CSharp}
       data:
         <ListEnemyData>k__BackingField:
         - {fileID: 11400000, guid: 1f31e40f532e9734aa10289bd895d455, type: 2}
         - {fileID: 11400000, guid: 4aa7dd36433fe0f41a36a88adadb3360, type: 2}
         - {fileID: 11400000, guid: 4aa7dd36433fe0f41a36a88adadb3360, type: 2}
-    - rid: 1786785612562956289
+    - rid: 982227255942447301
       type: {class: Enemy, ns: , asm: Assembly-CSharp}
       data:
         <ListEnemyData>k__BackingField:
         - {fileID: 11400000, guid: 938cb8c53e7052646b563d1218a2abad, type: 2}
-        - {fileID: 11400000, guid: 4aa7dd36433fe0f41a36a88adadb3360, type: 2}
-        - {fileID: 11400000, guid: 4aa7dd36433fe0f41a36a88adadb3360, type: 2}
-    - rid: 1786785612562956290
-      type: {class: Enemy, ns: , asm: Assembly-CSharp}
-      data:
-        <ListEnemyData>k__BackingField:
         - {fileID: 11400000, guid: 938cb8c53e7052646b563d1218a2abad, type: 2}
-        - {fileID: 11400000, guid: d07dac3a6d3709c42bf2a59e0388181b, type: 2}
-        - {fileID: 11400000, guid: d07dac3a6d3709c42bf2a59e0388181b, type: 2}
-    - rid: 1786785612562956295
+        - {fileID: 11400000, guid: 938cb8c53e7052646b563d1218a2abad, type: 2}
+    - rid: 982227255942447302
       type: {class: Enemy, ns: , asm: Assembly-CSharp}
       data:
         <ListEnemyData>k__BackingField:
         - {fileID: 11400000, guid: d07dac3a6d3709c42bf2a59e0388181b, type: 2}
+        - {fileID: 11400000, guid: d07dac3a6d3709c42bf2a59e0388181b, type: 2}
         - {fileID: 11400000, guid: 938cb8c53e7052646b563d1218a2abad, type: 2}
-        - {fileID: 11400000, guid: 938cb8c53e7052646b563d1218a2abad, type: 2}
-    - rid: 1786785747969769472
+    - rid: 1786785594171195392
       type: {class: Enemy, ns: , asm: Assembly-CSharp}
       data:
         <ListEnemyData>k__BackingField:
-        - {fileID: 11400000, guid: 1f31e40f532e9734aa10289bd895d455, type: 2}
-        - {fileID: 11400000, guid: 938cb8c53e7052646b563d1218a2abad, type: 2}
-        - {fileID: 11400000, guid: 938cb8c53e7052646b563d1218a2abad, type: 2}
-    - rid: 1786785747969769474
-      type: {class: Enemy, ns: , asm: Assembly-CSharp}
-      data:
-        <ListEnemyData>k__BackingField:
-        - {fileID: 11400000, guid: 938cb8c53e7052646b563d1218a2abad, type: 2}
-        - {fileID: 11400000, guid: 938cb8c53e7052646b563d1218a2abad, type: 2}
-        - {fileID: 11400000, guid: 938cb8c53e7052646b563d1218a2abad, type: 2}
+        - {fileID: 11400000, guid: 268befadbefd6794a8b84a4aef13e8ba, type: 2}
+        - {fileID: 11400000, guid: 268befadbefd6794a8b84a4aef13e8ba, type: 2}
     - rid: 1786785747969769475
       type: {class: Enemy, ns: , asm: Assembly-CSharp}
       data:
         <ListEnemyData>k__BackingField:
-        - {fileID: 11400000, guid: d07dac3a6d3709c42bf2a59e0388181b, type: 2}
         - {fileID: 11400000, guid: d07dac3a6d3709c42bf2a59e0388181b, type: 2}
         - {fileID: 11400000, guid: d07dac3a6d3709c42bf2a59e0388181b, type: 2}
     - rid: 7359767336243691533
@@ -3224,22 +3257,13 @@ MonoBehaviour:
       data:
         <ListEnemyData>k__BackingField:
         - {fileID: 11400000, guid: c04a5b0f298575a4eac00fedfa94f1e1, type: 2}
-        - {fileID: 11400000, guid: 8a12aaa37dcb6604cb35e34366cf13dd, type: 2}
-        - {fileID: 11400000, guid: 8a12aaa37dcb6604cb35e34366cf13dd, type: 2}
+        - {fileID: 11400000, guid: c04a5b0f298575a4eac00fedfa94f1e1, type: 2}
     - rid: 7359767336243691535
       type: {class: Enemy, ns: , asm: Assembly-CSharp}
       data:
         <ListEnemyData>k__BackingField:
         - {fileID: 11400000, guid: d8c432cbf0872b846890e98e2fe1d769, type: 2}
         - {fileID: 11400000, guid: d8c432cbf0872b846890e98e2fe1d769, type: 2}
-        - {fileID: 11400000, guid: d8c432cbf0872b846890e98e2fe1d769, type: 2}
-    - rid: 7359767336243691536
-      type: {class: Enemy, ns: , asm: Assembly-CSharp}
-      data:
-        <ListEnemyData>k__BackingField:
-        - {fileID: 11400000, guid: 268befadbefd6794a8b84a4aef13e8ba, type: 2}
-        - {fileID: 11400000, guid: 1f31e40f532e9734aa10289bd895d455, type: 2}
-        - {fileID: 11400000, guid: 1f31e40f532e9734aa10289bd895d455, type: 2}
     - rid: 7359767407457992704
       type: {class: Enemy, ns: , asm: Assembly-CSharp}
       data:
@@ -3258,7 +3282,6 @@ MonoBehaviour:
       type: {class: Enemy, ns: , asm: Assembly-CSharp}
       data:
         <ListEnemyData>k__BackingField:
-        - {fileID: 11400000, guid: 7ca565dbf3408fd418dc9544eef86a6e, type: 2}
         - {fileID: 11400000, guid: 7ca565dbf3408fd418dc9544eef86a6e, type: 2}
         - {fileID: 11400000, guid: 7ca565dbf3408fd418dc9544eef86a6e, type: 2}
     - rid: 7359767407457992709

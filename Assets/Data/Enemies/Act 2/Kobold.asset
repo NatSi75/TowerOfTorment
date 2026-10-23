@@ -19,7 +19,7 @@ MonoBehaviour:
   scaleY: 6
   intentionYPosition: 1.5
   <AnimatorController>k__BackingField: {fileID: 9100000, guid: af8ae72b8d7f3d744a79640505898c83, type: 2}
-  <Health>k__BackingField: 32
+  <Health>k__BackingField: 36
   followAbilityPattern: 1
   enemyAbilityList:
   - name: Attack

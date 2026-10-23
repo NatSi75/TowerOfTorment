@@ -82,6 +82,9 @@ public class CompendiumPanel : MonoBehaviour
         bool cards = tab == Tab.Knight || tab == Tab.Wizard;
         cardArea.SetActive(cards);
         iconArea.SetActive(!cards);
+        // the relic / scroll description belongs to the icon tabs only (cards show their own text)
+        detailText.text = "";
+        detailText.gameObject.SetActive(!cards);
 
         switch (tab)
         {
