@@ -1,16 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.GraphicsBuffer;
 
 public class MatchSetupSystem : MonoBehaviour
 {
     private void Start()
     {
         // Heal HP
-        if (GameDataManager.Instance != null && GameDataManager.Instance.HasPerk("Blood Bowl"))
+        if (GameDataManager.Instance != null && GameDataManager.Instance.HasRelic("Blood Bowl"))
         {
             GameDataManager.Instance.CurrentHeroHP += 2;
             if (GameDataManager.Instance.CurrentHeroHP > GameDataManager.Instance.MaxHeroHP)
@@ -21,7 +18,7 @@ public class MatchSetupSystem : MonoBehaviour
         
         if (GameDataManager.Instance.indexEnemy == 2)
         {
-            if (GameDataManager.Instance != null && GameDataManager.Instance.HasPerk("Pulsing Behemoth Heart"))
+            if (GameDataManager.Instance != null && GameDataManager.Instance.HasRelic("Pulsing Behemoth Heart"))
                 {
                 GameDataManager.Instance.CurrentHeroHP += 25;
                 if (GameDataManager.Instance.CurrentHeroHP > GameDataManager.Instance.MaxHeroHP)
@@ -41,11 +38,11 @@ public class MatchSetupSystem : MonoBehaviour
         }
         
         CardSystem.Instance.Setup(GameDataManager.Instance.CurrentDeck);
-        if (GameDataManager.Instance.PerkDatas != null)
+        if (GameDataManager.Instance.RelicDatas != null)
         {
-            foreach (PerkData perkData in GameDataManager.Instance.PerkDatas)
+            foreach (RelicData relicData in GameDataManager.Instance.RelicDatas)
             {
-                PerkSystem.Instance.AddPerk(new Perk(perkData));
+                RelicSystem.Instance.AddRelic(new Relic(relicData));
             }
         }
 
@@ -60,13 +57,13 @@ public class MatchSetupSystem : MonoBehaviour
 
         if (GameDataManager.Instance != null)
         {
-            if (GameDataManager.Instance.HasPerk("Cursed Tome") && GameDataManager.Instance.HasPerk("Spell Book"))
+            if (GameDataManager.Instance.HasRelic("Cursed Tome") && GameDataManager.Instance.HasRelic("Spell Book"))
             {
                 DrawCardsGA drawCardsGA = new(9);
                 ActionSystem.Instance.Perform(drawCardsGA);
-            } else if (GameDataManager.Instance.HasPerk("Cursed Tome") || GameDataManager.Instance.HasPerk("Spell Book"))
+            } else if (GameDataManager.Instance.HasRelic("Cursed Tome") || GameDataManager.Instance.HasRelic("Spell Book"))
             {
-                if (GameDataManager.Instance.HasPerk("Spell Book +"))
+                if (GameDataManager.Instance.HasRelic("Spell Book +"))
                 {
                     DrawCardsGA drawCardsGA = new(8);
                     ActionSystem.Instance.Perform(drawCardsGA);
@@ -83,17 +80,17 @@ public class MatchSetupSystem : MonoBehaviour
             }
         } 
 
-        if (GameDataManager.Instance != null && GameDataManager.Instance.HasPerk("Fossilized Armor"))
+        if (GameDataManager.Instance != null && GameDataManager.Instance.HasRelic("Fossilized Armor"))
         {
             HeroSystem.Instance.HeroView.AddStatusEffect(StatusEffectType.ARMOR, 10, HeroSystem.Instance.HeroView);
         }
 
-        if (GameDataManager.Instance != null && GameDataManager.Instance.HasPerk("Sapphire Ring"))
+        if (GameDataManager.Instance != null && GameDataManager.Instance.HasRelic("Sapphire Ring"))
         {
             ManaSystem.Instance.GainMana(1);
         }
 
-        if (GameDataManager.Instance != null && GameDataManager.Instance.HasPerk("Dagger"))
+        if (GameDataManager.Instance != null && GameDataManager.Instance.HasRelic("Dagger"))
         {
             List<EnemyView> enemies = EnemySystem.Instance.Enemies;
             foreach (EnemyView enemy in enemies)
@@ -102,7 +99,7 @@ public class MatchSetupSystem : MonoBehaviour
             }
         }
 
-        if (GameDataManager.Instance != null && GameDataManager.Instance.HasPerk("Dagger +"))
+        if (GameDataManager.Instance != null && GameDataManager.Instance.HasRelic("Dagger +"))
         {
             List<EnemyView> enemies = EnemySystem.Instance.Enemies;
             foreach (EnemyView enemy in enemies)
@@ -111,17 +108,16 @@ public class MatchSetupSystem : MonoBehaviour
             }
         }
 
-        if (GameDataManager.Instance != null && GameDataManager.Instance.HasPerk("Iron Dagger"))
+        if (GameDataManager.Instance != null && GameDataManager.Instance.HasRelic("Iron Dagger"))
         {
             HeroSystem.Instance.HeroView.AddStatusEffect(StatusEffectType.STRENGTH, 1, HeroSystem.Instance.HeroView);
         }
 
-        if (GameDataManager.Instance != null && GameDataManager.Instance.HasPerk("Swift Boots"))
+        if (GameDataManager.Instance != null && GameDataManager.Instance.HasRelic("Swift Boots"))
         {
             HeroSystem.Instance.HeroView.AddStatusEffect(StatusEffectType.DEXTERITY, 1, HeroSystem.Instance.HeroView);
         }
 
-        // "Turn 1" banner, then one for every following player turn
         TurnBanner.Begin();
     }
 }

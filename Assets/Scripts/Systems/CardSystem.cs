@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class CardSystem : Singleton<CardSystem>
 {
@@ -144,7 +143,6 @@ public class CardSystem : Singleton<CardSystem>
 
         if (playCardGA.Card.Type == CardType.Attack)
         {
-            // the card's damage lands around the middle of the hero's attack animation
             float attackLength = HeroSystem.Instance.HeroView.PlayAnimation("Attack");
             if (attackLength > 0f) yield return new WaitForSeconds(attackLength * 0.5f);
             bool isKnight = GameDataManager.Instance == null || GameDataManager.Instance.indexHero == 0;
@@ -169,8 +167,6 @@ public class CardSystem : Singleton<CardSystem>
             HeroSystem.Instance.HeroView.AddStatusEffect(StatusEffectType.ARMOR, HeroSystem.Instance.HeroView.GetStatusEffectStacks(StatusEffectType.MIRRORIMAGE), HeroSystem.Instance.HeroView);
         }
 
-        // "Lose X HP" is paid before the attack: if the attack kills the last enemy the battle ends
-        // and the remaining queued effects are dropped, so the HP cost would otherwise be skipped.
         foreach (var effectWrapper in playCardGA.Card.OtherEffects)
         {
             if (!IsHealthCost(effectWrapper)) continue;
@@ -230,8 +226,6 @@ public class CardSystem : Singleton<CardSystem>
         }
     }
 
-    // Helpers
-    // A "Lose X HP" effect on the hero (a negative heal).
     private static bool IsHealthCost(AutoTargetEffect effectWrapper)
     {
         return effectWrapper.Effect is HealEffect heal && heal.healAmount < 0 && effectWrapper.TargetMode is HeroTM;

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Menggunakan IPointerClickHandler agar bekerja baik dengan UI Canvas
 public class CardPileTrigger : MonoBehaviour, IPointerClickHandler
 {
     public enum PileType { DrawPile, DiscardPile, ExhaustPile, UpgradeCard, RemoveCard }

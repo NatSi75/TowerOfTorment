@@ -17,7 +17,7 @@ public class HeroData : ScriptableObject
     [field: SerializeField] public float scaleX;
     [field: SerializeField] public float scaleY;
     [field: SerializeField] public List<CardData> Deck { get; private set; }
-    [field: SerializeField] public PerkData PerkHero { get; private set; }
-    [field: SerializeField] public PerkData PerkHeroUpgrade { get; private set; }
+    [field: SerializeField] public RelicData RelicHero { get; private set; }
+    [field: SerializeField] public RelicData RelicHeroUpgrade { get; private set; }
     public bool FlipSprite => flipSprite;
 }

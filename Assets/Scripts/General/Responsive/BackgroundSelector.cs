@@ -13,9 +13,6 @@ public class ActBackground
     }
 }
 
-// Picks the scene background for the current Act (and, in Battle, the enemy type) and makes it cover
-// the whole screen without stretching. Works on a world SpriteRenderer or on a UI Image.
-// Runs after ResponsiveCamera (camera size is final) and before ResponsiveBackground (which keeps it covered).
 [DefaultExecutionOrder(-950)]
 public class BackgroundSelector : MonoBehaviour
 {
@@ -72,10 +69,8 @@ public class BackgroundSelector : MonoBehaviour
         Transform t = spriteRenderer.transform;
         t.position = new Vector3(cam.transform.position.x, cam.transform.position.y + verticalOffset, t.position.z);
 
-        // cover the camera view; the parent's scale is taken into account
         Vector2 spriteSize = sprite.rect.size / sprite.pixelsPerUnit;
         float viewWidth = cam.orthographicSize * 2f * cam.aspect;
-        // with an offset the sprite must reach further on one side, so cover the larger height
         float viewHeight = (cam.orthographicSize + Mathf.Abs(verticalOffset)) * 2f;
         float cover = Mathf.Max(viewWidth / spriteSize.x, viewHeight / spriteSize.y);
         Vector3 parentScale = t.parent != null ? t.parent.lossyScale : Vector3.one;

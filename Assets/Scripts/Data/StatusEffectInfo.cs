@@ -1,4 +1,3 @@
-// Display names and tooltip descriptions for every status effect.
 public static class StatusEffectInfo
 {
     public static string GetName(StatusEffectType type)

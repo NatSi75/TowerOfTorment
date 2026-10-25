@@ -35,5 +35,5 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e11b7126b0dc8ba48a0d01b6b33ed938, type: 2}
   - {fileID: 11400000, guid: e2a12bf06df2b0542b4c3a06ced89cd0, type: 2}
   - {fileID: 11400000, guid: 93797b06b4c888c4e9a6c12a335953f1, type: 2}
-  <PerkHero>k__BackingField: {fileID: 11400000, guid: ec8612f7939aaeb43b50d598aabb033b, type: 2}
-  <PerkHeroUpgrade>k__BackingField: {fileID: 11400000, guid: 6f6cfbea95b52df439bceaa8d668ab1c, type: 2}
+  <RelicHero>k__BackingField: {fileID: 11400000, guid: ec8612f7939aaeb43b50d598aabb033b, type: 2}
+  <RelicHeroUpgrade>k__BackingField: {fileID: 11400000, guid: 6f6cfbea95b52df439bceaa8d668ab1c, type: 2}

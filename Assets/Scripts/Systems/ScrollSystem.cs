@@ -97,12 +97,10 @@ public class ScrollSystem : Singleton<ScrollSystem>
     {
         scrolls.Add(scroll);
         scrollsUI.AddScrollUI(scroll);
-        //perk.OnAdd();
     }
     public void RemoveScroll(Scroll scroll)
     {
         scrolls.Remove(scroll);
         scrollsUI.RemoveScrollUI(scroll);
-        //perk.OnRemove();
     }
 }

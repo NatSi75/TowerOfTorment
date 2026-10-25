@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-// One relic / scroll icon in the Compendium; hovering or tapping it shows its name and description.
 public class CompendiumEntry : MonoBehaviour, IPointerEnterHandler, IPointerClickHandler
 {
     [SerializeField] private Image icon;

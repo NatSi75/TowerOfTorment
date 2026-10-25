@@ -1,8 +1,6 @@
-using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -63,7 +61,7 @@ public class RestSiteManager : MonoBehaviour
         {
             int healAmount = Mathf.RoundToInt(GameDataManager.Instance.MaxHeroHP * (healPercentage / 100f));
 
-            if (GameDataManager.Instance.HasPerk("Vitality Vial"))
+            if (GameDataManager.Instance.HasRelic("Vitality Vial"))
             {
                 healAmount += 15;
             }
@@ -204,12 +202,6 @@ public class RestSiteManager : MonoBehaviour
                 cardButton.onClick.RemoveAllListeners();
                 cardButton.onClick.AddListener(cardView.OnCardClick);
             }
-
-            /* Nonaktifkan komponen drag jika ada agar kartu di dalam viewer tidak bisa ditarik
-            if (newCard.TryGetComponent(out CardDraggable dragComponent))
-            {
-                dragComponent.enabled = false;
-            } */
         }
 
         CardGridLayout.Fit(gridContent, cardDataList.Count);

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class CardViewHoverSystem : Singleton<CardViewHoverSystem>
@@ -129,7 +128,6 @@ public class CardViewHoverSystem : Singleton<CardViewHoverSystem>
 
     private Vector3? baseScale;
 
-    // Moves the (enlarged) preview card so it is fully inside the camera view.
     private void KeepOnScreen()
     {
         Camera cam = Camera.main;
@@ -155,7 +153,6 @@ public class CardViewHoverSystem : Singleton<CardViewHoverSystem>
         cardViewHover.transform.position += shift;
     }
 
-    // How far [min, max] has to move to lie inside [viewMin, viewMax]; if it does not fit, its top edge is kept visible.
     private static float Shift(float min, float max, float viewMin, float viewMax)
     {
         if (max > viewMax || max - min > viewMax - viewMin) return viewMax - max;

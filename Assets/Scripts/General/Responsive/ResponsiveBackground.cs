@@ -1,7 +1,5 @@
 using UnityEngine;
 
-// Scales a background sprite up (never down) so it always covers the whole camera view,
-// e.g. on ultra-wide phones or tall browser windows.
 [DefaultExecutionOrder(-900)]
 [RequireComponent(typeof(SpriteRenderer))]
 public class ResponsiveBackground : MonoBehaviour

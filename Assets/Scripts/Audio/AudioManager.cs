@@ -5,8 +5,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// Plays the background music of each scene and all sound effects. Created automatically when the game
-// starts and kept across scenes. Clips are set in Resources/AudioLibrary; volumes are saved in PlayerPrefs.
 public class AudioManager : MonoBehaviour
 {
     private const string BgmVolumeKey = "Settings.BgmVolume";

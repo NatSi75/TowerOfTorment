@@ -35,7 +35,6 @@ public class HeroSystem : Singleton<HeroSystem>
     {
         DiscardAllCardsGA discardAllCardsGA = new();
         ActionSystem.Instance.AddReaction(discardAllCardsGA);
-        // +1 torment each enemy turn; the Torment status is applied the moment it becomes full
         HeroView.AddTorment(1);
 
         float regenStacks = HeroView.GetStatusEffectStacks(StatusEffectType.REGEN);
@@ -79,7 +78,6 @@ public class HeroSystem : Singleton<HeroSystem>
             ApplyBurnGA applyBurnGA = new(burnStacks, HeroView);
             ActionSystem.Instance.AddReaction(applyBurnGA);
         }
-        // armor still blocks Burn (end of the enemy turn); it runs out right after
         ActionSystem.Instance.AddReaction(new ResetHeroArmorGA());
         float poisonStacks = HeroView.GetStatusEffectStacks(StatusEffectType.POISON);
         if (poisonStacks > 0)

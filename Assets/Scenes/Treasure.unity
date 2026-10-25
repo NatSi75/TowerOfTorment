@@ -834,7 +834,7 @@ GameObject:
   - component: {fileID: 762149791}
   - component: {fileID: 762149790}
   m_Layer: 5
-  m_Name: Choice Perk
+  m_Name: Choice Relic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -923,9 +923,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfe4125faa45a0459264c2d07ee4d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perkImage: {fileID: 3210881507020078032}
-  perkTitleText: {fileID: 1744862988}
-  perkDescText: {fileID: 2036079380}
+  relicImage: {fileID: 3210881507020078032}
+  relicTitleText: {fileID: 1744862988}
+  relicDescText: {fileID: 2036079380}
   selectButton: {fileID: 459227782}
 --- !u!1 &1439291373
 GameObject:
@@ -959,7 +959,7 @@ MonoBehaviour:
   chestAnimator: {fileID: 639164856}
   openAnimationTrigger: Open
   rewardPanelObject: {fileID: 293724388}
-  perkSlots:
+  relicSlots:
   - {fileID: 879784591}
   - {fileID: 1521359765}
   - {fileID: 1766979845}
@@ -1144,7 +1144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4322554219781862836, guid: 85b144881857da9449c70278d2e43919, type: 3}
       propertyPath: m_Name
-      value: PerkChoiceUI (1)
+      value: RelicChoiceUI (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4338451611606834472, guid: 85b144881857da9449c70278d2e43919, type: 3}
       propertyPath: m_fontStyle
@@ -1368,9 +1368,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfe4125faa45a0459264c2d07ee4d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perkImage: {fileID: 1521359763}
-  perkTitleText: {fileID: 1521359762}
-  perkDescText: {fileID: 1521359761}
+  relicImage: {fileID: 1521359763}
+  relicTitleText: {fileID: 1521359762}
+  relicDescText: {fileID: 1521359761}
   selectButton: {fileID: 1521359760}
 --- !u!114 &1744862988 stripped
 MonoBehaviour:
@@ -1401,7 +1401,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4322554219781862836, guid: 85b144881857da9449c70278d2e43919, type: 3}
       propertyPath: m_Name
-      value: PerkChoiceUI (2)
+      value: RelicChoiceUI (2)
       objectReference: {fileID: 0}
     - target: {fileID: 4338451611606834472, guid: 85b144881857da9449c70278d2e43919, type: 3}
       propertyPath: m_fontStyle
@@ -1621,9 +1621,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfe4125faa45a0459264c2d07ee4d09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perkImage: {fileID: 1766979843}
-  perkTitleText: {fileID: 1766979842}
-  perkDescText: {fileID: 1766979841}
+  relicImage: {fileID: 1766979843}
+  relicTitleText: {fileID: 1766979842}
+  relicDescText: {fileID: 1766979841}
   selectButton: {fileID: 1766979840}
 --- !u!114 &2036079380 stripped
 MonoBehaviour:
@@ -1650,7 +1650,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4322554219781862836, guid: 85b144881857da9449c70278d2e43919, type: 3}
       propertyPath: m_Name
-      value: PerkChoiceUI
+      value: RelicChoiceUI
       objectReference: {fileID: 0}
     - target: {fileID: 4338451611606834472, guid: 85b144881857da9449c70278d2e43919, type: 3}
       propertyPath: m_fontStyle

@@ -50,7 +50,7 @@ public class EnemyView : CombatantView
             attackText.alpha = 255;
         }
         attackText.text = ActionValue.ToString();
-        if (GameDataManager.Instance.HasPerk("Howling Visage"))
+        if (GameDataManager.Instance.HasRelic("Howling Visage"))
         {
             SetupBase(enemyData.Health, enemyData.Health - 9, enemyData.Image, enemyData.AnimatorController, enemyData.FlipSprite);
         } else
@@ -59,7 +59,6 @@ public class EnemyView : CombatantView
         }
     }
 
-    // Torment hides what the enemies are going to do.
     public void SetIntentHidden(bool hidden)
     {
         intetionShow.enabled = !hidden;
@@ -112,7 +111,6 @@ public class EnemyView : CombatantView
         attackText.text = Mathf.RoundToInt(actionValue).ToString();
     }
 
-    // Enemies without a hurt animation flash red instead.
     protected override void PlayHurt()
     {
         if (PlayAnimation("Hurt") > 0f) return;
@@ -121,7 +119,6 @@ public class EnemyView : CombatantView
         spriteRenderer.DOColor(new Color(1f, 0.35f, 0.35f), 0.08f).SetLoops(2, LoopType.Yoyo);
     }
 
-    // Hides everything around the enemy and stops it from being targeted while it dies.
     public void PrepareForDeath()
     {
         HideCombatInfo();

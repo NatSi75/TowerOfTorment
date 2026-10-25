@@ -11,7 +11,6 @@ public class KillEnemyGA : GameAction
     }
 }
 
-// Plays the enemy's attack animation for actions that are not a direct attack (debuffs, buffs).
 public class EnemyCastGA : GameAction
 {
     public EnemyView Caster { get; private set; }
@@ -21,8 +20,6 @@ public class EnemyCastGA : GameAction
     }
 }
 
-// One enemy carries out its intent (attack, block, debuff...). Queued per enemy during the enemy turn,
-// after its Poison / Bleed, so an enemy that dies from those skips its action.
 public class EnemyActionGA : GameAction
 {
     public EnemyView Enemy { get; private set; }

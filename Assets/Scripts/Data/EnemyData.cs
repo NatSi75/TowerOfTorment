@@ -2,11 +2,10 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// What the enemy hits with, for its attack sound.
 public enum EnemyAttackSound
 {
-    Blunt, // fists, bodies, shields, staffs, spell blasts
-    Sharp, // blades, spears, scythes, claws, fangs, spikes
+    Blunt,
+    Sharp,
 }
 
 [CreateAssetMenu(menuName = "Data/Enemy")]

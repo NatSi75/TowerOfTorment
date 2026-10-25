@@ -37,7 +37,6 @@ public class HandView : MonoBehaviour
         float cardSpacing = 1f / 10f;
         float firstCardPosition = 0.5f - (cards.Count - 1) * cardSpacing / 2;
         Spline spline = splineContainer.Spline;
-        // larger cards (small screens) are spread further apart and keep their bottom edge in place
         float scale = MobileLayout.HandScale;
         Vector3 splineCenter = spline.EvaluatePosition(0.5f);
         for (int i = 0; i < cards.Count; i++)

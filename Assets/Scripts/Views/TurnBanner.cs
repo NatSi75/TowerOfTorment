@@ -2,17 +2,15 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-// "Turn N" banner (like Slay the Spire) shown between the hero and the enemies whenever the player's turn starts.
-// Created by MatchSetupSystem at the start of a battle; counts the turns itself.
 public class TurnBanner : MonoBehaviour
 {
     private const float FontSize = 16f;
     private const float StripHeight = 2.2f;
     private const float StripWidth = 7f;
     private const float StripAlpha = 0.55f;
-    private const float ShowTime = 0.9f;   // fully visible
-    private const float FadeTime = 0.35f;  // in and out
-    private const int SortingOrder = 400;  // above the combatants, below the damage numbers
+    private const float ShowTime = 0.9f; 
+    private const float FadeTime = 0.35f;
+    private const int SortingOrder = 400;
 
     public int Turn { get; private set; }
 
@@ -35,10 +33,9 @@ public class TurnBanner : MonoBehaviour
         ActionSystem.UnsubscribeReaction<EnemyTurnGA>(EnemyTurnPostReaction, ReactionTiming.POST);
     }
 
-    // the enemies are done: the player's next turn begins
     private void EnemyTurnPostReaction(EnemyTurnGA enemyTurnGA)
     {
-        if (this == null) return; // left over from an earlier battle
+        if (this == null) return;
         if (Interactions.Instance != null && Interactions.Instance.BattleEnded) return;
         if (HeroSystem.Instance != null && HeroSystem.Instance.HeroView != null && HeroSystem.Instance.HeroView.CurrentHealth <= 0) return;
         StartTurn();
@@ -58,7 +55,6 @@ public class TurnBanner : MonoBehaviour
         root.transform.SetParent(transform, false);
         root.transform.position = BannerPosition(hero);
 
-        // dark strip behind the text
         SpriteRenderer strip = new GameObject("Strip").AddComponent<SpriteRenderer>();
         strip.transform.SetParent(root.transform, false);
         strip.sprite = WhiteSprite();
@@ -84,7 +80,6 @@ public class TurnBanner : MonoBehaviour
         label.rectTransform.sizeDelta = new Vector2(StripWidth, StripHeight);
         label.sortingOrder = SortingOrder + 1;
 
-        // slide in from the left, hold, fade out to the right
         Transform t = label.transform;
         t.localPosition = new Vector3(-1.2f, 0f, 0f);
         Sequence sequence = DOTween.Sequence().SetLink(root);
@@ -98,8 +93,6 @@ public class TurnBanner : MonoBehaviour
         sequence.OnComplete(() => Destroy(root));
     }
 
-    // Halfway between the hero and the nearest enemy, around the height of their bodies
-    // (so it stays clear of the enemies' intents).
     private static Vector3 BannerPosition(HeroView hero)
     {
         if (hero == null) return Vector3.zero;

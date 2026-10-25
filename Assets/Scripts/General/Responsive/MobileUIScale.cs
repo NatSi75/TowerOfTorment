@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Enlarges a UI element on small (touch) screens so the cards inside stay readable.
-// The element grows around the centre of its visible content, so it stays where it was.
 [DisallowMultipleComponent]
 public class MobileUIScale : MonoBehaviour
 {
@@ -17,7 +15,6 @@ public class MobileUIScale : MonoBehaviour
         Apply();
     }
 
-    // a grid may still be empty at Start (its cards are spawned when the panel opens)
     private void LateUpdate()
     {
         if (!applied) Apply();
@@ -38,7 +35,6 @@ public class MobileUIScale : MonoBehaviour
 
         if (keepOnScreenSize)
         {
-            // keep the content's top-left corner where it was, the cards themselves are offset from their grid cells
             LayoutRebuilder.ForceRebuildLayoutImmediate(rectTransform);
             Bounds? before = ContentBounds(rectTransform);
             rectTransform.sizeDelta /= scale;
@@ -69,7 +65,6 @@ public class MobileUIScale : MonoBehaviour
             position.z);
     }
 
-    // Bounds of the children in the parent's space, or null when there are none.
     private static Bounds? ContentBounds(RectTransform rectTransform)
     {
         if (rectTransform.parent == null || rectTransform.childCount == 0) return null;

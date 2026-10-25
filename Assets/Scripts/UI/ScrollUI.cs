@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
 
 public class ScrollUI : MonoBehaviour, ITooltipContent
 {
@@ -26,7 +25,6 @@ public class ScrollUI : MonoBehaviour, ITooltipContent
         image.sprite = scroll.Image;
     }
 
-    // Clicking a scroll opens the Use / Remove menu.
     public void OnScrollClicked()
     {
         ScrollActionMenu.Open(this);
@@ -34,7 +32,6 @@ public class ScrollUI : MonoBehaviour, ITooltipContent
 
     public void UseScroll()
     {
-        // Perform() ignores actions while another one is running; keep the scroll instead of losing it.
         if (ActionSystem.Instance.IsPerforming) return;
         PlayScrollGA playScrollGA = new(Scroll);
         ActionSystem.Instance.Perform(playScrollGA);

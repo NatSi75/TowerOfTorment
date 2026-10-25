@@ -2,8 +2,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// About window: FTI UNTAR and Game Development UNTAR logos, the supervisors and the author.
-// The prefab lives at Resources/AboutPanel; open it with AboutPanel.Open(). Edit the texts and logos on the prefab.
 public class AboutPanel : MonoBehaviour
 {
     [Header("Content (edit on the prefab)")]
@@ -53,7 +51,6 @@ public class AboutPanel : MonoBehaviour
         SetLogo(logoGameDevImage, logoGameDev, logoGameDevBackground);
     }
 
-    // Without a sprite the slot keeps its placeholder label (a child text) so it's clear what goes there.
     private void SetLogo(Image image, Sprite sprite, Image background)
     {
         if (image == null) return;
@@ -65,7 +62,6 @@ public class AboutPanel : MonoBehaviour
         if (background == null) return;
         background.gameObject.SetActive(sprite != null);
         if (sprite == null) return;
-        // fit the backdrop to the part of the slot the logo really covers (it keeps its aspect)
         Vector2 slot = image.rectTransform.rect.size;
         float aspect = sprite.rect.width / sprite.rect.height;
         Vector2 drawn = slot.x / slot.y > aspect ? new Vector2(slot.y * aspect, slot.y) : new Vector2(slot.x, slot.x / aspect);

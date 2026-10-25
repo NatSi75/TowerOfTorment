@@ -2,8 +2,6 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-// Floating combat text ("12", "Blocked") that pops up above a combatant, rises and fades out.
-// Created in code, so no prefab is needed; it uses the same font as the combatant's HP label.
 public static class DamageNumber
 {
     public static readonly Color DamageColor = new(1f, 0.25f, 0.2f);
@@ -12,9 +10,7 @@ public static class DamageNumber
     private const float FontSize = 18f;
     private const float RiseDistance = 1.6f;
     private const float Duration = 0.9f;
-    private const int SortingOrder = 500; // above the combatants and their effects
-
-    // Part of the screen height covered by the top bar (65 of its 720 reference pixels).
+    private const int SortingOrder = 500;
     private const float TopBarHeightFraction = 65f / 720f;
 
     public static void Show(Vector3 position, string text, Color color, TMP_FontAsset font, float sizeMultiplier = 1f)
@@ -35,7 +31,6 @@ public static class DamageNumber
         label.rectTransform.sizeDelta = new Vector2(6f, 2f);
         label.sortingOrder = SortingOrder;
 
-        // pop in, rise, then fade out
         Transform t = go.transform;
         t.localScale = Vector3.one * 0.4f;
         Sequence sequence = DOTween.Sequence().SetLink(go);
@@ -46,8 +41,6 @@ public static class DamageNumber
         sequence.OnComplete(() => Object.Destroy(go));
     }
 
-    // Very tall sprites (the Act 2 boss, wide attack / hurt frames) would put the number above the screen
-    // or under the top bar; keep its whole rise inside the visible play area.
     private static Vector3 KeepVisible(Vector3 position, float sizeMultiplier)
     {
         Camera cam = Camera.main;
@@ -67,14 +60,11 @@ public static class DamageNumber
 
     private static Material outlinedMaterial;
     private static TMP_FontAsset outlinedFont;
-
-    // One shared material with a thick dark outline (per font), so every number stays readable on any background.
     public static Material OutlinedMaterial(TMP_FontAsset font)
     {
         if (outlinedMaterial != null && outlinedFont == font) return outlinedMaterial;
 
         outlinedFont = font;
-        // the saved material keeps the outline shader variant in builds (a material made only in code may lose it)
         Material saved = Resources.Load<Material>("DamageNumberMaterial");
         if (saved != null && saved.mainTexture == font.atlasTexture)
         {

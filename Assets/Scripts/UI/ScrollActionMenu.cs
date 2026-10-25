@@ -1,8 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Small Use / Remove menu shown next to a clicked scroll. The prefab lives at Resources/ScrollActionMenu.
-// Clicking anywhere outside the menu closes it.
 public class ScrollActionMenu : MonoBehaviour
 {
     [SerializeField] private RectTransform menu;
@@ -30,8 +28,6 @@ public class ScrollActionMenu : MonoBehaviour
     private void Setup(ScrollUI scrollUI)
     {
         target = scrollUI;
-
-        // place the menu next to the scroll (the scroll sits on a Screen Space Overlay canvas)
         Vector2 screenPoint = RectTransformUtility.WorldToScreenPoint(null, scrollUI.transform.position);
         RectTransformUtility.ScreenPointToLocalPointInRectangle((RectTransform)transform, screenPoint, null, out Vector2 localPoint);
         menu.anchoredPosition = localPoint + offsetFromScroll;
@@ -57,8 +53,6 @@ public class ScrollActionMenu : MonoBehaviour
         else UpdateUseButton();
     }
 
-    // Scrolls can only be used while nothing else is happening (same rule as playing a card).
-    // Checked every frame: the menu may open while an action is still running and must light up once it ends.
     private void UpdateUseButton()
     {
         bool canUse = Interactions.Instance == null || Interactions.Instance.PlayerCanInteract();

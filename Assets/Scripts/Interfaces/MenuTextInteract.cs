@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
-using TMPro; // Tambahkan namespace ini untuk mengakses TextMeshPro
+using TMPro;
 
-[RequireComponent(typeof(TMP_Text))] // Memastikan objek selalu memiliki komponen TextMeshPro
+[RequireComponent(typeof(TMP_Text))]
 public class MenuTextInteract : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
     [Header("Scene Settings")]
@@ -47,31 +47,26 @@ public class MenuTextInteract : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     private void Awake()
     {
-        // Ambil komponen TextMeshPro dari objek ini
         textComponent = GetComponent<TMP_Text>();
     }
 
     private void Start()
     {
-        // Pastikan garis disembunyikan saat game baru mulai
         if (selectedLine != null && selectedLine.transform.parent == this.transform)
         {
             selectedLine.SetActive(false);
         }
 
-        // Aplikasikan warna normal di awal saat game mulai
         ApplyVertexColors(normalColorBL, normalColorTL, normalColorTR, normalColorBR);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        // 1. Ubah Cursor saat di-hover
         if (hoverCursor != null)
         {
             Cursor.SetCursor(hoverCursor, cursorHotspot, CursorMode.Auto);
         }
 
-        // 2. Jadikan Selected_line sebagai child dari teks ini, lalu aktifkan
         if (selectedLine != null)
         {
             selectedLine.transform.SetParent(this.transform, false);
@@ -79,28 +74,23 @@ public class MenuTextInteract : MonoBehaviour, IPointerEnterHandler, IPointerExi
             selectedLine.SetActive(true);
         }
 
-        // 3. Ubah Vertex Color ke warna Hover
         ApplyVertexColors(hoverColorBL, hoverColorTL, hoverColorTR, hoverColorBR);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        // 1. Kembalikan Cursor ke default
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
 
-        // 2. Sembunyikan Selected_line saat kursor pergi
         if (selectedLine != null)
         {
             selectedLine.SetActive(false);
         }
 
-        // 3. Kembalikan Vertex Color ke warna Normal
         ApplyVertexColors(normalColorBL, normalColorTL, normalColorTR, normalColorBR);
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        // Kembalikan kursor ke default sebelum pindah scene
         Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
 
         if (opensSettings)
@@ -119,7 +109,6 @@ public class MenuTextInteract : MonoBehaviour, IPointerEnterHandler, IPointerExi
             return;
         }
 
-        // 3. Pindah Scene
         if (!string.IsNullOrEmpty(sceneToLoad))
         {
             SceneManager.LoadScene(sceneToLoad);
@@ -130,7 +119,6 @@ public class MenuTextInteract : MonoBehaviour, IPointerEnterHandler, IPointerExi
         }
     }
 
-    // Fungsi internal untuk memodifikasi mesh color per vertex
     private void ApplyVertexColors(Color bottomLeft, Color topLeft, Color topRight, Color bottomRight)
     {
         if (textComponent == null) return;
@@ -142,7 +130,6 @@ public class MenuTextInteract : MonoBehaviour, IPointerEnterHandler, IPointerExi
         {
             TMP_CharacterInfo charInfo = textInfo.characterInfo[i];
 
-            // Abaikan spasi
             if (!charInfo.isVisible) continue;
 
             int materialIndex = charInfo.materialReferenceIndex;

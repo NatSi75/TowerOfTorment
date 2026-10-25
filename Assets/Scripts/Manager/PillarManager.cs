@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -191,12 +190,6 @@ public class PillarManager : MonoBehaviour
                 cardButton.onClick.RemoveAllListeners();
                 cardButton.onClick.AddListener(cardView.OnCardClick);
             }
-
-            /* Nonaktifkan komponen drag jika ada agar kartu di dalam viewer tidak bisa ditarik
-            if (newCard.TryGetComponent(out CardDraggable dragComponent))
-            {
-                dragComponent.enabled = false;
-            } */
         }
 
         CardGridLayout.Fit(gridContent, cardDataList.Count);

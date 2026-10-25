@@ -11,7 +11,7 @@ public class TreasureManager : MonoBehaviour
 
     [Header("UI Reward Settings")]
     [SerializeField] private GameObject rewardPanelObject;
-    [SerializeField] private List<PerkChoiceUI> perkSlots;
+    [SerializeField] private List<RelicChoiceUI> relicSlots;
 
     private bool isOpened = false;
 
@@ -43,22 +43,22 @@ public class TreasureManager : MonoBehaviour
 
     private void ShowRelicRewards()
     {
-        if (GameDataManager.Instance == null || GameDataManager.Instance.AllPerkPool.Count == 0)
+        if (GameDataManager.Instance == null || GameDataManager.Instance.AllRelicPool.Count == 0)
         {
             SceneManager.LoadScene("Map");
             return;
         }
 
-        List<PerkData> availableRelics = new List<PerkData>();
-        foreach (var perk in GameDataManager.Instance.AllPerkPool)
+        List<RelicData> availableRelics = new List<RelicData>();
+        foreach (var relic in GameDataManager.Instance.AllRelicPool)
         {
-            if (!GameDataManager.Instance.PerkDatas.Contains(perk))
+            if (!GameDataManager.Instance.RelicDatas.Contains(relic))
             {
-                availableRelics.Add(perk);
+                availableRelics.Add(relic);
             }
         }
 
-        List<PerkData> chosenRelics = new ();
+        List<RelicData> chosenRelics = new ();
         int countToPick = Mathf.Min(3, availableRelics.Count);
 
         for (int i = 0; i < countToPick; i++)
@@ -70,32 +70,30 @@ public class TreasureManager : MonoBehaviour
 
         rewardPanelObject.SetActive(true);
 
-        for (int i = 0; i < perkSlots.Count; i++)
+        for (int i = 0; i < relicSlots.Count; i++)
         {
             if (i < chosenRelics.Count)
             {
-                perkSlots[i].gameObject.SetActive(true);
-                perkSlots[i].Setup(chosenRelics[i]);
+                relicSlots[i].gameObject.SetActive(true);
+                relicSlots[i].Setup(chosenRelics[i]);
 
                 int index = i;
-                perkSlots[i].SelectButton.onClick.RemoveAllListeners();
-                perkSlots[i].SelectButton.onClick.AddListener(() => OnRelicSelected(chosenRelics[index]));
+                relicSlots[i].SelectButton.onClick.RemoveAllListeners();
+                relicSlots[i].SelectButton.onClick.AddListener(() => OnRelicSelected(chosenRelics[index]));
             }
             else
             {
-                perkSlots[i].gameObject.SetActive(false);
+                relicSlots[i].gameObject.SetActive(false);
             }
         }
     }
 
-    // 3. Dipanggil saat Pemain Memilih Salah Satu Relic
-    private void OnRelicSelected(PerkData selectedRelic)
+    private void OnRelicSelected(RelicData selectedRelic)
     {
         AudioManager.PlaySfx(Sfx.RewardPickup);
         if (GameDataManager.Instance != null)
         {
-            // AddPerk also applies the relic's pickup effect (Max HP, gold)
-            GameDataManager.Instance.AddPerk(selectedRelic);
+            GameDataManager.Instance.AddRelic(selectedRelic);
         }
 
         rewardPanelObject.SetActive(false);

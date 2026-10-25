@@ -802,12 +802,12 @@ MonoBehaviour:
   commonCardPrice: {x: 45, y: 56}
   uncommonCardPrice: {x: 68, y: 83}
   rareCardPrice: {x: 135, y: 166}
-  basePerkPrice: {x: 275, y: 300}
+  baseRelicPrice: {x: 275, y: 300}
   baseScrollPrice: {x: 145, y: 165}
   commonCardsToSpawn: 2
   uncommonCardsToSpawn: 2
   rareCardsToSpawn: 1
-  perksToSpawn: 3
+  relicsToSpawn: 3
   scrollsToSpawn: 3
 --- !u!4 &1458588853
 Transform:

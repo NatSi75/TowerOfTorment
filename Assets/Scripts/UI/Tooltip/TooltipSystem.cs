@@ -2,8 +2,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// One tooltip for the whole game. It is built from code on first use, survives scene loads,
-// follows the pointer and flips to stay inside the screen.
 public class TooltipSystem : MonoBehaviour
 {
     private const float Padding = 18f;
@@ -170,7 +168,6 @@ public class TooltipSystem : MonoBehaviour
         Vector2 pointer = (Vector2)Input.mousePosition / scale;
         Vector2 size = panel.sizeDelta;
 
-        // Default: right of and below the pointer; flip when it would leave the screen.
         float x = pointer.x + PointerOffset;
         float y = pointer.y - PointerOffset;
         if (x + size.x > canvasSize.x) x = pointer.x - PointerOffset - size.x;

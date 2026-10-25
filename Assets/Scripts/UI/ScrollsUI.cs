@@ -4,7 +4,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Shows the scroll slots (GameDataManager.MaxScrolls). Empty slots show a faded scroll placeholder.
 public class ScrollsUI : MonoBehaviour
 {
     [SerializeField] private ScrollUI scrollUIPrefab;

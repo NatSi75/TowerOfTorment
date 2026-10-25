@@ -2986,7 +2986,7 @@ MonoBehaviour:
   torment: 0
   gauge: 0
   gold: 99
-  PerkDatas: []
+  RelicDatas: []
   ScrollDatas: []
   currentAct: 1
   <act1MinorEnemies>k__BackingField:
@@ -3028,7 +3028,7 @@ MonoBehaviour:
   <act2BossEnemies>k__BackingField:
   - {fileID: 11400000, guid: 0d44fc808575fce4cb0e5357eaef40b7, type: 2}
   - {fileID: 11400000, guid: 5c6ce7dce13447b4ebb82421a7009256, type: 2}
-  allPerkPool:
+  allRelicPool:
   - {fileID: 11400000, guid: d2f323906e08c56448587bd00344a175, type: 2}
   - {fileID: 11400000, guid: 1459d87dd7abdd84ab3f2bb14d5c696d, type: 2}
   - {fileID: 11400000, guid: 4818228e6866a8246ae584e9a8b8d3ad, type: 2}

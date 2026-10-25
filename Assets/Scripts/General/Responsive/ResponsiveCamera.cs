@@ -1,7 +1,5 @@
 using UnityEngine;
 
-// Keeps the area the scene was designed for (designOrthographicSize at designResolution's aspect)
-// always fully visible. Wider screens see more on the sides, narrower screens see more on top/bottom.
 [DefaultExecutionOrder(-1000)]
 [RequireComponent(typeof(Camera))]
 public class ResponsiveCamera : MonoBehaviour

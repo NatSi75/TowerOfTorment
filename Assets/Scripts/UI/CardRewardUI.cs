@@ -36,14 +36,13 @@ public class CardRewardUI : MonoBehaviour
     [SerializeField] private GameObject panelObject;
     [SerializeField] private List<CardView> rewardCardSlots;
 
-    [Header("UI Reward Perk Settings")]
+    [Header("UI Reward Relic Settings")]
     [SerializeField] private GameObject rewardPanelObject;
-    [SerializeField] private List<PerkChoiceUI> perkSlots;
+    [SerializeField] private List<RelicChoiceUI> relicSlots;
 
     private List<CardData> poolCopy;
     private List<Card> chosenListToDisplay = new List<Card>();
 
-    // A full-screen semi-transparent black image over the battle HUD, with the reward panels kept on top of it.
     private void ShowBattleEndOverlay()
     {
         if (battleEndOverlay != null || rewardPanel == null) return;
@@ -58,10 +57,9 @@ public class CardRewardUI : MonoBehaviour
         rect.offsetMax = Vector2.zero;
         Image image = battleEndOverlay.AddComponent<Image>();
         image.color = battleEndOverlayColor;
-        image.raycastTarget = true; // swallows clicks on End Turn, piles, scrolls...
+        image.raycastTarget = true;
         rect.SetAsLastSibling();
 
-        // every reward panel above the overlay, keeping their order
         List<Transform> panels = new();
         foreach (GameObject panel in new[] { rewardPanelObject, panelObject, rewardPanel })
         {
@@ -85,7 +83,6 @@ public class CardRewardUI : MonoBehaviour
 
     public void ShowBattleReward()
     {
-        // the battle is over: no more hovering / playing cards, the HUD sits under a dark overlay
         if (Interactions.Instance != null) Interactions.Instance.BattleEnded = true;
         foreach (CardView card in FindObjectsByType<CardView>(FindObjectsInactive.Exclude)) card.CancelHover();
         if (CardViewHoverSystem.Instance != null) CardViewHoverSystem.Instance.Hide();
@@ -109,7 +106,7 @@ public class CardRewardUI : MonoBehaviour
                 coinSprite = bossCoinSprite;
                 break;
         }
-        if (GameDataManager.Instance.HasPerk("Greed's Pounch"))
+        if (GameDataManager.Instance.HasRelic("Greed's Pounch"))
         {
             goldAmount += 15;
         }
@@ -251,22 +248,22 @@ public class CardRewardUI : MonoBehaviour
 
     private void ShowRelicRewards()
     {
-        if (GameDataManager.Instance == null || GameDataManager.Instance.AllPerkPool.Count == 0)
+        if (GameDataManager.Instance == null || GameDataManager.Instance.AllRelicPool.Count == 0)
         {
             SceneManager.LoadScene("Map");
             return;
         }
 
-        List<PerkData> availableRelics = new List<PerkData>();
-        foreach (var perk in GameDataManager.Instance.AllPerkPool)
+        List<RelicData> availableRelics = new List<RelicData>();
+        foreach (var relic in GameDataManager.Instance.AllRelicPool)
         {
-            if (!GameDataManager.Instance.PerkDatas.Contains(perk))
+            if (!GameDataManager.Instance.RelicDatas.Contains(relic))
             {
-                availableRelics.Add(perk);
+                availableRelics.Add(relic);
             }
         }
 
-        List<PerkData> chosenRelics = new();
+        List<RelicData> chosenRelics = new();
         int countToPick = 0;
         if (GameDataManager.Instance.indexEnemy == 2) // Boss Enemy
         {
@@ -285,39 +282,38 @@ public class CardRewardUI : MonoBehaviour
 
         rewardPanelObject.SetActive(true);
 
-        for (int i = 0; i < perkSlots.Count; i++)
+        for (int i = 0; i < relicSlots.Count; i++)
         {
             if (i < chosenRelics.Count)
             {
-                perkSlots[i].gameObject.SetActive(true);
-                perkSlots[i].Setup(chosenRelics[i]);
+                relicSlots[i].gameObject.SetActive(true);
+                relicSlots[i].Setup(chosenRelics[i]);
 
                 int index = i;
-                perkSlots[i].SelectButton.onClick.RemoveAllListeners();
-                perkSlots[i].SelectButton.onClick.AddListener(() => OnRelicSelected(chosenRelics[index]));
+                relicSlots[i].SelectButton.onClick.RemoveAllListeners();
+                relicSlots[i].SelectButton.onClick.AddListener(() => OnRelicSelected(chosenRelics[index]));
             }
             else
             {
-                perkSlots[i].gameObject.SetActive(false);
+                relicSlots[i].gameObject.SetActive(false);
             }
         }
         if (GameDataManager.Instance.indexEnemy == 2) // Boss Enemy
         {
-            perkSlots[2].gameObject.SetActive(true);
-            perkSlots[2].Setup(GameDataManager.Instance.PerkHeroUpgrade);
-            perkSlots[2].SelectButton.onClick.RemoveAllListeners();
-            perkSlots[2].SelectButton.onClick.AddListener(() => OnRelicSelected(GameDataManager.Instance.PerkHeroUpgrade));
-            GameDataManager.Instance.RemovePerk(GameDataManager.Instance.PerkHero);
+            relicSlots[2].gameObject.SetActive(true);
+            relicSlots[2].Setup(GameDataManager.Instance.RelicHeroUpgrade);
+            relicSlots[2].SelectButton.onClick.RemoveAllListeners();
+            relicSlots[2].SelectButton.onClick.AddListener(() => OnRelicSelected(GameDataManager.Instance.RelicHeroUpgrade));
+            GameDataManager.Instance.RemoveRelic(GameDataManager.Instance.RelicHero);
         }
     }
 
-    private void OnRelicSelected(PerkData selectedRelic)
+    private void OnRelicSelected(RelicData selectedRelic)
     {
         AudioManager.PlaySfx(Sfx.RewardPickup);
         if (GameDataManager.Instance != null)
         {
-            // AddPerk also applies the relic's pickup effect (Max HP, gold)
-            GameDataManager.Instance.AddPerk(selectedRelic);
+            GameDataManager.Instance.AddRelic(selectedRelic);
         }
 
         rewardPanelObject.SetActive(false);

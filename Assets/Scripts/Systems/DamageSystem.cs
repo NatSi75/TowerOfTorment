@@ -73,9 +73,6 @@ public class DamageSystem : MonoBehaviour
                     yield return new WaitForSeconds(3f);
                     SceneManager.LoadScene("Main Menu");
                     Destroy(GameDataManager.Instance.gameObject);
-                    // Do some game over logic here
-                    // Open Game Over Scene
-                    // Death
                 }
             }
         }

@@ -49,12 +49,6 @@ public class CardPileViewerUI : MonoBehaviour
             {
                 cardView.Setup(cardData);
             }
-
-            /* Nonaktifkan komponen drag jika ada agar kartu di dalam viewer tidak bisa ditarik
-            if (newCard.TryGetComponent(out CardDraggable dragComponent))
-            {
-                dragComponent.enabled = false;
-            } */
         }
 
         CardGridLayout.Fit(gridContent, cardDataList.Count);

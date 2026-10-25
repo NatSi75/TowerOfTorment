@@ -48,8 +48,6 @@ public class SceneMusic
     public List<string> sceneNames = new();
 }
 
-// Every music track and sound effect of the game. The asset must live at Resources/AudioLibrary.
-// Scenes that are not listed keep playing the current music; scenes sharing a track keep it playing.
 [CreateAssetMenu(menuName = "Data/Audio Library")]
 public class AudioLibrary : ScriptableObject
 {

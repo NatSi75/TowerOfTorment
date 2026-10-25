@@ -1,18 +1,13 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Shared by the deck viewers: makes a card grid tall enough for every row so its scroll view can reach all cards
-// (larger cards on small screens need more rows).
 public static class CardGridLayout
 {
     public static void Fit(Transform gridContent, int cardCount)
     {
         if (!gridContent.TryGetComponent(out GridLayoutGroup grid) || gridContent is not RectTransform rect) return;
-
-        // the small-screen enlargement changes the number of columns, so it has to happen first
         if (gridContent.TryGetComponent(out MobileUIScale mobileScale)) mobileScale.Apply();
 
-        // at least as tall as the scroll view (in the grid's units): a shorter grid would be centred in it
         float baseHeight = rect.sizeDelta.y;
         ScrollRect scrollRect = rect.GetComponentInParent<ScrollRect>();
         if (scrollRect != null)
@@ -21,10 +16,8 @@ public static class CardGridLayout
             baseHeight = viewport.rect.height * viewport.lossyScale.y / rect.lossyScale.y;
         }
 
-        // cards from the previous opening are destroyed only at the end of the frame: keep them out of the layout
         for (int i = 0; i < rect.childCount - cardCount; i++) rect.GetChild(i).gameObject.SetActive(false);
 
-        // the cards are drawn offset from their (zero-sized) cells: make room for the part above the first row
         Bounds? cards = CardBounds(rect, cardCount);
         if (cards == null) return;
         const float topMargin = 15f;
@@ -38,8 +31,6 @@ public static class CardGridLayout
 
         const float bottomMargin = 60f;
         float height = Mathf.Max(baseHeight, rect.rect.yMax - cards.Value.min.y + bottomMargin);
-
-        // grow downward: keep the top edge (and so the first row) where it is
         float growth = height - rect.sizeDelta.y;
         rect.sizeDelta = new Vector2(rect.sizeDelta.x, height);
         rect.localPosition -= new Vector3(0f, growth * (1f - rect.pivot.y) * rect.localScale.y, 0f);
@@ -53,7 +44,6 @@ public static class CardGridLayout
         }
     }
 
-    // The grid fills from the left; move it so the cards sit in the middle of the scroll view.
     private static void CenterHorizontally(RectTransform grid, ScrollRect scrollRect, int cardCount)
     {
         Bounds? cards = CardBounds(grid, cardCount);
@@ -67,8 +57,6 @@ public static class CardGridLayout
 
     private static readonly Vector3[] corners = new Vector3[4];
 
-    // Drawn area of the newest cardCount children (older cards may still be waiting to be destroyed), in the grid's space.
-    // Only images count: their rects can be much larger than what they draw when they preserve the sprite's aspect.
     private static Bounds? CardBounds(RectTransform grid, int cardCount)
     {
         LayoutRebuilder.ForceRebuildLayoutImmediate(grid);

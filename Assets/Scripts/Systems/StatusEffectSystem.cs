@@ -1,4 +1,3 @@
-using Map;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -53,7 +52,7 @@ public class StatusEffectSystem : MonoBehaviour
                         Instantiate(voidVFX, target.transform.position, Quaternion.identity);
                         break;
                     default:
-                        yield return null; //ADD VFX for adding status effect
+                        yield return null;
                         break;
                 }
             }

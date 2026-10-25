@@ -1,10 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-// Shows a tooltip while the pointer is over this object. Works for UI (any canvas with a
-// GraphicRaycaster) and for world objects with a Collider2D. On touch screens the tooltip
-// shows while the finger is held down.
-// The text comes from an ITooltipContent on this object or a parent, or from the fields below.
 public class TooltipTrigger : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private string title;

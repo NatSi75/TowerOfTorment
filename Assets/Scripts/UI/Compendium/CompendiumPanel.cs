@@ -3,9 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Compendium window: every Knight card, Wizard card, relic and scroll with its description.
-// The prefab lives at Resources/CompendiumPanel; open it with CompendiumPanel.Open().
-// The lists are filled in the prefab (there is no run, and no GameDataManager, in the main menu).
 public class CompendiumPanel : MonoBehaviour
 {
     private enum Tab { Knight, Wizard, Relic, Scroll }
@@ -34,7 +31,7 @@ public class CompendiumPanel : MonoBehaviour
     [Header("Content")]
     [SerializeField] private List<CardData> knightCards = new();
     [SerializeField] private List<CardData> wizardCards = new();
-    [SerializeField] private List<PerkData> relics = new();
+    [SerializeField] private List<RelicData> relics = new();
     [SerializeField] private List<ScrollData> scrolls = new();
 
     private static CompendiumPanel openPanel;
@@ -82,7 +79,6 @@ public class CompendiumPanel : MonoBehaviour
         bool cards = tab == Tab.Knight || tab == Tab.Wizard;
         cardArea.SetActive(cards);
         iconArea.SetActive(!cards);
-        // the relic / scroll description belongs to the icon tabs only (cards show their own text)
         detailText.text = "";
         detailText.gameObject.SetActive(!cards);
 
@@ -91,7 +87,7 @@ public class CompendiumPanel : MonoBehaviour
             case Tab.Knight: ShowCards(knightCards, 0); break;
             case Tab.Wizard: ShowCards(wizardCards, 1); break;
             case Tab.Relic:
-                foreach (PerkData relic in relics)
+                foreach (RelicData relic in relics)
                 {
                     if (relic != null) AddIcon(relic.Image, relic.Name, relic.Description);
                 }
@@ -119,7 +115,6 @@ public class CompendiumPanel : MonoBehaviour
             card.transform.localScale = Vector3.one;
             card.transform.localRotation = Quaternion.identity;
             if (card.TryGetComponent(out CardView view)) view.Setup(new Card(data), heroIndex);
-            // the cards are only for reading here
             if (card.TryGetComponent(out Button button)) button.interactable = false;
             count++;
         }

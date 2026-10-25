@@ -5,7 +5,6 @@ using UnityEngine;
 public class Interactions : Singleton<Interactions>
 {
     public bool PlayerIsDragging { get; set; } = false;
-    // Set when the battle rewards appear: the hand can no longer be hovered or played.
     public bool BattleEnded { get; set; } = false;
     public bool PlayerCanInteract()
     {

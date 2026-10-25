@@ -6,13 +6,11 @@ using UnityEngine;
 public class HeroView : CombatantView 
 {
     [SerializeField] private TMP_Text tormentText;
-    [SerializeField] private TMP_Text gaugeText;
     public List<CardData> deck;
     public float savedHP;
     public int savedMaxHP;
     public int savedTorment;
     public int savedMaxTorment;
-    public int savedGauge;
     public void Setup(HeroData heroData)
     {
         deck = heroData.Deck;
@@ -22,7 +20,6 @@ public class HeroView : CombatantView
             savedMaxHP = GameDataManager.Instance.MaxHeroHP;
             savedTorment = GameDataManager.Instance.torment;
             savedMaxTorment = GameDataManager.Instance.heroData.MaxTorment;
-            savedGauge = GameDataManager.Instance.gauge;
         } else
         {
             savedHP = heroData.Health;
@@ -31,21 +28,16 @@ public class HeroView : CombatantView
         HeroSystem.Instance.HeroView.spriteRenderer.transform.localScale = new(heroData.scaleX, heroData.scaleY);
         SetupBase(savedMaxHP, savedHP, heroData.Image, heroData.Animator, heroData.FlipSprite);
         UpdateTormentText(0);
-        UpdateGaugeText(0);
-        // entering a battle with full torment: tormented right away
         RefreshTormentStatus(false);
     }
 
     public bool IsTormentFull => savedMaxTorment > 0 && savedTorment >= savedMaxTorment;
-
-    // Adds torment points and applies / removes the Torment status immediately.
     public void AddTorment(int amount)
     {
         UpdateTormentText(amount);
         RefreshTormentStatus(true);
     }
 
-    // Torment is on/off: exactly one stack while torment is full (each hero has its own maximum), none otherwise.
     public void RefreshTormentStatus(bool playSound)
     {
         float stacks = GetStatusEffectStacks(StatusEffectType.TORMENT);
@@ -92,20 +84,4 @@ public class HeroView : CombatantView
             savedTorment = savedMaxTorment + 1;
         }
     }
-
-    public void UpdateGaugeText(int gauge)
-    {
-        int newGauge = savedGauge + gauge;
-        if (newGauge <= 25)
-        {
-            gaugeText.text = "Gauge: " + newGauge + "/" + 25;
-            savedGauge = newGauge;
-        }
-        else
-        {
-            gaugeText.text = "Gauge: " + 25 + "/" + 25;
-            savedGauge = 26;
-        }
-    }
-
 }

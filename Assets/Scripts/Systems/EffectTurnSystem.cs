@@ -57,7 +57,6 @@ public class EffectTurnSystem : MonoBehaviour
     {
         CombatantView caster = null;
         CombatantView target = applyBurnGA.Target;
-        // Burn deals its current stacks, then loses one stack
         float burnStacks = target != null ? target.GetStatusEffectStacks(StatusEffectType.BURN) : 0f;
         if (target != null && burnStacks > 0)
         {
@@ -83,16 +82,12 @@ public class EffectTurnSystem : MonoBehaviour
     private IEnumerator ApplyPoisonPerformer(ApplyPoisonGA applyPoisonGA)
     {
         CombatantView target = applyPoisonGA.Target;
-        // Poison deals its current stacks. Accelerant queues several triggers at once, and each trigger
-        // removes a stack, so the stacks are read now instead of using the amount from when it was queued.
         float poisonStacks = target != null ? target.GetStatusEffectStacks(StatusEffectType.POISON) : 0f;
         if (target != null && poisonStacks > 0)
         {
             Instantiate(poisonVFX, target.transform.position, Quaternion.identity);
-            // HP loss like in Slay the Spire: not changed by Strength / Weak / Vulnerable / Bleed, not blocked by armor
             DealDamageGA damageGA = new(poisonStacks, new() { target }, target) { IsRaw = true, IgnoresArmor = true };
             ActionSystem.Instance.AddReaction(damageGA);
-            //target.Damage(applyPoisonGA.PoisonDamage);
             AudioManager.PlayDebuffTick(StatusEffectType.POISON);
             target.RemoveStatusEffect(StatusEffectType.POISON, 1);
         }
@@ -118,8 +113,6 @@ public class EffectTurnSystem : MonoBehaviour
             AudioManager.PlayDebuffTick(StatusEffectType.CHILLED);
             target.RemoveStatusEffect(StatusEffectType.CHILLED, 1);
         }
-        // Chilled only counts down (no damage) and ticks after the new hand is drawn,
-        // so don't make the player wait for it.
         yield return null;
     }
     private IEnumerator ApplyVoidPerformer(ApplyVoidGA applyVoidGA)

@@ -2,7 +2,6 @@ using SerializeReferenceEditor;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameDataManager : MonoBehaviour
@@ -13,17 +12,16 @@ public class GameDataManager : MonoBehaviour
     [SerializeField] public HeroData heroDataWizard;
     int chosenHeroIndex;
     public HeroData heroData;
-    public PerkData PerkHero => heroData.PerkHero;
-    public PerkData PerkHeroUpgrade => heroData.PerkHeroUpgrade;
+    public RelicData RelicHero => heroData.RelicHero;
+    public RelicData RelicHeroUpgrade => heroData.RelicHeroUpgrade;
 
     [Header("Player Persistent Data")]
     public float CurrentHeroHP = -1;
     public int MaxHeroHP = 30;
     public int torment = 0;
-    public int gauge = 0;
     public int gold = 0;
     public List<Card> CurrentDeck = new();
-    public List<PerkData> PerkDatas = new();
+    public List<RelicData> RelicDatas = new();
     public List<ScrollData> ScrollDatas = new();
     
     [Header("Act Settings")]
@@ -38,7 +36,7 @@ public class GameDataManager : MonoBehaviour
 
     [Header("Reward Setting")]
     [Header("List Relic")]
-    [SerializeField] private List<PerkData> allPerkPool;
+    [SerializeField] private List<RelicData> allRelicPool;
     [Header("Scroll")]
     [SerializeField] private List<ScrollData> scrollRewardPool;
     public List<ScrollData> ScrollRewardPool => scrollRewardPool;
@@ -59,7 +57,7 @@ public class GameDataManager : MonoBehaviour
     public List<CardData> EliteEnemyCardRewardPoolWizard => eliteEnemyCardRewardPoolWizard;
     public List<CardData> BossEnemyCardRewardPoolWizard => bossEnemyCardRewardPoolWizard;
 
-    public List<PerkData> AllPerkPool => allPerkPool;
+    public List<RelicData> AllRelicPool => allRelicPool;
     public int indexHero; // 0 = Knight, 1 = Wizard
     public int indexEnemy; // 0 = Minor Enemy, 1 = Elite Enemy, 2 = Boss
 
@@ -109,14 +107,9 @@ public class GameDataManager : MonoBehaviour
         torment = heroData.Torment;
         MaxHeroHP = heroData.Health;
         CurrentHeroHP = MaxHeroHP;
-        PerkDatas.Add(heroData.PerkHero);
+        RelicDatas.Add(heroData.RelicHero);
     }
 
-    // Picks the next minor encounter like Slay the Spire:
-    //  - the first fights of an act come from the weak pool (the first entries of the act's list), later ones from the strong pool,
-    //  - chosen at random, but never one of the last encounters fought,
-    //  - everything starts over in a new act.
-    // (Kept under its old name; it used to walk through the list in order.)
     public void SetSequentialMinorEnemy()
     {
         List<Enemy> activePool = (currentAct == 2) ? act2MinorEnemies : act1MinorEnemies;
@@ -131,7 +124,6 @@ public class GameDataManager : MonoBehaviour
             recentMinorEncounters.Clear();
         }
 
-        // weak or strong pool
         int weakCount = Mathf.Clamp(weakEncounterPoolSize, 0, activePool.Count);
         bool useWeak = minorFightsThisAct < weakFightsPerAct && weakCount > 0;
         List<Enemy> candidates = useWeak
@@ -139,7 +131,6 @@ public class GameDataManager : MonoBehaviour
             : activePool.GetRange(weakCount, activePool.Count - weakCount);
         if (candidates.Count == 0) candidates = new List<Enemy>(activePool);
 
-        // not one of the last encounters (unless the pool is too small for that)
         List<Enemy> fresh = candidates.FindAll(encounter => !recentMinorEncounters.Contains(encounter));
         if (fresh.Count > 0) candidates = fresh;
 
@@ -173,20 +164,18 @@ public class GameDataManager : MonoBehaviour
         }
     }
 
-    // Every way of getting a relic (shop, treasure, battle reward) goes through here,
-    // so the one-time "upon pickup" effects are applied in one place.
-    public void AddPerk(PerkData perk)
+    public void AddRelic(RelicData relic)
     {
-        if (!PerkDatas.Contains(perk))
+        if (!RelicDatas.Contains(relic))
         {
-            PerkDatas.Add(perk);
-            ApplyPickupEffect(perk);
+            RelicDatas.Add(relic);
+            ApplyPickupEffect(relic);
         }
     }
 
-    private void ApplyPickupEffect(PerkData perk)
+    private void ApplyPickupEffect(RelicData relic)
     {
-        switch (NormalizePerkName(perk.Name))
+        switch (NormalizeRelicName(relic.Name))
         {
             case "Green Elixir": IncreaseMaxHP(7); break;
             case "Purple Elixir": IncreaseMaxHP(10); break;
@@ -195,26 +184,25 @@ public class GameDataManager : MonoBehaviour
         }
     }
 
-    // Relic names may use a typographic apostrophe (’); compare them with a plain one.
-    private static string NormalizePerkName(string name)
+    private static string NormalizeRelicName(string name)
     {
         return string.IsNullOrEmpty(name) ? "" : name.Replace('’', '\'').Replace('‘', '\'').Replace('�', '\'').Trim();
     }
 
-    public void RemovePerk(PerkData perk)
+    public void RemoveRelic(RelicData relic)
     {
-        if (PerkDatas.Contains(perk))
+        if (RelicDatas.Contains(relic))
         {
-            PerkDatas.Remove(perk);
+            RelicDatas.Remove(relic);
         }
     }
 
-    public bool HasPerk(string namePerk)
+    public bool HasRelic(string nameRelic)
     {
-        string wanted = NormalizePerkName(namePerk);
-        foreach (PerkData perk in PerkDatas)
+        string wanted = NormalizeRelicName(nameRelic);
+        foreach (RelicData relic in RelicDatas)
         {
-            if (NormalizePerkName(perk.Name) == wanted)
+            if (NormalizeRelicName(relic.Name) == wanted)
             {
                 return true;
             }
@@ -222,7 +210,6 @@ public class GameDataManager : MonoBehaviour
         return false;
     }
 
-    // Adds torment without going past the hero's maximum.
     public void AddTorment(int amount)
     {
         int max = heroData != null ? heroData.MaxTorment : int.MaxValue;
@@ -238,7 +225,6 @@ public class GameDataManager : MonoBehaviour
     public const int MaxScrolls = 3;
     public bool CanAddScroll => ScrollDatas.Count < MaxScrolls;
 
-    // Returns false when all scroll slots are already used.
     public bool AddScroll(ScrollData scroll)
     {
         if (!CanAddScroll) return false;

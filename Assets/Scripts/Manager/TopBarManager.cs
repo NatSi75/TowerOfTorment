@@ -1,4 +1,3 @@
-using DG.Tweening.Core.Easing;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -62,7 +61,6 @@ public class TopBarManager : MonoBehaviour
         PauseMenu.Open();
     }
 
-    // The pause button (and Escape) only works in battle, not while the map is opened on top of it.
     private bool CanPause()
     {
         return SceneManager.GetActiveScene().name == "Battle" && !isViewOnlyMode;
@@ -93,8 +91,6 @@ public class TopBarManager : MonoBehaviour
         UpdatePauseButton();
     }
 
-    // During a battle the hero's live values are only written back to GameDataManager when the battle is won,
-    // so the top bar reads them from the hero itself (otherwise it shows the start-of-battle HP / torment).
     private static HeroView BattleHero()
     {
         if (HeroSystem.Instance == null) return null;
@@ -123,7 +119,6 @@ public class TopBarManager : MonoBehaviour
         HeroView hero = BattleHero();
         if (hero != null)
         {
-            // savedTorment goes one past the maximum to mean "full"
             int torment = Mathf.Min(hero.savedTorment, hero.savedMaxTorment);
             tormentText.text = "Torment: " + $"{torment}" + "/" + hero.savedMaxTorment;
         }
@@ -200,12 +195,6 @@ public class TopBarManager : MonoBehaviour
             {
                 cardView.Setup(cardData);
             }
-
-            /* Nonaktifkan komponen drag jika ada agar kartu di dalam viewer tidak bisa ditarik
-            if (newCard.TryGetComponent(out CardDraggable dragComponent))
-            {
-                dragComponent.enabled = false;
-            } */
         }
 
         CardGridLayout.Fit(gridContent, cardDataList.Count);
@@ -226,9 +215,6 @@ public class TopBarManager : MonoBehaviour
         ClearSpawnedCards();
     }
 
-
-    // Scenes outside a run: the top bar survives scene loads (DontDestroyOnLoad), so after going back
-    // to the main menu it must stay hidden there and in character select until the next run starts.
     private static readonly string[] scenesWithoutTopBar = { "MainMenu", "Main Menu", "Character Select" };
 
     private void ToggleVisibilityBasedOnScene()
@@ -238,7 +224,6 @@ public class TopBarManager : MonoBehaviour
 
         Canvas topBarCanvas = GetComponent<Canvas>();
         if (topBarCanvas.enabled != show) topBarCanvas.enabled = show;
-        // a deck view left open must not stay on screen either
         if (!show && viewerPanel != null && viewerPanel.activeSelf) CloseViewer();
 
         if (currentSceneName == "Map")

@@ -1,7 +1,6 @@
 using TMPro;
 using UnityEngine;
 
-// Look of the tooltip. The asset must live at Resources/TooltipStyle so TooltipSystem can load it.
 [CreateAssetMenu(menuName = "Data/Tooltip Style")]
 public class TooltipStyle : ScriptableObject
 {

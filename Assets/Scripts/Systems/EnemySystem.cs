@@ -87,14 +87,13 @@ public class EnemySystem : Singleton<EnemySystem>
                 ApplyVulnerableGA applyVulnerableAG = new(enemy);
                 ActionSystem.Instance.AddReaction(applyVulnerableAG);
             }
-            if (GameDataManager.Instance.HasPerk("Cursed Voodoo Doll"))
+            if (GameDataManager.Instance.HasRelic("Cursed Voodoo Doll"))
             {
                 CombatantView attacker = enemy;
                 DealDamageGA damageGA = new(3, new() { enemy }, attacker);
                 ActionSystem.Instance.AddReaction(damageGA);
             }
 
-            // the enemy's own action is decided when its turn comes: if Poison / Bleed above killed it, it doesn't act
             ActionSystem.Instance.AddReaction(new EnemyActionGA(enemy));
         }
         NewIntentionEnemyGA newIntentionEnemyGA = new();
@@ -181,7 +180,6 @@ public class EnemySystem : Singleton<EnemySystem>
             float attackLength = attacker.PlayAnimation("Attack");
             Tween tween = attacker.transform.DOMoveX(attacker.transform.position.x - 1f, 0.15f);
             yield return tween.WaitForCompletion();
-            // the hit lands around the middle of the attack animation
             if (attackLength > 0f) yield return new WaitForSeconds(Mathf.Max(0f, attackLength * 0.5f - 0.15f));
             attacker.transform.DOMoveX(attacker.transform.position.x + 1f, 0.25f);
             bool sharp = attacker.EnemyData != null && attacker.EnemyData.AttackSound == EnemyAttackSound.Sharp;
@@ -195,8 +193,6 @@ public class EnemySystem : Singleton<EnemySystem>
     {
         EnemyView caster = enemyCastGA.Caster;
         if (caster == null) yield break;
-        // the attack animation is only for Attack intents; the other intents only get their sound,
-        // played right before the effect (queued next) is applied
         switch (caster.ActionType)
         {
             case EnemyActionType.Block:
@@ -246,7 +242,7 @@ public class EnemySystem : Singleton<EnemySystem>
         float chilledStacks = HeroSystem.Instance.HeroView.GetStatusEffectStacks(StatusEffectType.CHILLED);
         if (chilledStacks > 0)
         {
-            if (GameDataManager.Instance.HasPerk("Spell Book +"))
+            if (GameDataManager.Instance.HasRelic("Spell Book +"))
             {
                 DrawCardsGA drawCardsGA = new(5);
                 ActionSystem.Instance.AddReaction(drawCardsGA);
@@ -258,7 +254,7 @@ public class EnemySystem : Singleton<EnemySystem>
         }
         else
         {
-            if (GameDataManager.Instance.HasPerk("Spell Book +"))
+            if (GameDataManager.Instance.HasRelic("Spell Book +"))
             {
                 DrawCardsGA drawCardsGA = new(6);
                 ActionSystem.Instance.AddReaction(drawCardsGA);
@@ -286,13 +282,11 @@ public class EnemySystem : Singleton<EnemySystem>
 
     private IEnumerator KillEnemyPerformer(KillEnemyGA killEnemyGA)
     {
-        // an enemy hit again in the same action can be "killed" twice; handle its death only once
         if (killEnemyGA.EnemyView == null || !Enemies.Contains(killEnemyGA.EnemyView)) yield break;
         EnemyData killedEnemy = killEnemyGA.EnemyView.EnemyData;
         yield return enemyBoardView.RemoveEnemy(killEnemyGA.EnemyView);
         if (GameDataManager.Instance != null)
         {
-            // Act 2 boss: only the death of phase 1 brings in phase 2 (otherwise phase 2 respawns when it dies)
             if (GameDataManager.Instance.currentAct == 2 && GameDataManager.Instance.indexEnemy == 2
                 && GameDataManager.Instance.NextEncounter.Count > 1
                 && killedEnemy == GameDataManager.Instance.NextEncounter[0])
@@ -313,10 +307,8 @@ public class EnemySystem : Singleton<EnemySystem>
             }
             ActionSystem.Instance.ResetReaction();
             GameDataManager.Instance.CurrentHeroHP = HeroSystem.Instance.HeroView.CurrentHealth;
-            // savedTorment goes one past the maximum to mean "full"; store the real value
             HeroView heroView = HeroSystem.Instance.HeroView;
             GameDataManager.Instance.torment = Mathf.Min(heroView.savedTorment, heroView.savedMaxTorment);
-            GameDataManager.Instance.gauge = HeroSystem.Instance.HeroView.savedGauge;
             if (GameDataManager.Instance != null)
             {
                 if (GameDataManager.Instance.currentAct == 1 && GameDataManager.Instance.indexEnemy == 2)
@@ -325,7 +317,7 @@ public class EnemySystem : Singleton<EnemySystem>
                 }
             }
 
-            if (GameDataManager.Instance.HasPerk("Meat on the Bone"))
+            if (GameDataManager.Instance.HasRelic("Meat on the Bone"))
             {
                 float hpPercentage = (float)GameDataManager.Instance.CurrentHeroHP / GameDataManager.Instance.MaxHeroHP;
 

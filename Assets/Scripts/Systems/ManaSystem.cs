@@ -36,7 +36,6 @@ public class ManaSystem : Singleton<ManaSystem>
     private IEnumerator SpendManaPerformer(SpendManaGA spendManaGA)
     {
         currentMana -= spendManaGA.Amount;
-        HeroSystem.Instance.HeroView.UpdateGaugeText(spendManaGA.Amount);
         manaUI.UpdateManaText(currentMana);
         yield return null;
     }

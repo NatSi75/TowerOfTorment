@@ -15,6 +15,8 @@ public class CardView : MonoBehaviour
     [SerializeField] private Image image;
     [SerializeField] private GameObject wrapper;
     [SerializeField] private LayerMask dropLayer;
+    [Tooltip("Centre of the card's picture relative to its pivot (local space). A card is played when this point is released in the drop area.")]
+    [SerializeField] private Vector2 visualCenter = new(2.65f, -5.85f);
     private CardRarity rarity;
     [SerializeField] private GameObject backgroundParentCard;
     public RarityVisual[] rarityVisualsKnight;
@@ -38,7 +40,6 @@ public class CardView : MonoBehaviour
         Card = card;
         type.text = card.Type.ToString();
         title.text = card.Title;
-        // Kurale has no bold weight, so upgraded cards are marked with a colour and synthetic bold.
         defaultTitleColor ??= title.color;
         title.color = card.IsUpgradeVersion ? upgradedTitleColor : defaultTitleColor.Value;
         title.fontStyle = card.IsUpgradeVersion ? title.fontStyle | FontStyles.Bold : title.fontStyle & ~FontStyles.Bold;
@@ -49,8 +50,6 @@ public class CardView : MonoBehaviour
         ApplyRarityVisuals(rarity);
     }
 
-    // Card art comes in different sizes (256 / 512 px, square). Crop it to the frame opening's aspect
-    // and scale it to exactly fill the opening, so it is never too big or too small.
     private void SetArt(Card card)
     {
         if (worldArtWindow.size.x > 0f && worldArtWindow.size.y > 0f && card.Image != null)
@@ -108,7 +107,6 @@ public class CardView : MonoBehaviour
         return cropped;
     }
 
-    // Shows a card for a given hero (0 = Knight, 1 = Wizard) when there is no run going on, e.g. in the Compendium.
     public void Setup(Card card, int heroIndex)
     {
         heroIndexOverride = heroIndex;
@@ -149,8 +147,6 @@ public class CardView : MonoBehaviour
         }   
     }
 
-    // True while the card flies from the draw pile into the hand, or from the hand to the discard / exhaust pile.
-    // A moving card can't be hovered (the preview would pop up at a wrong place or stay behind).
     public bool IsAnimating { get; private set; }
     private bool hovered;
 
@@ -160,7 +156,6 @@ public class CardView : MonoBehaviour
         if (animating && hovered) EndHover();
     }
 
-    // Closes this card's preview (if it has one open) and shows the card in the hand again.
     public void CancelHover()
     {
         if (hovered) EndHover();
@@ -232,7 +227,6 @@ public class CardView : MonoBehaviour
             Interactions.Instance.PlayerIsDragging = true;
             if (MobileLayout.IsSmallScreen)
             {
-                // touch: keep the enlarged preview while the finger rests on the card, hide it once dragging starts
                 touchPreview = true;
                 touchStartPosition = MouseUtil.GetMousePositionInWorldSpace();
             }
@@ -284,7 +278,7 @@ public class CardView : MonoBehaviour
         else
         {
             if (touchPreview) EndTouchPreview();
-            Vector3 checkPosition = transform.position;
+            Vector3 checkPosition = transform.TransformPoint(visualCenter);
             checkPosition.z = 0f;
             Collider2D hitCollider = Physics2D.OverlapPoint(checkPosition, dropLayer);
             if (hitCollider != null

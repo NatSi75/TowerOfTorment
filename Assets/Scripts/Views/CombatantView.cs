@@ -25,7 +25,6 @@ public class CombatantView : MonoBehaviour
         UpdateHealthText();
     }
 
-    // Font of the HP label, shared by the floating combat texts.
     public TMP_FontAsset LabelFont => healthText != null ? healthText.font : null;
 
     public void UpdateHealthText()
@@ -40,8 +39,6 @@ public class CombatantView : MonoBehaviour
             && animatorController.HasState(0, Animator.StringToHash(stateName));
     }
 
-    // Triggers the "Attack" / "Hurt" / "Death" animation and returns its length (0 when it has none).
-    // Once Death has played nothing else can interrupt it.
     public float PlayAnimation(string stateName)
     {
         if (isDying || !HasAnimation(stateName)) return 0f;
@@ -103,12 +100,9 @@ public class CombatantView : MonoBehaviour
         }
     }
 
-    // Red number for the health lost; "Blocked" when the armor took all of it.
     private void ShowDamageNumber(float healthLost, float blocked)
     {
         if (healthLost <= 0f && blocked <= 0f) return;
-
-        // around the upper part of the body, a little to the side so quick multi-hits don't stack
         Bounds body = spriteRenderer.bounds;
         Vector3 position = new(
             body.center.x + Random.Range(-0.5f, 0.5f),
@@ -125,8 +119,6 @@ public class CombatantView : MonoBehaviour
         }
     }
 
-    // All armor goes away at the start of the hero's turn. Read the real amount: currentArmor is only
-    // refreshed when the hero is hit, so after a turn without attacks it was stale and the armor stayed.
     public void ResetArmorHero()
     {
         float armor = GetStatusEffectStacks(StatusEffectType.ARMOR);

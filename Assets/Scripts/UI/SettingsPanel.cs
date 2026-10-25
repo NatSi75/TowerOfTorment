@@ -2,7 +2,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Volume settings window. The prefab lives at Resources/SettingsPanel; open it with SettingsPanel.Open().
 public class SettingsPanel : MonoBehaviour
 {
     [SerializeField] private Slider bgmSlider;
