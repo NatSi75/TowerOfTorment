@@ -6,6 +6,8 @@ public static class DamageNumber
 {
     public static readonly Color DamageColor = new(1f, 0.25f, 0.2f);
     public static readonly Color BlockedColor = new(0.55f, 0.75f, 1f);
+    public static readonly Color HealColor = new(0.35f, 1f, 0.4f);
+    public static readonly Color ArmorColor = new(0.55f, 0.75f, 1f);
 
     private const float FontSize = 18f;
     private const float RiseDistance = 1.6f;

@@ -6,6 +6,7 @@ using UnityEngine;
 public class CardViewCreator : Singleton<CardViewCreator>
 {
     [SerializeField] private CardView cardViewPrefab;
+    public CardView CardViewPrefab => cardViewPrefab;
 
     public CardView CreateCardView(Card card, Vector3 position, Quaternion rotation)
     {

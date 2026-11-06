@@ -10,13 +10,7 @@ public class HealEffect : Effect
         HealGA healGA = new(healAmount);
         foreach (var target in targets)
         {
-            target.CurrentHealth += healAmount;
-
-            if (target.CurrentHealth > target.MaxHealth)
-            {
-                target.CurrentHealth = target.MaxHealth;
-            }
-            target.UpdateHealthText();
+            target.Heal(healAmount);
         }
         return healGA;
     }

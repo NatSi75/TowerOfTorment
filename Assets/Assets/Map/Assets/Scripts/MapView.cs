@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Map
@@ -47,12 +48,15 @@ namespace Map
         public Color32 lineVisitedColor = Color.white;
         [Tooltip("Unavailable path color")]
         public Color32 lineLockedColor = Color.gray;
+        [Tooltip("Color of the nodes the player can choose next (they pulse to this color)")]
+        public Color32 attainableColor = new Color32(255, 200, 70, 255);
+        [Tooltip("Color of the paths the player can take next")]
+        public Color32 lineAttainableColor = new Color32(255, 200, 70, 255);
 
         protected GameObject firstParent;
         protected GameObject mapParent;
         private List<List<Vector2Int>> paths;
         private Camera cam;
-        // ALL nodes:
         public readonly List<MapNode> MapNodes = new List<MapNode>();
         protected readonly List<LineConnection> lineConnections = new List<LineConnection>();
 
@@ -102,6 +106,87 @@ namespace Map
             SetLineColors();
 
             CreateMapBackground(m);
+
+            FocusCurrentNode();
+        }
+
+        protected virtual void FocusCurrentNode()
+        {
+            MapNode current = CurrentMapNode();
+            if (current == null || mapParent == null) return;
+            ScrollNonUI scrollNonUi = mapParent.GetComponent<ScrollNonUI>();
+            if (scrollNonUi == null || scrollNonUi.freezeY) return;
+            float targetY = cam.transform.position.y - cam.orthographicSize * 0.3f;
+            mapParent.transform.position += new Vector3(0f, targetY - current.transform.position.y, 0f);
+        }
+
+        private MapNode CurrentMapNode()
+        {
+            if (mapManager.CurrentMap == null || mapManager.CurrentMap.path.Count == 0) return null;
+            return GetNode(mapManager.CurrentMap.path[mapManager.CurrentMap.path.Count - 1]);
+        }
+
+        [Header("Player Marker")]
+        [Tooltip("Colour of the arrow that points at the node the player is on")]
+        public Color playerMarkerColor = new Color(1f, 0.8f, 0.25f);
+        private GameObject playerMarker;
+        private static Sprite markerSprite;
+
+        protected virtual void UpdatePlayerMarker()
+        {
+            if (playerMarker != null) Destroy(playerMarker);
+            MapNode current = CurrentMapNode();
+            if (current == null) return;
+
+            Bounds nodeBounds = current.sr != null ? current.sr.bounds : new Bounds(current.transform.position, Vector3.one);
+            float size = Mathf.Max(nodeBounds.size.x, nodeBounds.size.y) * 0.6f;
+
+            playerMarker = new GameObject("Player Marker");
+            playerMarker.transform.SetParent(current.transform, true);
+            playerMarker.transform.position = new Vector3(nodeBounds.center.x, nodeBounds.max.y + size * 0.6f, current.transform.position.z);
+            playerMarker.transform.rotation = Quaternion.identity;
+            float parentScale = Mathf.Max(0.0001f, current.transform.lossyScale.x);
+            playerMarker.transform.localScale = Vector3.one * (size / parentScale);
+
+            SpriteRenderer marker = playerMarker.AddComponent<SpriteRenderer>();
+            marker.sprite = MarkerSprite();
+            marker.color = playerMarkerColor;
+            marker.sortingOrder = 150;
+
+            float bob = size * 0.25f / parentScale;
+            playerMarker.transform.DOLocalMoveY(playerMarker.transform.localPosition.y + bob, 0.5f)
+                .SetEase(Ease.InOutSine).SetLoops(-1, LoopType.Yoyo).SetLink(playerMarker);
+        }
+
+        private static Sprite MarkerSprite()
+        {
+            if (markerSprite != null) return markerSprite;
+            const int size = 64;
+            const float outline = 6f;
+            Vector2 a = new Vector2(4f, 60f), b = new Vector2(60f, 60f), c = new Vector2(32f, 6f);
+            Texture2D texture = new Texture2D(size, size, TextureFormat.RGBA32, false) { filterMode = FilterMode.Bilinear };
+            Color dark = new Color(0.12f, 0.06f, 0.03f, 1f);
+            for (int y = 0; y < size; y++)
+            {
+                for (int x = 0; x < size; x++)
+                {
+                    Vector2 p = new Vector2(x + 0.5f, y + 0.5f);
+                    float d = Mathf.Min(EdgeDistance(a, b, p), Mathf.Min(EdgeDistance(b, c, p), EdgeDistance(c, a, p)));
+                    Color color = d > outline ? Color.white : dark;
+                    if (d > outline && d < outline + 1f) color = Color.Lerp(dark, Color.white, d - outline);
+                    color.a = Mathf.Clamp01(d);
+                    texture.SetPixel(x, y, color);
+                }
+            }
+            texture.Apply();
+            markerSprite = Sprite.Create(texture, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), size);
+            return markerSprite;
+        }
+
+        private static float EdgeDistance(Vector2 from, Vector2 to, Vector2 p)
+        {
+            Vector2 edge = to - from;
+            return (edge.x * (p.y - from.y) - edge.y * (p.x - from.x)) / -edge.magnitude;
         }
 
         protected virtual void CreateMapBackground(Map m)
@@ -113,7 +198,6 @@ namespace Map
             GameObject backgroundObject = new GameObject("Background");
             backgroundObject.transform.SetParent(mapParent.transform);
             float span = m.DistanceBetweenFirstAndLastLayers();
-            // centred on the camera (the map parent starts at the camera's x), so the frame is symmetric on screen
             backgroundObject.transform.localPosition = new Vector3(0f, span / 2f, 0f);
             backgroundObject.transform.localRotation = Quaternion.identity;
             SpriteRenderer sr = backgroundObject.AddComponent<SpriteRenderer>();
@@ -122,13 +206,11 @@ namespace Map
             float height = span + yOffset * 2f;
             if (sprite.border != Vector4.zero)
             {
-                // 9-sliced panel: stretch to the map size
                 sr.drawMode = SpriteDrawMode.Sliced;
                 sr.size = new Vector2(xSize, height);
             }
             else
             {
-                // full picture: cover the whole map length and the screen width, keeping its proportions
                 sr.drawMode = SpriteDrawMode.Simple;
                 Vector2 spriteSize = sprite.rect.size / sprite.pixelsPerUnit;
                 float viewWidth = cam.orthographic ? cam.orthographicSize * 2f * cam.aspect : xSize;
@@ -136,7 +218,6 @@ namespace Map
                 backgroundObject.transform.localScale = new Vector3(scale, scale, 1f);
             }
 
-            // the player can't scroll past the ends of the background
             ScrollNonUI scrollNonUi = mapParent.GetComponent<ScrollNonUI>();
             if (scrollNonUi != null) scrollNonUi.boundsRenderer = sr;
         }
@@ -174,19 +255,16 @@ namespace Map
 
         public void SetAttainableNodes()
         {
-            // first set all the nodes as unattainable/locked:
             foreach (MapNode node in MapNodes)
                 node.SetState(NodeStates.Locked);
 
             if (mapManager.CurrentMap.path.Count == 0)
             {
-                // we have not started traveling on this map yet, set entire first layer as attainable:
                 foreach (MapNode node in MapNodes.Where(n => n.Node.point.y == 0))
                     node.SetState(NodeStates.Attainable);
             }
             else
             {
-                // we have already started moving on this map, first highlight the path as visited:
                 foreach (Vector2Int point in mapManager.CurrentMap.path)
                 {
                     MapNode mapNode = GetNode(point);
@@ -197,7 +275,6 @@ namespace Map
                 Vector2Int currentPoint = mapManager.CurrentMap.path[mapManager.CurrentMap.path.Count - 1];
                 Node currentNode = mapManager.CurrentMap.GetNode(currentPoint);
 
-                // set all the nodes that we can travel to as attainable:
                 foreach (Vector2Int point in currentNode.outgoing)
                 {
                     MapNode mapNode = GetNode(point);
@@ -205,20 +282,18 @@ namespace Map
                         mapNode.SetState(NodeStates.Attainable);
                 }
             }
+
+            UpdatePlayerMarker();
         }
 
         public virtual void SetLineColors()
         {
-            // set all lines to grayed out first:
             foreach (LineConnection connection in lineConnections)
                 connection.SetColor(lineLockedColor);
 
-            // set all lines that are a part of the path to visited color:
-            // if we have not started moving on the map yet, leave everything as is:
             if (mapManager.CurrentMap.path.Count == 0)
                 return;
 
-            // in any case, we mark outgoing connections from the final node with visible/attainable color:
             Vector2Int currentPoint = mapManager.CurrentMap.path[mapManager.CurrentMap.path.Count - 1];
             Node currentNode = mapManager.CurrentMap.GetNode(currentPoint);
 
@@ -226,7 +301,7 @@ namespace Map
             {
                 LineConnection lineConnection = lineConnections.FirstOrDefault(conn => conn.from.Node == currentNode &&
                                                                             conn.to.Node.point.Equals(point));
-                lineConnection?.SetColor(lineVisitedColor);
+                lineConnection?.SetColor(lineAttainableColor);
             }
 
             if (mapManager.CurrentMap.path.Count <= 1) return;
@@ -248,7 +323,6 @@ namespace Map
             MapNode bossNode = MapNodes.FirstOrDefault(node => node.Node.nodeType == NodeType.Boss);
             Debug.Log("Map span in set orientation: " + span + " camera aspect: " + cam.aspect);
 
-            // setting first parent to be right in front of the camera first:
             firstParent.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, 0f);
             float offset = orientationOffset;
             switch (orientation)
@@ -268,13 +342,11 @@ namespace Map
                         scrollNonUi.yConstraints.min = 0;
                         scrollNonUi.yConstraints.max = span + 2f * offset;
                     }
-                    // factor in map span:
                     firstParent.transform.localPosition += new Vector3(0, -offset, 0);
                     break;
                 case MapOrientation.RightToLeft:
                     offset *= cam.aspect;
                     mapParent.transform.eulerAngles = new Vector3(0, 0, 90);
-                    // factor in map span:
                     firstParent.transform.localPosition -= new Vector3(offset, bossNode.transform.position.y, 0);
                     if (scrollNonUi != null)
                     {
@@ -324,11 +396,9 @@ namespace Map
             Vector3 toPoint = to.transform.position +
                               (from.transform.position - to.transform.position).normalized * offsetFromNodes;
 
-            // drawing lines in local space:
             lineObject.transform.position = fromPoint;
             lineRenderer.useWorldSpace = false;
 
-            // line renderer with 2 points only does not handle transparency properly:
             lineRenderer.positionCount = linePointsCount;
             for (int i = 0; i < linePointsCount; i++)
             {

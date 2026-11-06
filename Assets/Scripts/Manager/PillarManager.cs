@@ -150,7 +150,7 @@ public class PillarManager : MonoBehaviour
         }
         else
         {
-            GameDataManager.Instance.AddTorment(10);
+            GameDataManager.Instance.AddTorment(15);
             SceneManager.LoadScene("Map");
         }
     }

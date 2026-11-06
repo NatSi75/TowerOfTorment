@@ -100,14 +100,30 @@ public class CombatantView : MonoBehaviour
         }
     }
 
-    private void ShowDamageNumber(float healthLost, float blocked)
+    // Negative amounts are an HP cost (e.g. a card that costs HP).
+    public void Heal(float amount)
     {
-        if (healthLost <= 0f && blocked <= 0f) return;
+        float healthBefore = CurrentHealth;
+        CurrentHealth = Mathf.Min(CurrentHealth + amount, MaxHealth);
+        UpdateHealthText();
+        float change = CurrentHealth - healthBefore;
+        if (change > 0f) DamageNumber.Show(NumberPosition(), "+" + Mathf.RoundToInt(change), DamageNumber.HealColor, healthText.font);
+        else if (change < 0f) DamageNumber.Show(NumberPosition(), Mathf.RoundToInt(-change).ToString(), DamageNumber.DamageColor, healthText.font);
+    }
+
+    private Vector3 NumberPosition()
+    {
         Bounds body = spriteRenderer.bounds;
-        Vector3 position = new(
+        return new Vector3(
             body.center.x + Random.Range(-0.5f, 0.5f),
             body.center.y + body.extents.y * 0.7f,
             0f);
+    }
+
+    private void ShowDamageNumber(float healthLost, float blocked)
+    {
+        if (healthLost <= 0f && blocked <= 0f) return;
+        Vector3 position = NumberPosition();
 
         if (healthLost > 0f)
         {
@@ -148,6 +164,10 @@ public class CombatantView : MonoBehaviour
             statusEffects.Add(type, stackCount);
         }
         statusEffectsUI.UpdateStatusEffectUI(type, Mathf.RoundToInt(GetStatusEffectStacks(type)), target);
+        if (type == StatusEffectType.ARMOR && stackCount > 0f)
+        {
+            DamageNumber.Show(NumberPosition(), "+" + Mathf.RoundToInt(stackCount) + " Armor", DamageNumber.ArmorColor, healthText.font, 0.75f);
+        }
     }
     public void RemoveStatusEffect(StatusEffectType type, float stackCount)
     {

@@ -19,6 +19,9 @@ public class MenuTextInteract : MonoBehaviour, IPointerEnterHandler, IPointerExi
     [Tooltip("Centang untuk membuka panel About")]
     public bool opensAbout;
 
+    [Tooltip("Centang untuk keluar dari game")]
+    public bool quitsGame;
+
     [Header("Hover Settings")]
     [Tooltip("Masukkan object Selected_line dari Hierarchy")]
     public GameObject selectedLine;
@@ -106,6 +109,11 @@ public class MenuTextInteract : MonoBehaviour, IPointerEnterHandler, IPointerExi
         if (opensAbout)
         {
             AboutPanel.Open();
+            return;
+        }
+        if (quitsGame)
+        {
+            QuitPanel.Open();
             return;
         }
 

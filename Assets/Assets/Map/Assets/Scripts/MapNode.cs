@@ -127,19 +127,19 @@ namespace Map
                     if (circleImage != null) circleImage.gameObject.SetActive(true);
                     break;
                 case NodeStates.Attainable:
-                    // start pulsating from visited to locked color:
+                    // start pulsating from locked to the "can choose next" color:
                     if (sr != null)
                     {
                         sr.color = MapView.Instance.lockedColor;
                         sr.DOKill();
-                        sr.DOColor(MapView.Instance.visitedColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
+                        sr.DOColor(MapView.Instance.attainableColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
                     }
-                    
+
                     if (image != null)
                     {
                         image.color = MapView.Instance.lockedColor;
                         image.DOKill();
-                        image.DOColor(MapView.Instance.visitedColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
+                        image.DOColor(MapView.Instance.attainableColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
                     }
                     
                     break;

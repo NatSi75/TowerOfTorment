@@ -78,6 +78,7 @@ public class CardSystem : Singleton<CardSystem>
         hand.Remove(playCardGA.Card);
         CardView cardView = handView.RemoveCard(playCardGA.Card);
         AudioManager.PlaySfx(Sfx.PlayCard);
+        yield return ShowPlayedCard(cardView);
         if (playCardGA.ManualTarget != null)
         {
             foreach (var effect in cardView.Card.data.ManualTargetEffect)
@@ -176,7 +177,7 @@ public class CardSystem : Singleton<CardSystem>
 
         foreach (var effectWrapper in playCardGA.Card.ManualTargetEffect)
         {
-            if (cardView.Card.data.name == "Bane" && playCardGA.ManualTarget is EnemyView enemyView && enemyView.GetStatusEffectStacks(StatusEffectType.POISON) > 0)
+            if ((cardView.Card.data.name == "Bane" || cardView.Card.data.name == "Bane +") && playCardGA.ManualTarget is EnemyView enemyView && enemyView.GetStatusEffectStacks(StatusEffectType.POISON) > 0)
             {
                 PerformEffectGA performEffectGA = new(effectWrapper, new() { playCardGA.ManualTarget });
                 ActionSystem.Instance.AddReaction(performEffectGA);
@@ -212,7 +213,7 @@ public class CardSystem : Singleton<CardSystem>
         {
             if (IsHealthCost(effectWrapper)) continue; // already paid above
             List<CombatantView> targets = effectWrapper.TargetMode.GetTargets();
-            if (cardView.Card.data.name == "Mirage")
+            if (cardView.Card.data.name == "Mirage" || cardView.Card.data.name == "Mirage +")
             {
                 float amountPoison = 0;
                 foreach (var target in targets)
@@ -224,6 +225,90 @@ public class CardSystem : Singleton<CardSystem>
             PerformEffectGA performEffectGA = new(effectWrapper.Effect, targets);
             ActionSystem.Instance.AddReaction(performEffectGA);
         }
+    }
+
+    [Header("Play Card Feedback")]
+    [Tooltip("Where a played card is shown, relative to the camera centre")]
+    [SerializeField] private Vector2 playedCardOffset = new(0f, 0.5f);
+    [SerializeField] private float playedCardScale = 1.15f;
+    [SerializeField] private Color playedCardGlow = new(1f, 0.85f, 0.4f, 0.8f);
+    private static Sprite glowSprite;
+
+    // The played card moves to the middle of the screen, pops and glows, before its effects happen.
+    private IEnumerator ShowPlayedCard(CardView cardView)
+    {
+        Camera cam = Camera.main;
+        if (cardView == null || cam == null) yield break;
+        cardView.SetAnimating(true);
+
+        Transform card = cardView.transform;
+        card.DOKill();
+        card.rotation = Quaternion.identity;
+        if (cardView.TryGetComponent(out UnityEngine.Rendering.SortingGroup sorting)) sorting.sortingOrder = 300;
+        float scale = MobileLayout.HandScale * playedCardScale;
+        Vector3 centerOffset = Vector3.Scale(cardView.VisualCenter, new Vector3(scale, scale, 1f));
+        Vector3 target = cam.transform.position + (Vector3)playedCardOffset - centerOffset;
+        target.z = card.position.z;
+
+        SpriteRenderer glow = CreateGlow(cardView);
+        Sequence sequence = DOTween.Sequence().SetLink(cardView.gameObject);
+        sequence.Append(card.DOMove(target, 0.15f).SetEase(Ease.OutQuad));
+        sequence.Join(card.DOScale(scale, 0.15f).SetEase(Ease.OutBack));
+        if (glow != null)
+        {
+            sequence.Join(glow.DOFade(playedCardGlow.a, 0.1f));
+            sequence.Append(glow.DOFade(0f, 0.25f));
+        }
+        sequence.Join(card.DOPunchScale(Vector3.one * 0.08f * scale, 0.2f, 6, 0.5f));
+        yield return sequence.WaitForCompletion();
+    }
+
+    private SpriteRenderer CreateGlow(CardView cardView)
+    {
+        Bounds? bounds = null;
+        foreach (SpriteRenderer sr in cardView.GetComponentsInChildren<SpriteRenderer>())
+        {
+            if (sr.sprite == null || !sr.enabled) continue;
+            if (bounds == null) bounds = sr.bounds;
+            else { Bounds b = bounds.Value; b.Encapsulate(sr.bounds); bounds = b; }
+        }
+        if (bounds == null) return null;
+
+        GameObject go = new("Play Glow");
+        go.transform.SetParent(cardView.transform, false);
+        go.transform.position = new Vector3(bounds.Value.center.x, bounds.Value.center.y, cardView.transform.position.z);
+        Vector3 parentScale = cardView.transform.lossyScale;
+        Vector3 size = bounds.Value.size * 1.12f;
+        go.transform.localScale = new Vector3(size.x / Mathf.Max(0.0001f, parentScale.x), size.y / Mathf.Max(0.0001f, parentScale.y), 1f);
+
+        SpriteRenderer glow = go.AddComponent<SpriteRenderer>();
+        glow.sprite = GlowSprite();
+        Color color = playedCardGlow;
+        color.a = 0f;
+        glow.color = color;
+        glow.sortingOrder = -5; // behind the card inside its sorting group
+        return glow;
+    }
+
+    // Soft rounded glow, drawn once in code.
+    private static Sprite GlowSprite()
+    {
+        if (glowSprite != null) return glowSprite;
+        const int size = 64;
+        Texture2D texture = new(size, size, TextureFormat.RGBA32, false) { wrapMode = TextureWrapMode.Clamp };
+        for (int y = 0; y < size; y++)
+        {
+            for (int x = 0; x < size; x++)
+            {
+                float dx = Mathf.Max(0f, Mathf.Abs(x + 0.5f - size / 2f) - size * 0.3f);
+                float dy = Mathf.Max(0f, Mathf.Abs(y + 0.5f - size / 2f) - size * 0.3f);
+                float edge = Mathf.Sqrt(dx * dx + dy * dy) / (size * 0.2f);
+                texture.SetPixel(x, y, new Color(1f, 1f, 1f, Mathf.Clamp01(1f - edge)));
+            }
+        }
+        texture.Apply();
+        glowSprite = Sprite.Create(texture, new Rect(0, 0, size, size), new Vector2(0.5f, 0.5f), size);
+        return glowSprite;
     }
 
     private static bool IsHealthCost(AutoTargetEffect effectWrapper)

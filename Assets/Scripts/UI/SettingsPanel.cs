@@ -51,6 +51,11 @@ public class SettingsPanel : MonoBehaviour
         sfxValueText.text = Mathf.RoundToInt(sfxSlider.value * 100f) + "%";
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape)) Close();
+    }
+
     public void Close()
     {
         PlayerPrefs.Save();

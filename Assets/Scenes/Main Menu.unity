@@ -976,6 +976,7 @@ MonoBehaviour:
   opensSettings: 1
   opensCompendium: 0
   opensAbout: 0
+  quitsGame: 0
   selectedLine: {fileID: 879529820}
   hoverCursor: {fileID: 0}
   lineOffset: {x: 0, y: -25}
@@ -1008,6 +1009,7 @@ MonoBehaviour:
   opensSettings: 0
   opensCompendium: 0
   opensAbout: 0
+  quitsGame: 1
   selectedLine: {fileID: 1956105984}
   hoverCursor: {fileID: 0}
   lineOffset: {x: 0, y: -25}
@@ -1179,6 +1181,7 @@ MonoBehaviour:
   opensSettings: 0
   opensCompendium: 1
   opensAbout: 0
+  quitsGame: 0
   selectedLine: {fileID: 341349632}
   hoverCursor: {fileID: 0}
   lineOffset: {x: 0, y: -25}
@@ -1247,6 +1250,7 @@ MonoBehaviour:
   opensSettings: 0
   opensCompendium: 0
   opensAbout: 0
+  quitsGame: 0
   selectedLine: {fileID: 1044874230}
   hoverCursor: {fileID: 0}
   lineOffset: {x: 0, y: -25}
@@ -1549,6 +1553,7 @@ MonoBehaviour:
   opensSettings: 0
   opensCompendium: 0
   opensAbout: 1
+  quitsGame: 0
   selectedLine: {fileID: 1714728358}
   hoverCursor: {fileID: 0}
   lineOffset: {x: 0, y: -25}

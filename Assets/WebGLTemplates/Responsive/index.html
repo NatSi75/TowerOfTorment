@@ -20,12 +20,11 @@
         <div id="loading-text">Memuat... 0%</div>
       </div>
 
-      <div id="rotate-overlay">
-        <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="20" y="8" width="24" height="44" rx="4"/><path d="M52 40a20 20 0 0 1-20 16M36 52l-4 4 4 4"/></svg>
-        <p>Game ini dimainkan dalam mode <b>landscape</b>.<br>Putar perangkatmu untuk bermain.</p>
-      </div>
-
       <div id="error-banner"></div>
+
+      <button id="fullscreen-button" class="hidden" type="button" title="Fullscreen" aria-label="Fullscreen">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg>
+      </button>
     </div>
 
     <script>
@@ -35,8 +34,10 @@
       const loadingFill = document.querySelector("#loading-bar-fill");
       const loadingText = document.querySelector("#loading-text");
       const errorBanner = document.querySelector("#error-banner");
+      // Also catches phones in the browser's "Desktop site" mode, which report a desktop user agent.
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
-        || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+        || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+        || window.matchMedia("(pointer: coarse)").matches;
 
       if (isMobile) document.body.classList.add("is-mobile");
 
@@ -78,22 +79,53 @@
       canvas.style.background = "url('" + buildUrl + "/{{{ BACKGROUND_FILENAME.replace(/'/g, '%27') }}}') center / cover";
 #endif
 
-      // No fullscreen button of our own: hosts such as itch.io already provide one.
+      // Our own fullscreen button: fullscreen started by the host page (e.g. itch.io's button)
+      // can only be left by the host, so the game's Exit could not leave it.
       const root = document.documentElement;
       const canFullscreen = !!(root.requestFullscreen || root.webkitRequestFullscreen);
+      const fullscreenButton = document.querySelector("#fullscreen-button");
+      let gameLoaded = false;
 
       function isFullscreen() {
         return !!(document.fullscreenElement || document.webkitFullscreenElement);
       }
 
+      function updateFullscreenButton() {
+        const show = gameLoaded && canFullscreen && !isMobile && !isFullscreen();
+        fullscreenButton.classList.toggle("hidden", !show);
+        // Android browsers only allow locking the orientation while in fullscreen.
+        if (isMobile && isFullscreen()) lockLandscape();
+      }
+
+      function lockLandscape() {
+        if (screen.orientation && screen.orientation.lock) {
+          screen.orientation.lock("landscape").catch(() => {});
+        }
+      }
+      document.addEventListener("fullscreenchange", updateFullscreenButton);
+      document.addEventListener("webkitfullscreenchange", updateFullscreenButton);
+      fullscreenButton.addEventListener("click", () => {
+        enterLandscapeFullscreen();
+        canvas.focus();
+      });
+
+      // Called by the game's Exit ("Thanks for playing" screen): a page may not close its tab,
+      // so it leaves fullscreen and shows the page again.
+      window.TowerOfTorment = {
+        exitFullscreen() {
+          if (isFullscreen()) {
+            try { (document.exitFullscreen || document.webkitExitFullscreen).call(document); } catch (e) { }
+          }
+          // Phones: the next tap (e.g. "Back to the game") goes back to fullscreen.
+          if (isMobile) document.addEventListener("pointerup", enterLandscapeFullscreen, { once: true });
+        }
+      };
+
       function enterLandscapeFullscreen() {
         if (!canFullscreen || isFullscreen()) return;
         const request = gameRoot.requestFullscreen || gameRoot.webkitRequestFullscreen;
         Promise.resolve(request.call(gameRoot)).then(() => {
-          // Android browsers only allow locking the orientation while in fullscreen.
-          if (isMobile && screen.orientation && screen.orientation.lock) {
-            screen.orientation.lock("landscape").catch(() => {});
-          }
+          if (isMobile) lockLandscape();
         }).catch(() => {});
       }
 
@@ -117,6 +149,8 @@
           loadingText.textContent = "Memuat... " + percent + "%";
         }).then(() => {
           loadingScreen.classList.add("hidden");
+          gameLoaded = true;
+          updateFullscreenButton();
         }).catch((message) => {
           showBanner(message, "error");
         });

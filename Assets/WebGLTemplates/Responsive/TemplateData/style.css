@@ -90,42 +90,6 @@ html, body {
   opacity: 0.8;
 }
 
-#rotate-overlay {
-  position: absolute;
-  inset: 0;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  padding: 24px;
-  text-align: center;
-  font-size: 18px;
-  background: #0d0b10;
-  z-index: 10;
-}
-
-#rotate-overlay svg {
-  width: 72px;
-  height: 72px;
-  fill: none;
-  stroke: #f0d9a0;
-  stroke-width: 3;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  animation: rotate-hint 2s ease-in-out infinite;
-}
-
-@keyframes rotate-hint {
-  0%, 30% { transform: rotate(0deg); }
-  60%, 100% { transform: rotate(-90deg); }
-}
-
-/* The game is landscape-only: ask phone/tablet players to rotate. */
-@media (orientation: portrait) {
-  .is-mobile #rotate-overlay { display: flex; }
-}
-
 #error-banner {
   position: absolute;
   top: 0;
@@ -139,6 +103,35 @@ html, body {
   color: #000;
   font-family: system-ui, sans-serif;
   font-size: 14px;
+}
+
+#fullscreen-button {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 15;
+  width: 40px;
+  height: 40px;
+  padding: 7px;
+  border: 1px solid #6b5536;
+  border-radius: 6px;
+  background: rgba(13, 11, 16, 0.7);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+
+#fullscreen-button:hover { opacity: 1; }
+#fullscreen-button.hidden { display: none; }
+
+#fullscreen-button svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: #f0d9a0;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
 .banner-error { background: #e05555; }

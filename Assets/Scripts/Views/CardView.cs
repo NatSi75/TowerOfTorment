@@ -17,6 +17,7 @@ public class CardView : MonoBehaviour
     [SerializeField] private LayerMask dropLayer;
     [Tooltip("Centre of the card's picture relative to its pivot (local space). A card is played when this point is released in the drop area.")]
     [SerializeField] private Vector2 visualCenter = new(2.65f, -5.85f);
+    public Vector2 VisualCenter => visualCenter;
     private CardRarity rarity;
     [SerializeField] private GameObject backgroundParentCard;
     public RarityVisual[] rarityVisualsKnight;
@@ -114,11 +115,11 @@ public class CardView : MonoBehaviour
     }
 
     private int? heroIndexOverride;
+    public int HeroIndex => heroIndexOverride ?? (GameDataManager.Instance != null ? GameDataManager.Instance.indexHero : 0);
 
     private void ApplyRarityVisuals(CardRarity rarity)
     {
-        int heroIndex = heroIndexOverride ?? (GameDataManager.Instance != null ? GameDataManager.Instance.indexHero : 0);
-        if (heroIndex == 0) // Knight
+        if (HeroIndex == 0) // Knight
         {
             foreach (var visual in rarityVisualsKnight)
             {
@@ -274,6 +275,10 @@ public class CardView : MonoBehaviour
                 PlayCardGA playCardGA = new(Card, target);
                 ActionSystem.Instance.Perform(playCardGA);
             }
+            else if (target != null)
+            {
+                ManaSystem.Instance.ShowNotEnoughMana();
+            }
         }
         else
         {
@@ -281,15 +286,15 @@ public class CardView : MonoBehaviour
             Vector3 checkPosition = transform.TransformPoint(visualCenter);
             checkPosition.z = 0f;
             Collider2D hitCollider = Physics2D.OverlapPoint(checkPosition, dropLayer);
-            if (hitCollider != null
-                && hitCollider.TryGetComponent(out DropAreaUtil area) 
-                && ManaSystem.Instance.HasEnoughMana(Card.Mana))
+            bool inDropArea = hitCollider != null && hitCollider.TryGetComponent(out DropAreaUtil _);
+            if (inDropArea && ManaSystem.Instance.HasEnoughMana(Card.Mana))
             {
                 PlayCardGA playCardGA = new(Card);
                 ActionSystem.Instance.Perform(playCardGA);
-            } 
+            }
             else
             {
+                if (inDropArea) ManaSystem.Instance.ShowNotEnoughMana();
                 transform.position = dragStartPosition;
                 transform.rotation = dragStartRotation;
             }
