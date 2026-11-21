@@ -36,5 +36,12 @@ namespace Map
 
             if (uilr != null) uilr.color = color;
         }
+
+        // The dotted line shader ignores vertex colours, so a path that can no longer be taken is
+        // darkened through its material tint instead (white = normal).
+        public void SetTint(Color tint)
+        {
+            if (lr != null && lr.material.HasProperty("_Color")) lr.material.color = tint;
+        }
     }
 }

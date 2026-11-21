@@ -7,6 +7,7 @@ public class EnemyView : CombatantView
     [SerializeField] private SpriteRenderer intetionShow;
     [SerializeField] private TMP_Text attackText;
     [SerializeField] private Transform intentionImageTransform;
+    public Vector3 IntentPosition => intetionShow != null ? intetionShow.transform.position : transform.position;
 
     public Sprite intentionType { get; set; }
     public float ActionValue { get; set; }

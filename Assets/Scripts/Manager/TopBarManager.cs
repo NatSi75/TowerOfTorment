@@ -75,7 +75,7 @@ public class TopBarManager : MonoBehaviour
         ((RectTransform)deckButton.transform).anchoredPosition = deckButtonPosition + shift;
         ((RectTransform)mapButton.transform).anchoredPosition = mapButtonPosition + shift;
 
-        if (show && Input.GetKeyDown(KeyCode.Escape) && !PauseMenu.IsPaused && !SettingsPanel.IsOpen
+        if (show && Input.GetKeyDown(KeyCode.Escape) && !PauseMenu.IsPaused && !SettingsPanel.IsOpen && !TutorialPanel.IsOpen
             && (Interactions.Instance == null || !Interactions.Instance.PlayerIsDragging))
         {
             PauseMenu.Open();

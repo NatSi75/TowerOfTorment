@@ -48,10 +48,10 @@ namespace Map
         public Color32 lineVisitedColor = Color.white;
         [Tooltip("Unavailable path color")]
         public Color32 lineLockedColor = Color.gray;
-        [Tooltip("Color of the nodes the player can choose next (they pulse to this color)")]
-        public Color32 attainableColor = new Color32(255, 200, 70, 255);
-        [Tooltip("Color of the paths the player can take next")]
-        public Color32 lineAttainableColor = new Color32(255, 200, 70, 255);
+        [Tooltip("Rooms the player can no longer reach from where they are")]
+        public Color32 unreachableColor = new Color32(25, 22, 28, 150);
+        [Tooltip("Paths the player can no longer take from where they are")]
+        public Color32 lineUnreachableColor = new Color32(70, 68, 78, 170);
 
         protected GameObject firstParent;
         protected GameObject mapParent;
@@ -108,6 +108,8 @@ namespace Map
             CreateMapBackground(m);
 
             FocusCurrentNode();
+
+            if (!TopBarManager.isViewOnlyMode) TutorialPanel.ShowOnce("Map", TutorialPanel.MapSteps());
         }
 
         protected virtual void FocusCurrentNode()
@@ -128,7 +130,7 @@ namespace Map
 
         [Header("Player Marker")]
         [Tooltip("Colour of the arrow that points at the node the player is on")]
-        public Color playerMarkerColor = new Color(1f, 0.8f, 0.25f);
+        public Color playerMarkerColor = Color.white;
         private GameObject playerMarker;
         private static Sprite markerSprite;
 
@@ -281,15 +283,51 @@ namespace Map
                     if (mapNode != null)
                         mapNode.SetState(NodeStates.Attainable);
                 }
+
+                // rooms that can't be reached any more from here are darkened
+                HashSet<Vector2Int> reachable = ReachablePoints();
+                foreach (MapNode node in MapNodes)
+                {
+                    Vector2Int point = node.Node.point;
+                    if (!reachable.Contains(point) && !mapManager.CurrentMap.path.Contains(point))
+                        node.SetState(NodeStates.Unreachable);
+                }
             }
 
             UpdatePlayerMarker();
         }
 
+        // Every point the player can still travel to from the room they are in (all of them before the first move).
+        private HashSet<Vector2Int> ReachablePoints()
+        {
+            HashSet<Vector2Int> reachable = new HashSet<Vector2Int>();
+            if (mapManager.CurrentMap.path.Count == 0)
+            {
+                foreach (MapNode node in MapNodes) reachable.Add(node.Node.point);
+                return reachable;
+            }
+
+            Queue<Vector2Int> open = new Queue<Vector2Int>();
+            open.Enqueue(mapManager.CurrentMap.path[mapManager.CurrentMap.path.Count - 1]);
+            while (open.Count > 0)
+            {
+                Node node = mapManager.CurrentMap.GetNode(open.Dequeue());
+                if (node == null) continue;
+                foreach (Vector2Int next in node.outgoing)
+                {
+                    if (reachable.Add(next)) open.Enqueue(next);
+                }
+            }
+            return reachable;
+        }
+
         public virtual void SetLineColors()
         {
             foreach (LineConnection connection in lineConnections)
+            {
                 connection.SetColor(lineLockedColor);
+                connection.SetTint(Color.white);
+            }
 
             if (mapManager.CurrentMap.path.Count == 0)
                 return;
@@ -297,11 +335,23 @@ namespace Map
             Vector2Int currentPoint = mapManager.CurrentMap.path[mapManager.CurrentMap.path.Count - 1];
             Node currentNode = mapManager.CurrentMap.GetNode(currentPoint);
 
+            // paths that start somewhere the player can no longer get to are darkened
+            HashSet<Vector2Int> reachable = ReachablePoints();
+            HashSet<(Vector2Int, Vector2Int)> walked = new HashSet<(Vector2Int, Vector2Int)>();
+            for (int i = 0; i < mapManager.CurrentMap.path.Count - 1; i++)
+                walked.Add((mapManager.CurrentMap.path[i], mapManager.CurrentMap.path[i + 1]));
+            foreach (LineConnection connection in lineConnections)
+            {
+                Vector2Int from = connection.from.Node.point;
+                if (from != currentPoint && !reachable.Contains(from) && !walked.Contains((from, connection.to.Node.point)))
+                    connection.SetTint(lineUnreachableColor);
+            }
+
             foreach (Vector2Int point in currentNode.outgoing)
             {
                 LineConnection lineConnection = lineConnections.FirstOrDefault(conn => conn.from.Node == currentNode &&
                                                                             conn.to.Node.point.Equals(point));
-                lineConnection?.SetColor(lineAttainableColor);
+                lineConnection?.SetColor(lineVisitedColor);
             }
 
             if (mapManager.CurrentMap.path.Count <= 1) return;

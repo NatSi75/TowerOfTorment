@@ -240,7 +240,27 @@ public class CardView : MonoBehaviour
             dragStartRotation = transform.rotation;
             transform.rotation = Quaternion.Euler(0, 0, 0);
             dragOffset = transform.position - MouseUtil.GetMousePositionInWorldSpace();
+            dragStarted = true;
         }
+    }
+
+    private bool dragStarted;
+
+    // Released while the game can't take input (e.g. paused mid-drag): put the card back instead of leaving it stuck.
+    private void CancelDrag()
+    {
+        if (Card.ManualTargetEffect != null && Card.ManualTargetEffect.Count > 0)
+        {
+            ManualTargetSystem.Instance.EndTargeting(MouseUtil.GetMousePositionInWorldSpace());
+            return;
+        }
+        if (!dragStarted) return;
+        dragStarted = false;
+        if (touchPreview) EndTouchPreview();
+        SetDragGlow(null);
+        transform.position = dragStartPosition;
+        transform.rotation = dragStartRotation;
+        Interactions.Instance.PlayerIsDragging = false;
     }
 
     void OnMouseDrag()
@@ -250,6 +270,36 @@ public class CardView : MonoBehaviour
         Vector3 mousePosition = MouseUtil.GetMousePositionInWorldSpace();
         if (touchPreview && Vector3.Distance(mousePosition, touchStartPosition) > TouchDragThreshold) EndTouchPreview();
         transform.position = mousePosition + dragOffset;
+
+        // white glow: release now to play it; red glow: not enough mana
+        if (!touchPreview)
+        {
+            bool enoughMana = ManaSystem.Instance.HasEnoughMana(Card.Mana);
+            SetDragGlow(InDropArea() ? (enoughMana ? GlowEffect.Ready : GlowEffect.NotEnoughMana) : null);
+        }
+    }
+
+    private bool InDropArea()
+    {
+        Vector3 checkPosition = transform.TransformPoint(visualCenter);
+        checkPosition.z = 0f;
+        Collider2D hitCollider = Physics2D.OverlapPoint(checkPosition, dropLayer);
+        return hitCollider != null && hitCollider.TryGetComponent(out DropAreaUtil _);
+    }
+
+    private SpriteRenderer dragGlow;
+
+    public void SetDragGlow(Color? color)
+    {
+        if (color == null)
+        {
+            if (dragGlow != null) dragGlow.enabled = false;
+            return;
+        }
+        if (dragGlow == null) dragGlow = GlowEffect.CreateBehind(transform, 1.15f, -5); // behind the card inside its sorting group
+        if (dragGlow == null) return;
+        dragGlow.enabled = true;
+        dragGlow.color = color.Value;
     }
 
     private const float TouchDragThreshold = 1f;
@@ -265,7 +315,11 @@ public class CardView : MonoBehaviour
 
     void OnMouseUp()
     {
-        if (!Interactions.Instance.PlayerCanInteract()) return;
+        if (!Interactions.Instance.PlayerCanInteract())
+        {
+            CancelDrag();
+            return;
+        }
         ResetCardVisual();
         if (Card.ManualTargetEffect != null && Card.ManualTargetEffect.Count > 0)
         {
@@ -283,10 +337,8 @@ public class CardView : MonoBehaviour
         else
         {
             if (touchPreview) EndTouchPreview();
-            Vector3 checkPosition = transform.TransformPoint(visualCenter);
-            checkPosition.z = 0f;
-            Collider2D hitCollider = Physics2D.OverlapPoint(checkPosition, dropLayer);
-            bool inDropArea = hitCollider != null && hitCollider.TryGetComponent(out DropAreaUtil _);
+            SetDragGlow(null);
+            bool inDropArea = InDropArea();
             if (inDropArea && ManaSystem.Instance.HasEnoughMana(Card.Mana))
             {
                 PlayCardGA playCardGA = new(Card);
@@ -299,6 +351,7 @@ public class CardView : MonoBehaviour
                 transform.rotation = dragStartRotation;
             }
 
+            dragStarted = false;
             Interactions.Instance.PlayerIsDragging = false;
         }
     }

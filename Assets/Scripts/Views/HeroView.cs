@@ -6,6 +6,7 @@ using UnityEngine;
 public class HeroView : CombatantView 
 {
     [SerializeField] private TMP_Text tormentText;
+    public Vector3 TormentTextPosition => tormentText != null ? tormentText.transform.TransformPoint(tormentText.bounds.center) : transform.position;
     public List<CardData> deck;
     public float savedHP;
     public int savedMaxHP;

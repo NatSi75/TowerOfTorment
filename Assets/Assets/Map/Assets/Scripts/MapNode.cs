@@ -10,7 +10,8 @@ namespace Map
     {
         Locked,
         Visited,
-        Attainable
+        Attainable,
+        Unreachable
     }
 }
 
@@ -89,8 +90,11 @@ namespace Map
             SetState(NodeStates.Locked);
         }
 
+        public NodeStates State { get; private set; }
+
         public void SetState(NodeStates state)
         {
+            State = state;
             if (visitedCircle != null) visitedCircle.gameObject.SetActive(false);
             if (circleImage != null) circleImage.gameObject.SetActive(false);
             
@@ -127,21 +131,36 @@ namespace Map
                     if (circleImage != null) circleImage.gameObject.SetActive(true);
                     break;
                 case NodeStates.Attainable:
-                    // start pulsating from locked to the "can choose next" color:
+                    // start pulsating from visited to locked color:
                     if (sr != null)
                     {
                         sr.color = MapView.Instance.lockedColor;
                         sr.DOKill();
-                        sr.DOColor(MapView.Instance.attainableColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
+                        sr.DOColor(MapView.Instance.visitedColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
                     }
 
                     if (image != null)
                     {
                         image.color = MapView.Instance.lockedColor;
                         image.DOKill();
-                        image.DOColor(MapView.Instance.attainableColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
+                        image.DOColor(MapView.Instance.visitedColor, 0.5f).SetLoops(-1, LoopType.Yoyo);
                     }
-                    
+
+                    break;
+                case NodeStates.Unreachable:
+                    // a room the player can no longer get to: dark and faded
+                    if (sr != null)
+                    {
+                        sr.DOKill();
+                        sr.color = MapView.Instance.unreachableColor;
+                    }
+
+                    if (image != null)
+                    {
+                        image.DOKill();
+                        image.color = MapView.Instance.unreachableColor;
+                    }
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(state), state, null);

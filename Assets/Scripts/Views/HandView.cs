@@ -26,6 +26,16 @@ public class HandView : MonoBehaviour
         return cardView;
     }
 
+    // Middle of the cards in hand (world space), or null when the hand is empty.
+    public Vector3? CardsCenter()
+    {
+        List<CardView> inHand = cards.Where(c => c != null).ToList();
+        if (inHand.Count == 0) return null;
+        Vector3 sum = Vector3.zero;
+        foreach (CardView card in inHand) sum += card.transform.TransformPoint(card.VisualCenter);
+        return sum / inHand.Count;
+    }
+
     private CardView GetCardView(Card card)
     {
         return cards.Where(cardView => cardView.Card == card).FirstOrDefault();

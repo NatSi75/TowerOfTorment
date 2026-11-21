@@ -119,5 +119,16 @@ public class MatchSetupSystem : MonoBehaviour
         }
 
         TurnBanner.Begin();
+        StartCoroutine(ShowTutorialWhenReady());
+    }
+
+    // The first battle explains the screen, once the opening hand has been dealt.
+    private IEnumerator ShowTutorialWhenReady()
+    {
+        if (TutorialPanel.HasSeen("Battle")) yield break;
+        yield return new WaitForSeconds(0.5f);
+        while (ActionSystem.Instance != null && ActionSystem.Instance.IsPerforming) yield return null;
+        yield return new WaitForSeconds(0.3f);
+        TutorialPanel.ShowOnce("Battle", TutorialPanel.BattleSteps());
     }
 }
